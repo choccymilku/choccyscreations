@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>choc (WIP)</title>
+    <link rel="icon" type="image/x-icon" href="./icon.png">
+    <link rel="stylesheet" href="./styles/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    .noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.disabledrag {
+   -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+   -user-drag: none;
+}
+</style>
+</head>
+<body  class="light">
+    <script>
+        // Important to be 1st in the DOM
+        const theme = localStorage.getItem('theme') || 'light';
+        document.documentElement.dataset.appliedMode = theme;
+      </script>
+    <div id="topbar">
+        <div id="menu_wing" class="wing">
+            <h1 style="margin-left: 15px;font-size: 70px;margin-top: 35px;">./menu</h1>
+            <div id="menu_wing_anim"></div>
+        </div>
+        <div id="about_wing" class="wing">
+            <h1 style="margin-left: 15px;font-size: 70px;margin-top: 35px;">./about</h1>
+        </div>
+        <div id="other_wing" class="wing">
+            <h1 style="margin-left: 15px;font-size: 70px;margin-top: 35px;">./other</h1>
+        </div>
+    </div>
+
+    <div class="intro_bg" style="transform: translate(-50%, -50%) rotate(2deg);background-color: yellow;"></div>
+    <div class="intro_bg" style="transform: translate(-50%, -50%) rotate(-2deg);background-color: green;"></div>
+
+    <div class="intro" id="intro"></div>
+    <div class="intro" id="intro_full">
+        i'm choccy<br>
+        somehow a web dev, rarely an editor<br>
+        find out more up there
+    </div>
+
+
+    <div class="noselect"id="menu">
+        <span style="font-size: 70px;margin-right: -295px;margin-left: 15px;">THEME: </span>
+        <span id="theme-toggle"></spa>
+    </div>
+
+    <h1 style="position: absolute;bottom: 0;left: 50%;transform: translateX(-50%);">WIP</h1>
+    <h1 style="position: absolute;bottom: 0;left: 50%;transform: translateX(-50%);font-size: 10px;">( work in progress )</h1>
+
+    <script src="./code/index.js"></script>
+    <script src="./code/theme.js"></script>
+    <script src="./code/typer.js"></script>
+</body>
+</html>
