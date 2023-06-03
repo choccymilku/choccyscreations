@@ -1,14 +1,56 @@
 :root[data-applied-mode="light"] {
-	color-scheme: light;
-	--text: black;
-    --backround: white;
+    color-scheme: light;
+    --text: #1E1E1E;
+    --background: #fefefe;
+    --wing1: #E5E5E5;
+    --wing2: #CCCCCC;
+    --wing3: #BFBFBF;
+    --wingback: #db5f6e;
+}
 
-  }
-  :root[data-applied-mode="dark"] {
-	color-scheme: dark;
-	--text: white;
-    --backround: black;
-  }
+:root[data-applied-mode="dark"] {
+    color-scheme: dark;
+    --text: #fefefe;
+    --background: #1E1E1E;
+    --wing1: #2b2e3b;
+    --wing2: #404254;
+    --wing3: #52546b;
+    --wingback: #db5f6e;
+}
+
+/* Additional themes */
+:root[data-applied-mode="vaporwave"] {
+    --text: white;
+    --background: #4500f2;
+    --wing1: #BF4b92;
+    --wing2: #e04b94;
+    --wing3: #ee4f9d;
+    --wingback: #6a2d68;
+}
+
+:root[data-applied-mode="retro"] {
+    --text: white;
+    --background: #ffcc5c;
+    --wing1: #96ceb4;
+    --wing2: #ff6f69;
+    --wing3: #ced07d;
+    --wingback: #0e9aa7;
+}
+
+:root[data-applied-mode="nature"] {
+    --text: white;
+    --background: #ea6414;
+    --wing1: #e2d304;
+    --wing2: #98cb33;
+    --wing3: #38c03f;
+    --wingback: green;
+}
+
+
+
+body {
+    background-color: var(--background);
+}
 
 #topbar {
     height: 100px;
@@ -30,20 +72,89 @@
     cursor: pointer;
     position: relative;
     z-index: 10;
-    top:0
+    top:-140px;
 }
 
+.back_wing {
+        width: 300px;
+        height: 150px;
+        background-color: var(--wingback);
+        transform: rotate(-5deg);
+        transition: 0.2s;
+        cursor: pointer;
+        position: relative;
+        z-index: 10;
+        top:-140px;
+        margin-left: -5px;
+}
+.back_wing:hover {
+    height: 170px;
+}
+.animate-wing {
+    animation: animate-wing 0.65s forwards;
+}
+@keyframes animate-wing {
+    0% {
+        top:-140px;
+    }
+    50% {
+        top:10px;
+    }
+    100% {
+        top:0px;
+    }
+}
+
+@keyframes animate-wing-back {
+    0% {
+        top:0px
+    }
+    50% {
+        top:10px;
+    }
+    100% {
+        top:-150px;
+    }
+}
+
+@keyframes animate-wing-button {
+    0% {
+        top:0px;
+    }
+    50% {
+        top:160px;
+    }
+    100% {
+        top:150px;
+    }
+}
+
+@keyframes animate-wing-button-back {
+    0% {
+        top:150px;
+    }
+    50% {
+        top:160px;
+    }
+    100% {
+        top:0px;
+    }
+}
 .wing:hover {
     height: 170px;
 }
 
+#menu_wing {
+    background-color: var(--wing1);
+}
+
 #about_wing {
-    background-color: orange;
+    background-color: var(--wing2);
     margin-left: -20px;
 }
 
 #other_wing {
-    background-color: green;
+    background-color: var(--wing3);
     margin-left: -15px;
 }
 
@@ -53,17 +164,29 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--backround);
-    display: flex;
     justify-content: center;
     align-items: center;
     font-size: 24px;
     opacity: 0;
-    transition: 0.25s;
+    width: 935px;
+  }
+
+  #about {
+    position: fixed;
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: calc(100% - 50px);
+    max-height: calc(100% - 170px);
+    margin-top: 50px;
+    max-width: 935px;
+
   }
   
-  
-  
-#theme-toggle {
+.toggle {
     width: 255px;
     height: fit-content;
     font-size: 70px;
@@ -77,7 +200,17 @@
     margin-top: -260px;
     z-index: 10;
     position: absolute;
-    background-color: blue;
+    background-color: var(--wing1);
+    transition: 0.3s;
+    cursor: context-menu;
+}
+
+#about_wing_anim {
+    width: 280px;
+    margin-top: -260px;
+    z-index: 10;
+    position: absolute;
+    background-color: var(--wing2);
     transition: 2s;
     cursor: context-menu;
 }
@@ -104,6 +237,29 @@
     }
 }
 
+@keyframes menu_anim_height_back {
+    0% {
+        height:calc(100% + 1000px);
+    }
+    100% {
+        height:0px;
+    }
+}
+
+@keyframes menu_anim_width_back {
+    0% {
+        width:calc(100% + 10000px);
+        height:calc(100% + 10000px);
+        margin-left: -3000px;
+        margin-top: -3000px;
+    }
+    100% {
+        width:300px;
+        margin-left: -30px;
+        height:calc(100% + 1000px);
+    }
+}
+
 .fa-solid {display: inline;}
 
 .intro {
@@ -111,7 +267,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: red;
     width: calc(100% - 100px);
     display: flex;
     justify-content: flex-start; /* Align the text to the left */
@@ -121,30 +276,45 @@
     text-align: left;
     max-width: 835px;
     height: 300px;
-    padding: 20px;
-  }
-
-  #intro_full {display: none;}
-  .intro_bg {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: calc(100% - 100px);
-    height: 300px;
-    display: flex;
-    justify-content: flex-start; /* Align the text to the left */
-    align-items: center; /* Vertically center the text */
-    font-size: 60px;
-    transition: 0.25s;
-    text-align: left;
-    max-width: 865px;
     padding: 15px;
+    transition: 0.5s;
+    color: var(--text);
+    max-height: calc(100% - 170px);
   }
-  
-  
 
+  #intro_full {display: none;margin-top:50px;}
 
+.wing_text {
+    padding-top: 30px;
+    padding-left: 15px;
+    padding-bottom: 50px;
+    margin-top: 5px;
+}
 
-h1 {font-family: 'Geologica', sans-serif;color:var(--text)}
+.flag-emojis {height: 30px;margin-bottom: -3px;}
+
+#link:hover {color: var(--text);text-decoration: none;}
+#link {transition: 0.15s;}
+#yeaah {width: 100%;height: 100%;background-color: var(--wing1);position: absolute;margin: -10px;display: none;z-index: 10;}
+
+#accounts {margin-top: 20px;}
+.connection-icons {
+	padding: 0.35em;
+	background-color: var(--wing1);
+	border-radius: 0.25em;
+	font-size: 0.8em;
+	white-space: nowrap;
+	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+	width:80px;
+	height: 80px;
+	z-index:1;
+	margin-right: -5px;
+	color:var(--text);
+  }
+
+.connection-div {height: 110px;width:110px;display: inline-block;}
+
+h1 {font-family: 'Geologica', sans-serif;color:var(--text);}
+#about {font-family: 'Geologica', sans-serif;color:var(--text);font-size: 38px;font-weight: 400;line-height: 1.5;}
 span {font-family: 'Geologica', sans-serif;color:var(--text)}
 div {font-family: 'Geologica', sans-serif;color:var(--text)}
