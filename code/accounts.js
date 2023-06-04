@@ -40,7 +40,7 @@ const accountUrls = {
         const mode = getAppliedMode(userPreference);
   
         for (const conn of connections) {
-          if (conn.type === "epicgames" || conn.type === "leagueoflegends" || conn.type === "riotgames"  || conn.type === "crunchyroll"  || conn.type === "battlenet") {
+          if (conn.type === "epicgames" || conn.type === "leagueoflegends" || conn.type === "riotgames"  || conn.type === "crunchyroll" || conn.type === "battlenet") {
             // Skip Epic Games, League of Legends, Riot Games, and Xbox connections
             continue;
           }
@@ -69,6 +69,7 @@ const accountUrls = {
   
           if (conn.type !== "xbox" || conn.type !== "battle-net" || conn.type !== "crunchyroll") {
             link.appendChild(icon);
+            link.href = url;
             link.target = "_blank";
           }
           
