@@ -88,3 +88,40 @@ function updateClockFormat(format) {
       
       // Watch for changes to the body element and its descendants
       observer.observe(document.body, { childList: true, subtree: true });
+
+
+      function updateClock(timezone) {
+        const now = new Date();
+        const timeOptions = {
+          hour12: localStorage.getItem('clockFormat') === '12-hour',
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZone: timezone
+        };
+        const timeString = now.toLocaleTimeString([], timeOptions);
+        const formattedTime = timeString.replace(/(\d+:\d+)\s([ap]m)/i, '$1 $2').toUpperCase();
+        clockElement.textContent = formattedTime;
+      }
+      
+      
+      let clockElement = document.getElementById('clock');
+      if (!clockElement) {
+        const observer = new MutationObserver(mutations => {
+          mutations.forEach(mutation => {
+            if (mutation.addedNodes) {
+              for (let i = 0; i < mutation.addedNodes.length; i++) {
+                const node = mutation.addedNodes[i];
+                if (node.id === 'clock') {
+                  clockElement = node;
+                  setInterval(() => updateClock(timezone), 0);
+                  observer.disconnect();
+                  break;
+                }
+              }
+            }
+          });
+        });
+        observer.observe(document.documentElement, { childList: true, subtree: true });
+      } else {
+        setInterval(() => updateClock(timezone), 1000);
+      }

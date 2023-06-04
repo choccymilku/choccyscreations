@@ -6,6 +6,7 @@
     --wing2: #CCCCCC;
     --wing3: #BFBFBF;
     --wingback: #db5f6e;
+    --iconcolor: #1E1E1E;
 }
 
 :root[data-applied-mode="dark"] {
@@ -16,6 +17,7 @@
     --wing2: #404254;
     --wing3: #52546b;
     --wingback: #db5f6e;
+    --iconcolor: #9e9eff;
 }
 
 /* Additional themes */
@@ -26,6 +28,7 @@
     --wing2: #e04b94;
     --wing3: #ee4f9d;
     --wingback: #6a2d68;
+    --iconcolor: white;
 }
 
 :root[data-applied-mode="retro"] {
@@ -35,6 +38,7 @@
     --wing2: #ff6f69;
     --wing3: #ced07d;
     --wingback: #0e9aa7;
+    --iconcolor: #005f73;
 }
 
 :root[data-applied-mode="nature"] {
@@ -44,18 +48,33 @@
     --wing2: #98cb33;
     --wing3: #38c03f;
     --wingback: green;
+    --iconcolor: green;
 }
 
 
 
 body {
     background-color: var(--background);
+    overflow: hidden;
+    transition: 0.25s;
 }
 
 #topbar {
     height: 100px;
     position: fixed;
     top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#topbar2 {
+    height: 100px;
+    width: fit-content;
+    position: fixed;
+    top: -100px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -169,6 +188,7 @@ body {
     font-size: 24px;
     opacity: 0;
     width: 935px;
+    transition: 0.25s;
   }
 
   #about {
@@ -183,7 +203,14 @@ body {
     max-height: calc(100% - 170px);
     margin-top: 50px;
     max-width: 935px;
-
+    opacity: 0;
+    transition: 0.25s;
+    font-family: 'Geologica', sans-serif;
+    color:var(--text);
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.5;
+    overflow-y: auto;
   }
   
 .toggle {
@@ -195,47 +222,7 @@ body {
     padding-left: 300px;
 }
 
-#menu_wing_anim {
-    width: 280px;
-    margin-top: -260px;
-    z-index: 10;
-    position: absolute;
-    background-color: var(--wing1);
-    transition: 0.3s;
-    cursor: context-menu;
-}
 
-#about_wing_anim {
-    width: 280px;
-    margin-top: -260px;
-    z-index: 10;
-    position: absolute;
-    background-color: var(--wing2);
-    transition: 2s;
-    cursor: context-menu;
-}
-
-@keyframes menu_anim_height {
-    0% {
-        height:0px;
-    }
-    100% {
-        height:calc(100% + 1000px);
-    }
-}
-
-@keyframes menu_anim_width {
-    0% {
-        width:280px;
-        height:calc(100% + 1000px);
-    }
-    100% {
-        width:calc(100% + 10000px);
-        height:calc(100% + 10000px);
-        margin-left: -3000px;
-        margin-top: -3000px;
-    }
-}
 
 @keyframes menu_anim_height_back {
     0% {
@@ -277,7 +264,6 @@ body {
     max-width: 835px;
     height: 300px;
     padding: 15px;
-    transition: 0.5s;
     color: var(--text);
     max-height: calc(100% - 170px);
   }
@@ -297,24 +283,66 @@ body {
 #link {transition: 0.15s;}
 #yeaah {width: 100%;height: 100%;background-color: var(--wing1);position: absolute;margin: -10px;display: none;z-index: 10;}
 
+#discord {
+    height: 300px;
+    margin-top: 100px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+}
+
+#discord_text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px; /* Adjust the margin as needed */
+}
+
+#pfp {height: 200px;}
+.discord_emoji {
+    display: inline-block;
+    height: 36px;
+    margin-bottom: -8px;
+}
 #accounts {margin-top: 20px;}
+#status {height: 20px;}
 .connection-icons {
-	padding: 0.35em;
 	background-color: var(--wing1);
-	border-radius: 0.25em;
+	border-radius: 0.1em;
 	font-size: 0.8em;
 	white-space: nowrap;
 	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
-	width:80px;
+	width:100px;
 	height: 80px;
 	z-index:1;
-	margin-right: -5px;
 	color:var(--text);
   }
+  .connection-title {
+    max-width: 95px;
+    padding: 0.15em;
+    height: 24px;
+    margin-left: 5px;
+    margin-top: 5px;
+    background-color: var(--wing1);
+    border-radius: 0.25em;
+    font-size: 16px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    opacity: 0;
+    transition: 0.2s;
+  }
+  
 
-.connection-div {height: 110px;width:110px;display: inline-block;}
+  .connection-div:hover .connection-title {
+    opacity: 1;
+  }
+
+  .icon-style {color:var(--iconcolor);font-size: 70px;padding-top: 15px;padding-bottom: 5px;}
+  
+
+.connection-div {height: 110px;width:110px;display: inline-block;margin-top: -10px;}
 
 h1 {font-family: 'Geologica', sans-serif;color:var(--text);}
-#about {font-family: 'Geologica', sans-serif;color:var(--text);font-size: 38px;font-weight: 400;line-height: 1.5;}
+h2 {font-family: 'Geologica', sans-serif;color:var(--text);font-weight: 400;}
 span {font-family: 'Geologica', sans-serif;color:var(--text)}
 div {font-family: 'Geologica', sans-serif;color:var(--text)}

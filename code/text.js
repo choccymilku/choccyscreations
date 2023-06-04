@@ -1,7 +1,7 @@
 var text = 
 "call me choccy or choco, up to you\n" +
 "available from <t:1662465600:t> to <t:1682874000:t>\n" +
-"<span id='birthday'></span> [aroace <img src='./aroace.png' class='flag-emojis'></img>](https://lgbtqia.fandom.com/wiki/Aromantic_asexual) & [genderfluid <img src='./genderfluid.png' class='flag-emojis'></img>](https://gender.fandom.com/wiki/Genderfluid)\n" +
+"<span id='birthday'></span> [aroace <img src='./images/aroace.png' class='flag-emojis'></img>](https://lgbtqia.fandom.com/wiki/Aromantic_asexual) & [genderfluid <img src='./images/genderfluid.png' class='flag-emojis'></img>](https://gender.fandom.com/wiki/Genderfluid)\n" +
 " i do stuff on the internet\n" +
 "<div id='accounts'></div>";
 
