@@ -68,7 +68,7 @@ function updateClockFormat(format) {
         document.getElementById("birthday").innerHTML = + age + " <span style='font-size:1rem'>( "+ (age + 1) + " in " + remainingDays + " days),</span>";
       
         // Update the countdown every second
-        setTimeout(() => startCountdown(birthdayMonth, birthdayDay), 100);
+        setTimeout(() => startCountdown(birthdayMonth, birthdayDay), 1000);
       }
       
       // Calculate the initial age based on the birth date in the current year
