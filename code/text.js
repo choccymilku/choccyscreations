@@ -92,6 +92,9 @@ function convertTimestamps(text) {
 return formattedText;
 }
 
+
+
+
 let clockElement = document.getElementById('clock');
 if (!clockElement) {
   const observer = new MutationObserver(mutations => {
@@ -116,23 +119,33 @@ if (!clockElement) {
 
 function updateClock(timezone) {
   const currentTime = new Date();
-  
+
   // Convert to the user's timezone
   const userTimezoneOffset = currentTime.getTimezoneOffset();
   const userTimezoneOffsetInMs = userTimezoneOffset * 60 * 1000;
   const userTime = new Date(currentTime.getTime() - userTimezoneOffsetInMs);
-  
+
+  // Determine clock format from localStorage
+  const clockFormat = localStorage.getItem('clockFormat');
+  const timeFormatOptions = {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: clockFormat === '12hour'
+  };
+
   // Format the time and timezone
-  const timeFormatOptions = { hour: 'numeric', minute: '2-digit', hour12: true };
   const timeString = userTime.toLocaleString('en-US', timeFormatOptions);
   const timezoneString = timezoneToAbbreviation(timezone);
-  
-  // Display the time and timezone
-  clockElement.textContent = timeString + ' (' + timezoneString + ')';
-  
-  // Display the user's time
-  const userTimeString = userTime.toLocaleString('en-US', timeFormatOptions);
-  console.log("Your time is " + userTimeString);
+
+  // Create a new element to display the time, timezone, and converted timezone
+  const timeElement = document.createElement('p');
+  timeElement.textContent = `${timeString} (${timezoneString}), your time is ${timeString}`;
+
+  // Clear the existing content of the clockElement
+  clockElement.innerHTML = '';
+
+  // Append the timeElement to the clockElement
+  clockElement.appendChild(timeElement);
 }
 
 function timezoneToAbbreviation(timezone) {
@@ -140,5 +153,6 @@ function timezoneToAbbreviation(timezone) {
   // For example, you could use a switch statement or an object to map timezones to abbreviations
   // Return the abbreviation corresponding to the timezone
 }
+
 
 
