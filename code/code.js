@@ -103,25 +103,3 @@ function updateClockFormat(format) {
         clockElement.textContent = formattedTime;
       }
       
-      
-      let clockElement = document.getElementById('clock');
-      if (!clockElement) {
-        const observer = new MutationObserver(mutations => {
-          mutations.forEach(mutation => {
-            if (mutation.addedNodes) {
-              for (let i = 0; i < mutation.addedNodes.length; i++) {
-                const node = mutation.addedNodes[i];
-                if (node.id === 'clock') {
-                  clockElement = node;
-                  setInterval(() => updateClock(timezone), 0);
-                  observer.disconnect();
-                  break;
-                }
-              }
-            }
-          });
-        });
-        observer.observe(document.documentElement, { childList: true, subtree: true });
-      } else {
-        setInterval(() => updateClock(timezone), 1000);
-      }
