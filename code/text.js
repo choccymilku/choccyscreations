@@ -1,9 +1,9 @@
 var text = 
 "call me choccy or choco, up to you\n" +
 "available from <t:1662465600:t> to <t:1682874000:t>\n" +
-"currently it's <div style='background-color:var(--wing3);padding-left:5px;padding-right:5px;border-radius:2px;' id='clock'></div>" +
+"currently it's " +
 "<span id='birthday'></span> [aroace <img src='./images/aroace.png' class='flag-emojis'></img>](https://lgbtqia.fandom.com/wiki/Aromantic_asexual)\n" +
-"i do stuff on the interne, occasionally codet\n" +
+"i do stuff on the internet, occasionally code\n" +
 "<div id='accounts'></div>";
 
 
