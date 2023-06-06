@@ -137,15 +137,17 @@ function updateClock(timezone) {
   const timeString = userTime.toLocaleString('en-US', timeFormatOptions);
   const timezoneString = timezoneToAbbreviation(timezone);
 
-  // Create a new element to display the time, timezone, and converted timezone
-  const timeElement = document.createElement('p');
-  timeElement.textContent = `${timeString} (${timezoneString}), your time is ${timeString}`;
+  // Format the user's time
+  const userTimeString = currentTime.toLocaleString('en-US', timeFormatOptions);
 
-  // Clear the existing content of the clockElement
-  clockElement.innerHTML = '';
+  // Generate the combined text
+  const combinedText = `${timeString} (${timezoneString}), your time is ${userTimeString}`;
 
-  // Append the timeElement to the clockElement
-  clockElement.appendChild(timeElement);
+  // Update the text content of the clockElement
+  clockElement.textContent = combinedText;
+
+  // Log the response to the console
+  console.log(combinedText);
 }
 
 function timezoneToAbbreviation(timezone) {
