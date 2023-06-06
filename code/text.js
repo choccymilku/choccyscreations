@@ -93,23 +93,52 @@ return formattedText;
 }
 
 let clockElement = document.getElementById('clock');
-      if (!clockElement) {
-        const observer = new MutationObserver(mutations => {
-          mutations.forEach(mutation => {
-            if (mutation.addedNodes) {
-              for (let i = 0; i < mutation.addedNodes.length; i++) {
-                const node = mutation.addedNodes[i];
-                if (node.id === 'clock') {
-                  clockElement = node;
-                  setInterval(() => updateClock(timezone), 0);
-                  observer.disconnect();
-                  break;
-                }
-              }
-            }
-          });
-        });
-        observer.observe(document.documentElement, { childList: true, subtree: true });
-      } else {
-        setInterval(() => updateClock(timezone), 1000);
+if (!clockElement) {
+  const observer = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
+      if (mutation.addedNodes) {
+        for (let i = 0; i < mutation.addedNodes.length; i++) {
+          const node = mutation.addedNodes[i];
+          if (node.id === 'clock') {
+            clockElement = node;
+            setInterval(() => updateClock(timezone), 0);
+            observer.disconnect();
+            break;
+          }
+        }
       }
+    });
+  });
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+} else {
+  setInterval(() => updateClock(timezone), 1000);
+}
+
+function updateClock(timezone) {
+  const currentTime = new Date();
+  
+  // Convert to the user's timezone
+  const userTimezoneOffset = currentTime.getTimezoneOffset();
+  const userTimezoneOffsetInMs = userTimezoneOffset * 60 * 1000;
+  const userTime = new Date(currentTime.getTime() - userTimezoneOffsetInMs);
+  
+  // Format the time and timezone
+  const timeFormatOptions = { hour: 'numeric', minute: '2-digit', hour12: true };
+  const timeString = userTime.toLocaleString('en-US', timeFormatOptions);
+  const timezoneString = timezoneToAbbreviation(timezone);
+  
+  // Display the time and timezone
+  clockElement.textContent = timeString + ' (' + timezoneString + ')';
+  
+  // Display the user's time
+  const userTimeString = userTime.toLocaleString('en-US', timeFormatOptions);
+  console.log("Your time is " + userTimeString);
+}
+
+function timezoneToAbbreviation(timezone) {
+  // Add your timezone-to-abbreviation mapping logic here
+  // For example, you could use a switch statement or an object to map timezones to abbreviations
+  // Return the abbreviation corresponding to the timezone
+}
+
+
