@@ -117,44 +117,6 @@ if (!clockElement) {
   setInterval(() => updateClock(timezone), 1000);
 }
 
-function updateClock(timezone) {
-  const currentTime = new Date();
-
-  // Convert to the user's timezone
-  const userTimezoneOffset = currentTime.getTimezoneOffset();
-  const userTimezoneOffsetInMs = userTimezoneOffset * 60 * 1000;
-  const userTime = new Date(currentTime.getTime() - userTimezoneOffsetInMs);
-
-  // Determine clock format from localStorage
-  const clockFormat = localStorage.getItem('clockFormat');
-  const timeFormatOptions = {
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: clockFormat === '12hour'
-  };
-
-  // Format the time and timezone
-  const timeString = userTime.toLocaleString('en-US', timeFormatOptions);
-  const timezoneString = timezoneToAbbreviation(timezone);
-
-  // Format the user's time
-  const userTimeString = currentTime.toLocaleString('en-US', timeFormatOptions);
-
-  // Generate the combined text
-  const combinedText = `${timeString} (${timezoneString}), your time is ${userTimeString}`;
-
-  // Update the text content of the clockElement
-  clockElement.textContent = combinedText;
-
-  // Log the response to the console
-  console.log(combinedText);
-}
-
-function timezoneToAbbreviation(timezone) {
-  // Add your timezone-to-abbreviation mapping logic here
-  // For example, you could use a switch statement or an object to map timezones to abbreviations
-  // Return the abbreviation corresponding to the timezone
-}
 
 
 
