@@ -1,19 +1,9 @@
-var text = 
-"call me choccy or choco, up to you\n" +
-"available from <t:1662465600:t> to <t:1682874000:t>\n" +
-"currently it's <span style='background-color:var(--wing3);padding-left:5px;padding-right:5px;border-radius:2px;' id='clock'></span>\n" +
-"<span id='birthday'></span> [aroace <img src='./images/aroace.png' class='flag-emojis'></img>](https://lgbtqia.fandom.com/wiki/Aromantic_asexual)\n" +
-"i do stuff on the internet, occasionally code\n" +
-"<div id='accounts'></div>";
-
-
+const text = `${custom_text}`
 
 var convertedText = convertTimestamps(text);
 
 // Display the converted text in the "about" element
 document.getElementById("about").innerHTML = convertedText;
-
-
 
 
 function convertTimestamps(text) {
@@ -32,7 +22,8 @@ function convertTimestamps(text) {
     const bigImageRegex = /\[\!\[(.*?)\]\!\]/g;
     const biggerImageRegex = /\[\!\!\[(.*?)\]\!\!\]/g;
     const biggestImageRegex = /\[\!\!\!\[(.*?)\]\!\!\!\]/g;
-
+    const dividerRegex = /\;\;divider\;\;/g;
+    
     const formattedText = text
       .replace(timestampRegex, (_, timestamp, format) => {
         const date = new Date(parseInt(timestamp) * 1000);
@@ -88,35 +79,7 @@ function convertTimestamps(text) {
 .replace(bigImageRegex, "<img class='emojis-big' src='$1'/>")
 .replace(biggerImageRegex, "<img class='emojis-bigger' src='$1'/>")
 .replace(biggestImageRegex, "<img class='emojis-biggest' src='$1'/>")
+.replace(dividerRegex, "<div class='divider'></div>")
 
 return formattedText;
 }
-
-
-
-
-let clockElement = document.getElementById('clock');
-if (!clockElement) {
-  const observer = new MutationObserver(mutations => {
-    mutations.forEach(mutation => {
-      if (mutation.addedNodes) {
-        for (let i = 0; i < mutation.addedNodes.length; i++) {
-          const node = mutation.addedNodes[i];
-          if (node.id === 'clock') {
-            clockElement = node;
-            setInterval(() => updateClock(timezone), 0);
-            observer.disconnect();
-            break;
-          }
-        }
-      }
-    });
-  });
-  observer.observe(document.documentElement, { childList: true, subtree: true });
-} else {
-  setInterval(() => updateClock(timezone), 1000);
-}
-
-
-
-
