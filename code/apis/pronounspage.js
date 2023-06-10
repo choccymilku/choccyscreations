@@ -34,7 +34,7 @@ pronounspagePronounsContainer.appendChild(commaTextNode);
 
     const generateFlagElement = (flag) => {
       const flagUrl = `https://en.pronouns.page/flags/${flag}.png`;
-      const terminologyUrl = `https://aromantic.fandom.com/wiki/${flag}`;
+      const terminologyUrl = `https://en.pronouns.page/terminology#${flag}`;
       const flagLink = document.createElement('a');
       flagLink.href = terminologyUrl;
       flagLink.target = '_blank';

@@ -47,23 +47,28 @@ const activities = data.activities;
   const activityState = customStatus ? customStatus.state : null;
 
   const statusCaseDiv = document.getElementById('status');
+  const statusCaseText = document.getElementById('status_text');
 
   switch (userStatus) {
     case 'online':
       //statusCaseDiv.innerHTML = '<h6 style="font-size:0.8rem;">online</h6>';
       statusCaseDiv.style.backgroundColor = '#2bca6d';
+      statusCaseText.textContent = 'currently online';
       break;
     case 'idle':
       //statusCaseDiv.innerHTML = '<h6 style="font-size:0.8rem;">idle</h6>';
       statusCaseDiv.style.backgroundColor = '#f0b232';
+      statusCaseText.textContent = 'currently idleing';
       break;
     case 'dnd':
       //statusCaseDiv.innerHTML = '<h6 style="font-size:0.8rem;margin-left:-1px;">dnd</h6>';
       statusCaseDiv.style.backgroundColor = '#f23f43';
+      statusCaseText.textContent = 'do not disturb';
       break;
     case 'offline':
       //statusCaseDiv.innerHTML = '<h6 style="font-size:0.8rem;margin-left:-2px;">offline</h6>';
       statusCaseDiv.style.backgroundColor = '#c4cbda';
+      statusCaseText.textContent = 'currently offline';
       break;
     default:
       //statusCaseDiv.innerHTML = '<h6 style="font-size:0.8rem;">¯\_(ツ)_/¯</h6>';
@@ -247,7 +252,7 @@ usernameElement.innerText = discordusername;
 const usernameTagElement = document.createElement('span'); // Create the <span> element
 usernameTagElement.id = 'tag'; // Set its ID to 'discord-username-tag'
 usernameTagElement.innerText = '#' + discordtag;
-usernameTagElement.style.color = 'var(--wing1';
+usernameTagElement.style.color = 'var(--text)';
 usernameElement.appendChild(usernameTagElement); // Append the <span> element to the <h6> element
 
 

@@ -11,5 +11,5 @@ var custom_text =
 "available from <t:1662465600:t> to <t:1682874000:t>\n" +
 "currently it's <span id='clock'></span>\n\n" +
 "<span id='birthday'></span> <span id='pronouns'></span> <span id='flags'></span>\n\n" +
-"i do stuff on the internet, occasionally code\n\n" +
+"i do stuff on the internet, occasionally code\n" +
 "<div id='accounts'></div>";
