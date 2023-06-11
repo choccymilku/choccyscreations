@@ -100,53 +100,7 @@ body {
 .animate-wing {
     animation: animate-wing 0.65s forwards;
 }
-@keyframes animate-wing {
-    0% {
-        top:-140px;
-    }
-    50% {
-        top:10px;
-    }
-    100% {
-        top:0px;
-    }
-}
 
-@keyframes animate-wing-back {
-    0% {
-        top:0px
-    }
-    50% {
-        top:10px;
-    }
-    100% {
-        top:-150px;
-    }
-}
-
-@keyframes animate-wing-button {
-    0% {
-        top:0px;
-    }
-    50% {
-        top:160px;
-    }
-    100% {
-        top:150px;
-    }
-}
-
-@keyframes animate-wing-button-back {
-    0% {
-        top:150px;
-    }
-    50% {
-        top:160px;
-    }
-    100% {
-        top:0px;
-    }
-}
 .wing:hover {
     height: 170px;
 }
