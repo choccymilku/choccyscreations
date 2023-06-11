@@ -178,31 +178,6 @@ body {
     padding-left: 300px;
 }
 
-
-
-@keyframes menu_anim_height_back {
-    0% {
-        height:calc(100% + 1000px);
-    }
-    100% {
-        height:0px;
-    }
-}
-
-@keyframes menu_anim_width_back {
-    0% {
-        width:calc(100% + 10000px);
-        height:calc(100% + 10000px);
-        margin-left: -3000px;
-        margin-top: -3000px;
-    }
-    100% {
-        width:300px;
-        margin-left: -30px;
-        height:calc(100% + 1000px);
-    }
-}
-
 .fa-solid {display: inline;}
 
 .intro {
@@ -212,8 +187,8 @@ body {
     transform: translate(-50%, -50%);
     width: calc(100% - 100px);
     display: flex;
-    justify-content: flex-start; /* Align the text to the left */
-    align-items: center; /* Vertically center the text */
+    justify-content: flex-start;
+    align-items: center;
     font-size: 60px;
     transition: 0.25s;
     text-align: left;
@@ -342,12 +317,6 @@ body {
   }
 
   #status_border:hover #status_text {opacity: 1;}
-  
-
-
-
-
-
 
 .discord_emoji {
     display: inline-block;
@@ -505,25 +474,8 @@ body {
       #listening-to-spotify-progress-bar-wrapper2 {
         width: calc(100% - 12px);
         margin-right: 0px;
-        margin-top: -26px;}
-/* 
-@media only screen and (max-width: 620px) {
-    #discord {height: 334px;align-items:normal;}
-    #discord-activity-section {display:none}
-    #discord-activity-section2 {display:block}
-    #tag {display: block;}
-    #username {font-size: 50px;}
-    #user_info {height: 300px !important;width: 300px;}
-    #status_text {
-        margin-left: 60px;
-        margin-top: -10px !important;
-        background-color: red;
-        border-radius: 8px;
-        opacity: 1;
-    }
-    
-} */
-
+        margin-top: -26px;
+}
 
 h1 {font-family: 'Geologica', sans-serif;color:var(--text);}
 h2 {font-family: 'Geologica', sans-serif;color:var(--text);font-weight: 400;}
