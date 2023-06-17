@@ -14,14 +14,11 @@ function getAppliedMode(userPreference) {
     return "dark";
   }
   // Add new themes here
-  if (userPreference === "retro") {
-    return "retro";
+  if (userPreference === "spotify") {
+    return "spotify";
   }
-  if (userPreference === "vaporwave") {
-    return "vaporwave";
-  }
-  if (userPreference === "nature") {
-    return "nature";
+  if (userPreference === "twitch") {
+    return "twitch";
   }
   // system
   if (matchMedia("(prefers-color-scheme: light)").matches) {
@@ -42,16 +39,13 @@ function rotatePreferences(userPreference) {
     return "dark";
   }
   if (userPreference === "dark") {
-    return "retro";
+    return "spotify";
   }
   // Add new themes here
-  if (userPreference === "retro") {
-    return "vaporwave";
+  if (userPreference === "spotify") {
+    return "twitch";
   }
-  if (userPreference === "vaporwave") {
-    return "nature";
-  }
-  if (userPreference === "nature") {
+  if (userPreference === "twitch") {
     return "system";
   }
   // for invalid values, just in case

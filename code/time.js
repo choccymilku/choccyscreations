@@ -69,7 +69,7 @@ initializeClockFormat();
     
       // Otherwise, display the countdown in days and age
       const remainingDays = Math.ceil(remainingTime / (1000 * 60 * 60 * 24));
-      document.getElementById("birthday").innerHTML = + age + " <span style='font-size:1rem'>( "+ (age + 1) + " in " + remainingDays + " days),</span>";
+      document.getElementById("birthday").innerHTML = + age + " <span style='font-size:1rem'>( "+ (age + 1) + " in " + remainingDays + " days)</span>";
     
       // Update the countdown every second
       setTimeout(() => startCountdown(birthdayMonth, birthdayDay), 1000);

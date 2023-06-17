@@ -9,7 +9,8 @@ const mastodon_username = "choccy";
 var custom_text = 
 "call me choccy or choco, up to you\n" +
 "available from <t:1662465600:t> to <t:1682874000:t>\n" +
-"currently it's <span id='clock'></span>\n\n" +
-"<span id='birthday'></span> <span id='pronouns'></span> <span id='flags'></span>\n\n" +
-"i do stuff on the internet, occasionally code\n" +
-"<div id='accounts'></div>";
+"currently it's <span id='clock'>fetching...</span>\n" +
+"<div class='divider'></div>" +
+"<span id='birthday'></span> <span id='pronouns'></span> <span id='flags'></span>\n" +
+"<div class='divider'></div>" +
+"i do stuff on the internet, occasionally code\n";

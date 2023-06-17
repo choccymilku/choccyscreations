@@ -13,7 +13,7 @@ const accountUrls = {
   facebook: "https://www.facebook.com/",
 };
 
-function addRobloxConnection() {
+/* function addRobloxConnection() {
   const connectionsContainer = document.getElementById("accounts");
 
   const robloxDiv = document.createElement("div");
@@ -50,16 +50,11 @@ function addRobloxConnection() {
 
   robloxContainer.appendChild(robloxLink);
 
-  const robloxTitle = document.createElement("div");
-  robloxTitle.classList.add("connection-title");
-  robloxTitle.id = "roblox-title";  
-
   robloxDiv.appendChild(robloxContainer);
-  robloxDiv.appendChild(robloxTitle);
   robloxDiv.classList.add("noselect");
 
   connectionsContainer.insertBefore(robloxDiv, connectionsContainer.firstChild);
-}
+} */
 
 function addMastodonConnection() {
   const connectionsContainer = document.getElementById("accounts");
@@ -82,12 +77,7 @@ function addMastodonConnection() {
 
   mastodonContainer.appendChild(mastodonLink);
 
-  const mastodonTitle = document.createElement("div");
-  mastodonTitle.classList.add("connection-title");
-  mastodonTitle.id = "mastodon-title"; 
-
   mastodonDiv.appendChild(mastodonContainer);
-  mastodonDiv.appendChild(mastodonTitle);
   mastodonDiv.classList.add("noselect");
 
   connectionsContainer.insertBefore(mastodonDiv, connectionsContainer.firstChild);
@@ -177,12 +167,7 @@ function createConnectionDiv(connection) {
 
   container.appendChild(link);
 
-  const title = document.createElement("div");
-  title.innerText = connection.name;
-  title.classList.add("connection-title");
-
   connDiv.appendChild(container);
-  connDiv.appendChild(title);
   connDiv.classList.add("noselect");
 
   return connDiv;

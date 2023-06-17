@@ -1,3 +1,16 @@
+
+:root[data-applied-mode="dark"] {
+  color-scheme: dark;
+  --text: #fefefe;
+  --background: #52546b /* alternitavely use 404254*/;
+  --modal_background: #404254;
+  --item: #2b2e3b;
+  --item_background: #52546b;
+  --wingback: #db5f6e;
+  --icon: #9e9eff;
+  --icon_hover: #6e6eb2;
+}
+
 :root[data-applied-mode="light"] {
     color-scheme: light;
     --text: #1E1E1E;
@@ -9,19 +22,8 @@
     --iconcolor: #1E1E1E;
 }
 
-:root[data-applied-mode="dark"] {
-    color-scheme: dark;
-    --text: #fefefe;
-    --background: #1E1E1E;
-    --wing1: #2b2e3b;
-    --wing2: #404254;
-    --wing3: #52546b;
-    --wingback: #db5f6e;
-    --iconcolor: #9e9eff;
-}
-
 /* Additional themes */
-:root[data-applied-mode="vaporwave"] {
+:root[data-applied-mode="spotify"] {
     --text: white;
     --background: #4500f2;
     --wing1: #BF4b92;
@@ -31,7 +33,7 @@
     --iconcolor: white;
 }
 
-:root[data-applied-mode="retro"] {
+:root[data-applied-mode="twitch"] {
     --text: white;
     --background: #ffcc5c;
     --wing1: #96ceb4;
@@ -40,17 +42,6 @@
     --wingback: #0e9aa7;
     --iconcolor: #005f73;
 }
-
-:root[data-applied-mode="nature"] {
-    --text: white;
-    --background: #ea6414;
-    --wing1: #e2d304;
-    --wing2: #98cb33;
-    --wing3: #38c03f;
-    --wingback: green;
-    --iconcolor: green;
-}
-
 
 
 body {
@@ -120,18 +111,7 @@ body {
 #menu_wing {
     background-color: var(--wing1);
 }
-
-#about_wing {
-    background-color: var(--wing2);
-    margin-left: -15px;
-    width: 260px;
-}
-
-#other_wing {
-    background-color: var(--wing3);
-    margin-left: -20px;
-    width: 300px;
-}
+o
 
 #menu {
     position: fixed;
@@ -146,28 +126,6 @@ body {
     max-width: 935px;
     transition: 0.25s;
   }
-
-  #about {
-    position: fixed;
-    top: -50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: calc(100% - 50px);
-    max-height: calc(100% - 160px);
-    margin-top: 65px;
-    max-width: 935px;
-    opacity: 0;
-    transition: 0.25s;
-    font-family: 'Geologica', sans-serif;
-    color:var(--text);
-    font-size: 38px;
-    font-weight: 400;
-    line-height: 1.5;
-    overflow-y: auto;
-  }
   
 .toggle {
     width: 255px;
@@ -180,88 +138,127 @@ body {
 
 .fa-solid {display: inline;}
 
-.intro {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: calc(100% - 100px);
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 60px;
-    transition: 0.25s;
-    text-align: left;
-    max-width: 835px;
-    height: 300px;
-    padding: 15px;
-    color: var(--text);
-    max-height: calc(100% - 170px);
-  }
-
-  #intro_full {display: none;margin-top:36px;}
-
-  #other {
-    position: fixed;
-    top: -50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: calc(100% - 100px);
-    display: block;
-    font-size: 60px;
-    transition: 0.25s;
-    text-align: center;
-    max-width: 835px;
-    padding: 15px;
-    opacity: 0;
-    color: var(--text);
-    max-height: calc(100% - 170px);
-  }
-
-.wing_text {
-    padding-top: 30px;
-    padding-left: 15px;
-    padding-bottom: 50px;
-    margin-top: 5px;
-}
-
-.flag-emojis {height: 30px;margin-bottom: -3px;}
+.flag-emojis {height: 24px;margin-bottom: -3px;}
 
 #link:hover {color: var(--text);text-decoration: none;}
 #link {transition: 0.15s;}
 #yeaah {width: 100%;height: 100%;background-color: var(--wing1);position: absolute;margin: -10px;display: none;z-index: 10;}
 
-#discord {
-    padding: 10px;
-    border-radius: 8px;
-    margin-top: 10px;
-    background-color: var(--wing2);
-    display: flex;
-    align-items: center;
-  }
-  
+#main {
+  background-color: var(--modal_background);
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  max-width: 900px;
+  max-height: 500px;
+  position: fixed;
+  display: flex;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+}
+
+#left_side {
+  margin: 10px;
+  position: relative;
+}
+
+#top_left {
+  width: 235px;
+  height: 235px;
+  position: relative;
+  border-radius: 8px;
+}
+
+#bottom_left {
+  width: 235px;
+  height: 235px;
+  margin-top: 10px;
+  margin-left: 0px;
+  position: relative;
+}
+
+#right_side {
+  width: calc(100% - 392px);
+  height: calc(100% - 20px);
+  margin-top: 10px;
+  position: relative;
+  border-radius: 8px;
+}
+
+#top_right {
+  width: 100%;
+  height: 342.5px;
+  position: relative;
+  border-radius: 8px;
+  background-color: var(--item_background);
+  overflow: hidden;
+}
+
+#text {
+  margin: 10px;
+  height: calc(100% - 20px);
+  font-size: 30px;
+  overflow-y: scroll;
+}
+
+#menu {
+  margin: 10px;
+  height: calc(100% - 20px);
+  background-color: red;
+  font-size: 30px;
+  overflow: scroll;
+  display: none;
+}
+
+#bottom_right {
+  height: 127.5px;
+  width: calc(100% - 137.5px);
+  border-radius: 8px;
+  margin-top: 10px;
+  position: relative;
+  background-color: var(--item_background);
+  overflow: hidden;
+}
+
+#bottom_right_settings {
+  height: 127.5px;
+  width: 127.5px;
+  border-radius: 8px;
+  margin-top: 10px;
+  position: relative;
+  margin-left: -127.5px;
+  margin-top: auto;
+  bottom: 10px  ;
+  display: flex;
+  background-color: var(--item_background);
+}
+
+#center_side {
+  height: calc(100% - 30px);
+  width: 96px;
+  border-radius: 8px;
+  margin-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  margin-top: 10px;
+  position: relative;
+  background-color: var(--item_background);
+  overflow-y: scroll;
+} 
   #pfp_img {
-    width: 200px;
-    height: 200px;
+    border-radius: 8px;
+    z-index: 1;
+    position: relative;
   }
   
   #pfp {
     width: 100%;
     height: 100%;
     border-radius: 8px;
-  }
-  
-  #user_info {
-    margin-left: 10px;
-    width: 100%;
-    height: 200px;
-    background-color: var(--wing3);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    z-index: 1;
+    position: relative;
   }
   
   #username {
@@ -270,7 +267,16 @@ body {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    margin-left: 4px;
+    font-size: 38px;
+    display: block;
+    background-color: var(--modal_background);
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  #user_info_inner {
+    margin:10px;
+    height: calc(100% - 20px);
   }
   
   #status {
@@ -278,88 +284,170 @@ body {
     position: absolute;
     width: 40px;
     height: 40px;
-    font-size: 20px;
-    border-radius: 8px;
-    margin-left: 9px;
-    margin-top: 9px;
-/*     transition: 1s; */
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    transition: 0s;
+    margin-left:10px;
+    margin-top:10px;
   }
   
   #status_border {
     z-index: 2;
     position: relative;
-    background-color: var(--wing2);
-    width: 58px;
-    height: 58px;
-    margin-top: -67px;
-    border-radius: 8px;
-    margin-left: 151px;
-  }
-  
-  #status_text {
-    font-size: 24px;
-    display: inline-block;
-    margin-left: -168px;
-    margin-top: 55px;
-    padding-left: 6px;
-    padding-right: 6px;
-    padding-bottom: 6px;
-    border-bottom-left-radius: 8px;
+    display: block;
+    background-color: var(--modal_background);
+    width: 51px;
+    height: 50px;
+    left: 185px;
+    top:-54px;
+    border-top-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    text-align: center;
-    overflow: hidden;
-    white-space: nowrap;
-    width: 200px;
-    text-overflow: ellipsis;
-    background-color: var(--wing2);
-    opacity: 0;
-    transition: 0.25s;
   }
 
   #status_border:hover #status_text {opacity: 1;}
+
+  .listening-to-spotify {
+    display: flex;
+    flex-direction:column;
+    border-radius: 8px;
+    background-color: var(--item_background);
+    padding: 10px;
+    transition: 0.5s;
+    }
+  .listening-to-spotify-content {
+    display: flex;
+  }
+  .listening-to-spotify-info {
+    margin-top: 10px;
+  }
+    
+    .play-on-spotify-link {
+    display: block;
+    width: 102.5px;
+    height: 102.5px;
+    background-color: var(--modal_background);
+    border-radius: 8px;
+    position: relative;
+    margin-left: 10px;
+    text-decoration: none;
+    }
+  
+    #play-on-spotify-button {
+      width: 102.5px;
+      font-size: 84.5px;
+      padding: 10px;
+      transition: 0.25s;
+      color: var(--icon);
+      cursor: pointer;
+    }
+
+    #play-on-spotify-link:hover #play-on-spotify-button {
+      color: var(--icon_hover);
+    }
+    
+    .listening-to-spotify-cover {
+    width: 102.5px;
+    height: 102.5px;
+      border-radius: 8px;
+    }
+    .listening-to-spotify-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 195px;
+    padding: 10px;
+    height: 82px;
+    background-color:var(--modal_background);
+    border-radius: 8px;
+    }
+    
+    .listening-to-spotify-song {
+    font-weight: bold;
+    font-size: 26px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-top: -4px;
+    text-align: left;
+    }
+    .listening-to-spotify-artist {
+    font-size: 15px;
+    margin-top: -60px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 24px;
+    text-align: left;
+    }
+    
+    #listening-to-spotify-elapsed-time-wrapper {
+    display: flex;
+    align-items: center;
+    width: calc(100% - 0px);
+    height: 30px;
+    margin-bottom: -10px;
+    }
+    
+    #listening-to-spotify-elapsed-time {
+    font-weight: 500;
+    font-size: 20px !important;
+    }
+  
+    #listening-to-spotify-progress-bar-wrapper {
+      width: calc(100% - 12px);
+      margin-right: 0px;
+      margin-top: -34px;}
+  
+      #listening-to-spotify-elapsed-time-wrapper2 {
+          display: flex;
+          align-items: center;
+          width: calc(100% - 0px);
+          height: 30px;
+        }
+        
+        #listening-to-spotify-elapsed-time2 {
+          font-weight: 500;
+          margin-top: 4px;
+          font-size: 20px !important;
+        }
+      
+        #listening-to-spotify-progress-bar-wrapper2 {
+          width: calc(100% - 12px);
+          margin-right: 0px;
+          margin-top: -36px;
+  }
+
+
+
 
 .discord_emoji {
     display: inline-block;
     height: 36px;
     margin-bottom: -8px;
 }
-#accounts {margin-top: 20px;}
+#accounts {border-radius: 8px;overflow-y: scroll;overflow: hidden;width: 100%;}
 .connection-icons {
-	background-color: var(--wing1);
-	border-radius: 0.1em;
-	font-size: 0.8em;
+	border-radius: 8px;
 	white-space: nowrap;
 	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
-	width:100px;
-	height: 80px;
 	z-index:1;
 	color:var(--text);
+  transition: 0.25s;
+  }
+  .connection-icons:hover {
+    color: var(--icon_hover);
   }
 
   .connection-icons-custom {
-	background-color: var(--wing1);
-	border-radius: 0.1em;
+	border-radius: 8px;
 	white-space: nowrap;
 	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
-	width:100px !important;
-	height: 80px !important;
+	width:102.5px !important;
+	height:102.5px !important;
 	z-index:1;
 	color:var(--text);
-  }
-  .connection-title {
-    max-width: 95px;
-    padding: 0.15em;
-    height: 24px;
-    margin-left: 5px;
-    margin-top: 5px;
-    background-color: var(--wing1);
-    border-radius: 0.25em;
-    font-size: 16px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    opacity: 0;
-    transition: 0.2s;
   }
   
 
@@ -367,114 +455,93 @@ body {
     opacity: 1;
   }
 
-  .icon-style {color:var(--iconcolor);font-size: 70px;padding-top: 15px;padding-bottom: 5px;}
+  .icon-style {
+    color:var(--iconcolor);
+    margin-left: -10px;
+    margin: 9.5px;
+    font-size: 78px;
+    background-color: var(--modal_background);
+    width: 78px;
+    height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
   .icon-style-custom {color:var(--iconcolor);padding-top: 15px;padding-bottom: 5px;}
   
 
-.connection-div {height: 110px;width:110px;display: inline-block;margin-top: -10px;}
+.connection-div {height: 96.5px;width:96.5px;display: inline-block;
+  margin-bottom: 10px;
+  background-color: var(--modal_background);border-radius: 8px;}
 
-.flag-name {text-decoration: none;transition: 0.15s;}
+.flag-name {text-decoration: none;transition: 0.15s;color:var(--icon)}
 .flag-name:hover {color: var(--text);text-decoration: none;}
-.pronoun-values {background-color:var(--wing3);padding-left:5px;padding-right:5px;border-radius:2px;}
-#clock {background-color:var(--wing3);padding-left:5px;padding-right:5px;border-radius:2px;}
-.divider {width: 100%;height: 2px;background-color: var(--wing1);margin-top: 14px;margin-bottom: 14px;}
+.pronoun-values {background-color:var(--modal_background);padding-left:5px;padding-right:5px;border-radius:2px;}
+#clock {background-color:var(--modal_background);padding-left:5px;padding-right:5px;border-radius:2px;}
+.divider {width: 100%;height: 2px;background-color: var(--modal_background);margin-top: 10px;margin-bottom: 10px;}
 #roblox {width: 300px;height: 100px;background-color: var(--wing1);margin-top: 20px;margin-bottom: 20px;}
 
-.listening-to-spotify {
-	display: flex;
-	flex-direction: column;
-	padding: 6px;
-    height: 100px;
-    border-radius: 8px;
-    margin-top: 14px;
-    background-color: var(--wing2);
-    margin-left: 6px;
-    margin-right: 6px;
-  }
-  
-  .listening-to-spotify-content {
-	display: flex;
-	align-items: left;
-	width: 100%;
-	margin-top: 0px;
-  }
-  #discord-activity-section {transition: 0.25s;margin-top: -8px;}
-  #discord-activity-section2 {transition: 0.25s;position: absolute;margin-top: 208px;background-color: var(--wing3);border-radius: 8px;display: none;}
-  .play-on-spotify-link {
-	display: block;
-  }
-  
-  .listening-to-spotify-cover {
-	width: 100px;
-	height: 100px;
-    border-radius: 8px;
-  }
-  .listening-to-spotify-info {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-	width: 100%;
-    margin-left: 6px;
-  }
-  
-  .listening-to-spotify-song {
-	font-weight: bold;
-	font-size: 24px;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-	height: 30px;
-	margin-top: -14px;
-    text-align: left;
-  }
-  .listening-to-spotify-artist {
-	font-size: 15px;
-	margin-top: -55px;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-	height: 20px;
-    text-align: left;
-  }
-  
-  #listening-to-spotify-elapsed-time-wrapper {
-	display: flex;
-	align-items: center;
-	width: calc(100% - 0px);
-    height: 30px;
-  }
-  
-  #listening-to-spotify-elapsed-time {
-	font-weight: 500;
-	margin-top: 4px;
-	font-size: 20px !important;
-  }
+.emoji-status {
+  height: 26px;
+  margin-left: 4px;
+}
+.emoji {
+  height: 28px;
+}
+#status-emoji {
+  position: absolute;
+  z-index: 1;
+  display: inline-block;
+}
 
-  #listening-to-spotify-progress-bar-wrapper {
-    width: calc(100% - 12px);
-    margin-right: 0px;
-    margin-top: -26px;}
+#discord-status {
+  display: inline-block;
+  font-size: 20px;
+  margin-left: 36px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100% - 36px);
+}
 
-    #listening-to-spotify-elapsed-time-wrapper2 {
-        display: flex;
-        align-items: center;
-        width: calc(100% - 0px);
-        height: 30px;
-      }
-      
-      #listening-to-spotify-elapsed-time2 {
-        font-weight: 500;
-        margin-top: 4px;
-        font-size: 20px !important;
-      }
-    
-      #listening-to-spotify-progress-bar-wrapper2 {
-        width: calc(100% - 12px);
-        margin-right: 0px;
-        margin-top: -26px;
+#discord_status {
+  background-color: var(--modal_background);
+  height: 30px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+#settings {
+  font-size: 86px;
+  cursor: pointer;
+  color: var(--icon);
+  transition: 0.25s;
+}
+
+#settings_bg {
+  background-color: var(--modal_background);
+  width: 100%;
+  width: 100%;
+  margin: 10px;
+  padding-top: 10px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+#settings:hover {
+  color: var(--icon_hover);
+  transform: rotate(35deg);
+}
+
+#preloader {
+  width: 100%;
+  height: 100%;
+  margin-left: -10px;
+  margin-top: -10px;
+  background-color: var(--background);
+  position: fixed;
+  z-index: 10;
 }
 
 h1 {font-family: 'Geologica', sans-serif;color:var(--text);}

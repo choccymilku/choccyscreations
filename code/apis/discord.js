@@ -1,6 +1,6 @@
-//discord lanyard api
 let ws;
 let connected = false;
+let reconnectTimeout;
 
 function connect() {
   ws = new WebSocket('wss://api.lanyard.rest/socket');
@@ -13,6 +13,7 @@ function connect() {
         subscribe_to_id: discord_user_id
       }
     }));
+    connected = true;
   });
 
   ws.addEventListener('error', event => {
@@ -20,12 +21,15 @@ function connect() {
   });
 
   ws.addEventListener('close', event => {
-    setTimeout(() => connect(), 0); // Reconnect after 5 seconds
+    console.log('📰 lanyard WebSocket disconnected!');
+    connected = false;
+    // Reconnect after a timeout (e.g., 5 seconds)
+    reconnectTimeout = setTimeout(() => connect(), 5000);
   });
 
   ws.addEventListener('message', event => {
     const data = JSON.parse(event.data);
-	console.log('📰 lanyard API call successful! fetching API data', data); // Add this line to log the data
+    console.log('📰 lanyard API call successful! fetching API data', data); // Add this line to log the data
     if (data.op === 1) {
       updateStatus(data.d);
     } else if (data.op === 0) {
@@ -34,10 +38,27 @@ function connect() {
   });
 }
 
-if (!connected) {
-  connect();
-  connected = true;
+function updateStatus(data) {
+  // Update the status logic here
 }
+
+function startWebSocket() {
+  if (!connected) {
+    connect();
+  }
+}
+
+function stopWebSocket() {
+  if (connected) {
+    ws.close();
+    clearTimeout(reconnectTimeout);
+    connected = false;
+  }
+}
+
+// Start the WebSocket connection
+startWebSocket();
+
 
 function updateStatus(data) {
   const userStatus = data.discord_status;
@@ -47,32 +68,76 @@ const activities = data.activities;
   const activityState = customStatus ? customStatus.state : null;
 
   const statusCaseDiv = document.getElementById('status');
-  const statusCaseText = document.getElementById('status_text');
+/*   const statusCaseText = document.getElementById('status_text'); */
 
   switch (userStatus) {
     case 'online':
       //statusCaseDiv.innerHTML = '<h6 style="font-size:0.8rem;">online</h6>';
       statusCaseDiv.style.backgroundColor = '#2bca6d';
-      statusCaseText.textContent = 'currently online';
+/*       statusCaseText.textContent = 'currently online'; */
       break;
     case 'idle':
       //statusCaseDiv.innerHTML = '<h6 style="font-size:0.8rem;">idle</h6>';
       statusCaseDiv.style.backgroundColor = '#f0b232';
-      statusCaseText.textContent = 'currently idleing';
+/*       statusCaseText.textContent = 'currently idleing'; */
       break;
     case 'dnd':
       //statusCaseDiv.innerHTML = '<h6 style="font-size:0.8rem;margin-left:-1px;">dnd</h6>';
       statusCaseDiv.style.backgroundColor = '#f23f43';
-      statusCaseText.textContent = 'do not disturb';
+/*       statusCaseText.textContent = 'do not disturb'; */
       break;
     case 'offline':
       //statusCaseDiv.innerHTML = '<h6 style="font-size:0.8rem;margin-left:-2px;">offline</h6>';
-      statusCaseDiv.style.backgroundColor = '#c4cbda';
-      statusCaseText.textContent = 'currently offline';
+      statusCaseDiv.style.backgroundColor = '#7e828c';
+/*       statusCaseText.textContent = 'currently offline'; */
       break;
     default:
       //statusCaseDiv.innerHTML = '<h6 style="font-size:0.8rem;">¯\_(ツ)_/¯</h6>';
       statusCaseDiv.style.backgroundColor = '#23a459';
+  }
+
+ const activityDiv = document.getElementById('discord-status');
+  const emojidiv = document.getElementById('status-emoji');
+  activityDiv.setAttribute('title', activityState);	
+
+  if (activityState) {
+    activityDiv.innerText = activityState;
+    //activityDiv.style.fontSize = '2.5rem'; // Apply CSS styling to the text
+  } else {
+    activityDiv.innerText = '';
+  }
+  
+
+  
+  const emoji = activities ? activities.find(activity => activity.type === 4) : null;
+  const emojiData = emoji ? emoji.emoji : null;
+  
+  const emojiDiv = document.getElementById('status-emoji');
+  
+  if (emojiData && emojiData.name && !emojiData.id) {
+    // If the response includes only emoji, show the emoji character
+    const emojiChar = emojiData.name;
+    emojiDiv.innerHTML = twemoji.parse(emojiChar);
+  } else if (emojiData && emojiData.id) {
+    // If the response includes both the ID and the name, generate the URL for the image
+    const emojiId = emojiData.id;
+    const emojiName = encodeURIComponent(emojiData.name);
+    let emojiUrl;
+    if (emojiData.name.match(/[\u{1F300}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}]/gu)) {
+      // If the emoji is a Unicode emoji, use twemoji to resolve the URL
+      emojiUrl = twemoji.parse(emojiData.name, {
+        folder: 'svg',
+        ext: '.svg',
+      });
+    } else {
+      // Otherwise, construct the URL using the emoji ID and other properties
+      emojiUrl = `https://cdn.discordapp.com/emojis/${emojiId}.${emojiData.animated ? 'gif' : 'webp'}?size=48&name=${emojiName}&quality=lossless`; // Check for `animated` property
+    }
+    // Check if the result is an emoji and use twemoji.parse() to display the emoji
+    const emojiHtml = twemoji.test(emojiUrl) ? twemoji.parse(emojiUrl) : `<img class="emoji-status" src="${emojiUrl}" />`;
+    emojiDiv.innerHTML = emojiHtml;
+  } else {
+    emojiDiv.innerHTML = "";
   }
 
 const listeningToSpotify = activities ? activities.some(activity => activity.type === 2 && activity.name === 'Spotify') : false;
@@ -80,11 +145,6 @@ const listeningToSpotify = activities ? activities.some(activity => activity.typ
 if (listeningToSpotify) {
   const spotifyActivity = activities.find(activity => activity.type === 2 && activity.name === 'Spotify');
 
-  setTimeout(() => {
-    document.getElementById('discord-activity-section').style.opacity = '1';
-    document.getElementById('discord-activity-section').style.height = '100px';
-    document.getElementById('username').style.marginTop = '0px';
-  }, 1250);
   const spotifyActivityDiv = document.getElementById('listening-to-spotify');
   const trackId = spotifyActivity.sync_id;
   const songName = spotifyActivity.details;
@@ -94,26 +154,16 @@ if (listeningToSpotify) {
 
   const songNameElement = document.getElementById('listening-to-spotify-song');
   songNameElement.innerText = songName;
-  const songNameElement2 = document.getElementById('listening-to-spotify-song2');
-  songNameElement2.innerText = songName;
 
   const artistElement = document.getElementById('listening-to-spotify-artist');
   artistElement.innerText = 'by ' + artist;
-  const artistElement2 = document.getElementById('listening-to-spotify-artist2');
-  artistElement2.innerText = 'by ' + artist;
 
   const albumCoverElement = document.getElementById('listening-to-spotify-cover');
   albumCoverElement.src = albumCover;
   albumCoverElement.setAttribute('title', songName + '\n' + artist);
 
-  const albumCoverElement2 = document.getElementById('listening-to-spotify-cover2');
-  albumCoverElement2.src = albumCover;
-  albumCoverElement2.setAttribute('title', songName + '\n' + artist);
-
   const spotifyLinkElement = document.getElementById('play-on-spotify-link');
   spotifyLinkElement.href = `https://open.spotify.com/track/${trackId}`;
-  const spotifyLinkElement2 = document.getElementById('play-on-spotify-link2');
-  spotifyLinkElement2.href = `https://open.spotify.com/track/${trackId}`;
 
   // Get the initial timestamps and calculate the total time
   const spotifyTimestamps = spotifyActivity.timestamps;
@@ -123,19 +173,13 @@ if (listeningToSpotify) {
 
   // Check if an elapsed time element already exists and remove it
   const spotifyElapsedTimeWrapper = document.getElementById('listening-to-spotify-elapsed-time-wrapper');
-  const spotifyElapsedTimeWrapper2 = document.getElementById('listening-to-spotify-elapsed-time-wrapper2');
   if (spotifyElapsedTimeWrapper) {
     spotifyElapsedTimeWrapper.remove();
-  }
-  if (spotifyElapsedTimeWrapper2) {
-    spotifyElapsedTimeWrapper2.remove();
   }
 
   // Create a new element for the elapsed time
   const spotifyElapsedTimeWrapperNew = document.createElement('div');
   spotifyElapsedTimeWrapperNew.id = 'listening-to-spotify-elapsed-time-wrapper';
-  const spotifyElapsedTimeWrapperNew2 = document.createElement('div');
-  spotifyElapsedTimeWrapperNew2.id = 'listening-to-spotify-elapsed-time-wrapper2';
 
   const spotifyElapsedTimeDisplayLeft = document.createElement('h6');
   spotifyElapsedTimeDisplayLeft.id = 'listening-to-spotify-elapsed-time-left';
@@ -143,12 +187,6 @@ if (listeningToSpotify) {
   spotifyElapsedTimeDisplayLeft.style.overflow = 'hidden';
   spotifyElapsedTimeDisplayLeft.style.textOverflow = 'ellipsis';
   spotifyElapsedTimeDisplayLeft.style.fontSize = '1rem';
-  const spotifyElapsedTimeDisplayLeft2 = document.createElement('h6');
-  spotifyElapsedTimeDisplayLeft2.id = 'listening-to-spotify-elapsed-time-left2';
-  spotifyElapsedTimeDisplayLeft2.style.whiteSpace = 'nowrap';
-  spotifyElapsedTimeDisplayLeft2.style.overflow = 'hidden';
-  spotifyElapsedTimeDisplayLeft2.style.textOverflow = 'ellipsis';
-  spotifyElapsedTimeDisplayLeft2.style.fontSize = '1rem';
 
   const spotifyElapsedTimeDisplayRight = document.createElement('h6');
   spotifyElapsedTimeDisplayRight.id = 'listening-to-spotify-elapsed-time-right';
@@ -157,20 +195,10 @@ if (listeningToSpotify) {
   spotifyElapsedTimeDisplayRight.style.textOverflow = 'ellipsis';
   spotifyElapsedTimeDisplayRight.style.fontSize = '1rem';
   spotifyElapsedTimeDisplayRight.style.marginLeft = 'auto';
-  const spotifyElapsedTimeDisplayRight2 = document.createElement('h6');
-  spotifyElapsedTimeDisplayRight2.id = 'listening-to-spotify-elapsed-time-right2';
-  spotifyElapsedTimeDisplayRight2.style.whiteSpace = 'nowrap';
-  spotifyElapsedTimeDisplayRight2.style.overflow = 'hidden';
-  spotifyElapsedTimeDisplayRight2.style.textOverflow = 'ellipsis';
-  spotifyElapsedTimeDisplayRight2.style.fontSize = '1rem';
-  spotifyElapsedTimeDisplayRight2.style.marginLeft = 'auto';
 
   spotifyElapsedTimeWrapperNew.appendChild(spotifyElapsedTimeDisplayLeft);
   spotifyElapsedTimeWrapperNew.appendChild(spotifyElapsedTimeDisplayRight);
   artistElement.parentNode.insertBefore(spotifyElapsedTimeWrapperNew, artistElement.nextSibling);
-  spotifyElapsedTimeWrapperNew2.appendChild(spotifyElapsedTimeDisplayLeft2);
-  spotifyElapsedTimeWrapperNew2.appendChild(spotifyElapsedTimeDisplayRight2);
-  artistElement2.parentNode.insertBefore(spotifyElapsedTimeWrapperNew2, artistElement2.nextSibling);
 
   const updateElapsedTime = () => {
     // Get the latest timestamps and calculate the elapsed time
@@ -195,19 +223,13 @@ if (listeningToSpotify) {
   
     spotifyElapsedTimeDisplayLeft.innerText = leftTimeDisplay;
     spotifyElapsedTimeDisplayRight.innerText = rightTimeDisplay;
-    spotifyElapsedTimeDisplayLeft2.innerText = leftTimeDisplay;
-    spotifyElapsedTimeDisplayRight2.innerText = rightTimeDisplay;
   };
 
 // Check if a progress bar element already exists and remove it
 const spotifyProgressBarWrapper = document.getElementById('listening-to-spotify-progress-bar-wrapper');
-const spotifyProgressBarWrapper2 = document.getElementById('listening-to-spotify-progress-bar-wrapper2');
 
 if (spotifyProgressBarWrapper) {
   spotifyProgressBarWrapper.remove();
-}
-if (spotifyProgressBarWrapper2) {
-  spotifyProgressBarWrapper2.remove();
 }
 
 // Create a new element for the progress bar
@@ -215,30 +237,17 @@ const spotifyProgressBarWrapperNew = document.createElement('div');
 spotifyProgressBarWrapperNew.id = 'listening-to-spotify-progress-bar-wrapper';
 spotifyProgressBarWrapperNew.style.width = '100%';
 spotifyProgressBarWrapperNew.style.height = '4px';
-spotifyProgressBarWrapperNew.style.backgroundColor = 'var(--background)';
+spotifyProgressBarWrapperNew.style.backgroundColor = 'var(--item_background)';
 spotifyProgressBarWrapperNew.style.borderRadius = '4px';
-const spotifyProgressBarWrapperNew2 = document.createElement('div');
-spotifyProgressBarWrapperNew2.id = 'listening-to-spotify-progress-bar-wrapper2';
-spotifyProgressBarWrapperNew2.style.width = '100%';
-spotifyProgressBarWrapperNew2.style.height = '4px';
-spotifyProgressBarWrapperNew2.style.backgroundColor = 'var(--background)';
-spotifyProgressBarWrapperNew2.style.borderRadius = '4px';
 
 const spotifyProgressBar = document.createElement('div');
 spotifyProgressBar.style.width = '0%';
 spotifyProgressBar.style.height = '100%';
-spotifyProgressBar.style.backgroundColor = 'var(--iconcolor)';
+spotifyProgressBar.style.backgroundColor = 'var(--icon)';
 spotifyProgressBar.style.borderRadius = '4px';
-const spotifyProgressBar2 = document.createElement('div');
-spotifyProgressBar2.style.width = '0%';
-spotifyProgressBar2.style.height = '100%';
-spotifyProgressBar2.style.backgroundColor = 'var(--iconcolor)';
-spotifyProgressBar2.style.borderRadius = '4px';
 
 spotifyProgressBarWrapperNew.appendChild(spotifyProgressBar);
 artistElement.parentNode.insertBefore(spotifyProgressBarWrapperNew, artistElement.nextSibling);
-spotifyProgressBarWrapperNew2.appendChild(spotifyProgressBar2);
-artistElement2.parentNode.insertBefore(spotifyProgressBarWrapperNew2, artistElement2.nextSibling);
 
 const updateProgressBar = () => {
   // Get the latest timestamps and calculate the elapsed time
@@ -250,7 +259,6 @@ const updateProgressBar = () => {
 
   // Set the width of the progress bar to the calculated percentage
   spotifyProgressBar.style.width = `${elapsedPercentage}%`;
-  spotifyProgressBar2.style.width = `${elapsedPercentage}%`;
 };
 
 updateProgressBar();
@@ -258,13 +266,18 @@ setInterval(updateProgressBar, 1000);
 
 updateElapsedTime();
 setInterval(updateElapsedTime, 1000);
+
  
 } else {
-  setTimeout(() => {
-  document.getElementById('discord-activity-section').style.opacity = '0';
-  document.getElementById('discord-activity-section').style.height = '0px';
-  document.getElementById('username').style.marginTop = '60px';
-  }, 1250);
+  const spotifyCoverElement = document.getElementById('listening-to-spotify-cover');
+  const spotifyProgressBarWrapper = document.getElementById('listening-to-spotify-progress-bar-wrapper');
+  const spotifyProgressBar = document.getElementById('listening-to-spotify-elapsed-time-wrapper');
+  spotifyCoverElement.src = './blank.png';
+
+  if (spotifyProgressBarWrapper) {
+    spotifyProgressBarWrapper.remove();
+    spotifyProgressBar.remove();
+  }
 }
 
   const discordUser = data.discord_user;

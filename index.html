@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Flow+Circular&family=Geologica:wght@400;700&display=swap" rel="stylesheet">
 <style>
     .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -42,12 +42,12 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: var(--wing1); 
+  background: var(--modal_background); 
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--wing3); 
+  background: var(--icon); 
 }
 
 /* Handle on hover */
@@ -62,16 +62,17 @@
         const theme = localStorage.getItem('theme') || 'light';
         document.documentElement.dataset.appliedMode = theme;
       </script>
+      <script>
+        // preloader fade in thing
+      $(window).on('load', function() {
+        $("#preloader").delay(800).fadeOut(300);
+      });
+      </script>
       <div id="yeaah"></div>
-    <div id="topbar">
+      <div id="preloader"></div>
+<!--     <div id="topbar">
         <div id="menu_wing" class="wing">
             <h1 id="menu_wing_text" class="noselect wing_text" style="font-size: 70px;">settings</h1>
-        </div>
-        <div id="about_wing" class="wing">
-            <h1 id="about_wing_text" class="noselect wing_text" style="font-size: 70px;">about</h1>
-        </div>
-        <div id="other_wing" class="wing">
-            <h1 id="other_wing_text" class="noselect wing_text" style="font-size: 70px;">contact</h1>
         </div>
     </div>
 
@@ -79,67 +80,68 @@
     <div id="menu_wing_back" class="back_wing">
         <h1 class="noselect backwing_text" style="margin-left: 25px;font-size: 70px;margin-top: 35px;">back</h1>
     </div>
-    <div id="about_wing_back" class="back_wing">
-        <h1 class="noselect backwing_text" style="margin-left: 25px;font-size: 70px;margin-top: 35px;">back</h1>
+</div> -->
+
+<div id="main">
+  <div id="left_side">
+    <div id="top_left">
+      <a id="pfp_link">
+          <img id="pfp" src="./blank.png"/>
+          <div id="status_border">
+              <div id="status"></div>
+          </div>
+      </a>
     </div>
-    <div id="other_wing_back" class="back_wing">
-        <h1 class="noselect backwing_text" style="margin-left: 25px;font-size: 70px;margin-top: 35px;">back</h1>
+    <div id="bottom_left">
+      <div class="listening-to-spotify" id="listening-to-spotify">
+        <div class="listening-to-spotify-content" id="listening-to-spotify-content">
+          <img class="listening-to-spotify-cover" id="listening-to-spotify-cover" style="background-color: var(--modal_background);" src="./blank.png"></img>
+  
+            <a target="_blank" class="play-on-spotify-link" id="play-on-spotify-link">
+              <i id="play-on-spotify-button" class="fa-brands fa-spotify"></i>
+            </a>
+        </div>     
+          <div class="listening-to-spotify-info" id="listening-to-spotify-info">
+            <h6 class="listening-to-spotify-song" id="listening-to-spotify-song"></h6>
+            <h6 class="listening-to-spotify-artist" id="listening-to-spotify-artist"></h6>
+            <div id="listening-to-spotify-elapsed-time-wrapper"></div> 
+          </div> 
+      </div>
+    </div> 
+  </div>
+
+  <div id="center_side">
+      <div id='accounts'></div> 
+  </div>
+  
+  <div id="right_side">
+    <div id="top_right">
+      <div id="text"></div>
+      <div id="menu">
+        <span id="theme-toggle"></span>
+        <span id="toggleButton"></span>
+      </div>
     </div>
+
+    <div id="bottom_right">
+      <div id="user_info_inner">
+        <span id="username"></span>
+          <div id="discord_status">
+           <span id="status-emoji"></span>
+           <span id="discord-status"></span>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="bottom_right_settings">
+    <div id="settings_bg">
+    <i id="settings" class="fa-solid fa-gear"></i>
+  </div>
+  </div>
 </div>
 
-    <div class="intro noselect" id="intro"></div>
-      
-    <div class="intro" id="intro_full">
-        i'm choccy<br>
-        web dev, editor, designer<br>
-        find out more up there
-    </div>
-
-    <div class="noselect" id="other">
-        <div id="discord">
-            <div id="pfp_img">
-                <a id="pfp_link">
-                    <img id="pfp"/>
-                    <div id="status_border">
-                        <div id="status"></div>
-                        <div id="status_text"></div>
-                    </div>
-                </a>
-            </div>
-            <div id="user_info">
-                <span id="username"></span>
-                <div class="discord-activity-section" id="discord-activity-section">
-                    <div class="listening-to-spotify" id="listening-to-spotify">
-                      <div class="listening-to-spotify-content" id="listening-to-spotify-content">
-                        <a target="_blank" class="play-on-spotify-link" id="play-on-spotify-link">
-                          <img class="listening-to-spotify-cover" id="listening-to-spotify-cover"></img>
-                        </a>
-                        <div class="listening-to-spotify-info" id="listening-to-spotify-info">
-                          <h6 class="listening-to-spotify-song" id="listening-to-spotify-song"></h6>
-                          <h6 class="listening-to-spotify-artist" id="listening-to-spotify-artist"></h6>
-                          <div id="listening-to-spotify-elapsed-time-wrapper"></div> 
-                        </div> 
-                      </div>
-                    </div>
-                </div> 
-            </div>
-            <div class="discord-activity-section" id="discord-activity-section2">
-                <div class="listening-to-spotify" id="listening-to-spotify2">
-                  <div class="listening-to-spotify-content" id="listening-to-spotify-content2">
-                    <a target="_blank" class="play-on-spotify-link" id="play-on-spotify-link2">
-                      <img class="listening-to-spotify-cover" id="listening-to-spotify-cover2"></img>
-                    </a>
-                    <div class="listening-to-spotify-info" id="listening-to-spotify-info2">
-                      <h6 class="listening-to-spotify-song" id="listening-to-spotify-song2"></h6>
-                      <h6 class="listening-to-spotify-artist" id="listening-to-spotify-artist2"></h6>
-                    </div> 
-                  </div>
-                </div>
-            </div> 
-        </div>
-</div>  
-
-    <div class="noselect" id="menu">
+    <!-- <div class="noselect" id="menu">
         <div>
         <span style="font-size: 70px;margin-right: -295px;margin-left: 15px;">THEME: </span>
         <span class="toggle" id="theme-toggle"></span></div>
@@ -152,24 +154,10 @@
         <span style="font-size: 70px;margin-right: -295px;margin-left: 15px;">CLOCK: </span>
         <span class="toggle" id="toggleButton"></span></div>
 
-    </div>
-
-    <div class="noselect" id="about"></div>
-    
-    <div id='discord' style="display: none;">
-        <a id="pfp_link">
-            <img id="pfp"></img>
-            <div id="status"></div>
-        </a>
-        <div id="discord_text">
-            <h1 id="username"></h1>
-            <h2 id="bio"></h2>
-            <span style='background-color:var(--wing3);padding-left:5px;padding-right:5px;border-radius:2px;' id='clock'>--:--</span>
-        </div>
-    </div>
-
+    </div> -->
+<!-- 
     <h1 style="position: absolute;bottom: 0;left: 50%;transform: translateX(-50%);">WIP</h1>
-    <h1 style="position: absolute;bottom: 0;left: 50%;transform: translateX(-50%);font-size: 10px;">( not optimized for mobile, expect bugs )</h1>
+    <h1 style="position: absolute;bottom: 0;left: 50%;transform: translateX(-50%);font-size: 10px;">( not optimized for mobile, expect bugs )</h1> -->
 
 <script src="./code/config.js"></script>
 <script src="./code/theme.js"></script>
@@ -179,9 +167,8 @@
 <script src="./code/apis/pronounspage.js"></script>
 <script src="./code/apis/roblox.js"></script>
 <script src="./code/apis/mastodon.js"></script>
-<script src="./code/typer.js"></script>
 <script src="./code/time.js"></script>
-<script src="./code/winganim.js"></script>
-<script src="./code/introanim.js"></script>
+<!-- <script src="./code/winganim.js"></script>
+<script src="./code/introanim.js"></script> -->
 </body>
 </html>

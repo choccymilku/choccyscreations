@@ -20,12 +20,8 @@ const pronounSpan = document.createElement("span");
 pronounSpan.textContent = pronounValues.join("/") + " pronouns";
 pronounSpan.className = "pronoun-values";
 
-// Create a text node for the comma
-const commaTextNode = document.createTextNode(", ");
-
 // Append the <span> element and comma to the container
 pronounspagePronounsContainer.appendChild(pronounSpan);
-pronounspagePronounsContainer.appendChild(commaTextNode);
 
 
 
@@ -102,7 +98,7 @@ pronounspagePronounsContainer.appendChild(commaTextNode);
             flag.parentNode.insertBefore(ampersand.cloneNode(true), flag);
           } else {
             const comma = document.createElement('span');
-            comma.textContent = ', ';
+            comma.textContent = ' ';
             flag.parentNode.insertBefore(comma, flag);
           }
         }

@@ -3,7 +3,7 @@ const text = `${custom_text}`
 var convertedText = convertTimestamps(text);
 
 // Display the converted text in the "about" element
-document.getElementById("about").innerHTML = convertedText;
+document.getElementById("text").innerHTML = convertedText;
 
 
 function convertTimestamps(text) {
@@ -53,7 +53,7 @@ function convertTimestamps(text) {
           default:
             formattedDate = "";
         }
-        return `<span style="background-color:var(--wing3);padding-left:5px;padding-right:5px;border-radius:2px;">${formattedDate}</span>`;
+        return `<span style="background-color:var(--modal_background);padding-left:5px;padding-right:5px;border-radius:2px;">${formattedDate}</span>`;
       })
   
       .replace(flagRegex, (match, countryCode) => {
