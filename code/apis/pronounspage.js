@@ -104,12 +104,6 @@ pronounspagePronounsContainer.appendChild(pronounSpan);
         }
       });
     }
-
-    const timezone = data.profiles.en.timezone.tz;
-    const timezoneContainer = document.getElementById('timezone');
-    timezoneContainer.textContent = timezone;
-
-  
   })
   .catch(error => {
     // Handle any errors
