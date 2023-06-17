@@ -53,7 +53,7 @@ function convertTimestamps(text) {
           default:
             formattedDate = "";
         }
-        return `<span style="background-color:var(--modal_background);padding-left:5px;padding-right:5px;border-radius:2px;">${formattedDate}</span>`;
+        return `<span style="background-color:var(--item_background);padding-left:5px;padding-right:5px;border-radius:8px;font-size: 26px;white-space: nowrap;">${formattedDate}</span>`;
       })
   
       .replace(flagRegex, (match, countryCode) => {

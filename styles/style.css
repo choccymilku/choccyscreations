@@ -111,21 +111,6 @@ body {
 #menu_wing {
     background-color: var(--wing1);
 }
-o
-
-#menu {
-    position: fixed;
-    top: -50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 38px;
-    opacity: 0;
-    max-width: 935px;
-    transition: 0.25s;
-  }
   
 .toggle {
     width: 255px;
@@ -161,21 +146,34 @@ o
 #left_side {
   margin: 10px;
   position: relative;
+  width: 235px;
+}
+
+#left_side_scrollable {
+  position: relative;
+  border-radius: 8px;
+  display: flex;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  width: 235px;
+  margin-top: 10px;
 }
 
 #top_left {
-  width: 235px;
-  height: 235px;
+  width: 215px;
+  height: 215px;
+  padding: 10px;
   position: relative;
   border-radius: 8px;
+  background-color: var(--item_background);
 }
 
 #bottom_left {
-  width: 235px;
+  width: fit-content;
   height: 235px;
-  margin-top: 10px;
   margin-left: 0px;
   position: relative;
+  display: flex;
 }
 
 #right_side {
@@ -197,18 +195,24 @@ o
 
 #text {
   margin: 10px;
-  height: calc(100% - 20px);
+  height: calc(100% - 40px);
   font-size: 30px;
   overflow-y: scroll;
+  scrollbar-width: none;
+  border-radius: 8px;
+  background-color: var(--modal_background);
+  padding: 10px;
 }
 
 #menu {
   margin: 10px;
-  height: calc(100% - 20px);
-  background-color: red;
+  height: calc(100% - 40px);
+  background-color: var(--item);
+  padding: 10px;
+  border-radius: 8px;
   font-size: 30px;
-  overflow: scroll;
-  display: none;
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 #bottom_right {
@@ -246,6 +250,7 @@ o
   position: relative;
   background-color: var(--item_background);
   overflow-y: scroll;
+  scrollbar-width: none;
 } 
   #pfp_img {
     border-radius: 8px;
@@ -262,7 +267,6 @@ o
   }
   
   #username {
-    transition: 0.25s;
     text-align: left;
     overflow: hidden;
     white-space: nowrap;
@@ -272,6 +276,7 @@ o
     background-color: var(--modal_background);
     border-radius: 8px;
     padding: 10px;
+    height: 48px;
   }
 
   #user_info_inner {
@@ -295,10 +300,10 @@ o
     z-index: 2;
     position: relative;
     display: block;
-    background-color: var(--modal_background);
+    background-color: var(--item_background);
     width: 51px;
     height: 50px;
-    left: 185px;
+    left: 165px;
     top:-54px;
     border-top-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -311,6 +316,7 @@ o
     flex-direction:column;
     border-radius: 8px;
     background-color: var(--item_background);
+    width: 215px;
     padding: 10px;
     transition: 0.5s;
     }
@@ -427,13 +433,19 @@ o
     height: 36px;
     margin-bottom: -8px;
 }
-#accounts {border-radius: 8px;overflow-y: scroll;overflow: hidden;width: 100%;}
+#accounts {border-radius: 8px;margin-top: -10px;}
+#account_wrapper {
+  height: calc(100% - 10px);
+  border-radius: 8px;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
 .connection-icons {
 	border-radius: 8px;
 	white-space: nowrap;
 	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 	z-index:1;
-	color:var(--text);
+	color:var(--icon);
   transition: 0.25s;
   }
   .connection-icons:hover {
@@ -444,10 +456,20 @@ o
 	border-radius: 8px;
 	white-space: nowrap;
 	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
-	width:102.5px !important;
-	height:102.5px !important;
+  position: relative;
 	z-index:1;
-	color:var(--text);
+  color: var(--icon);
+  display: block;
+  margin-top: 10px;
+  }
+
+  .custom-icon {
+    fill: var(--icon);
+    margin: 10px;
+    transition: 0.25s;
+  }
+  .custom-icon:hover {
+    fill: var(--icon_hover);
   }
   
 
@@ -468,23 +490,24 @@ o
     justify-content: center;
     text-align: center;
   }
-  .icon-style-custom {color:var(--iconcolor);padding-top: 15px;padding-bottom: 5px;}
   
 
-.connection-div {height: 96.5px;width:96.5px;display: inline-block;
-  margin-bottom: 10px;
+.connection-div {height: 96.5px;width:96.5px;
+  margin-top: 10px;
   background-color: var(--modal_background);border-radius: 8px;}
 
 .flag-name {text-decoration: none;transition: 0.15s;color:var(--icon)}
 .flag-name:hover {color: var(--text);text-decoration: none;}
 .pronoun-values {background-color:var(--modal_background);padding-left:5px;padding-right:5px;border-radius:2px;}
-#clock {background-color:var(--modal_background);padding-left:5px;padding-right:5px;border-radius:2px;}
-.divider {width: 100%;height: 2px;background-color: var(--modal_background);margin-top: 10px;margin-bottom: 10px;}
+#clock {background-color:var(--item_background);padding-left:5px;padding-right:5px;border-radius:8px;font-size: 26px;width: calc(100% - 10px);display: inline-block;}
+.divider {width: 100%;height: 3px;background-color:  var(--item_background);margin-top: 9px;margin-bottom: 9px;}
 #roblox {width: 300px;height: 100px;background-color: var(--wing1);margin-top: 20px;margin-bottom: 20px;}
 
 .emoji-status {
   height: 26px;
-  margin-left: 4px;
+  border-radius: 8px;
+  margin-left: 3px;
+  margin-top: 2px;
 }
 .emoji {
   height: 28px;
@@ -497,7 +520,7 @@ o
 
 #discord-status {
   display: inline-block;
-  font-size: 20px;
+  font-size: 22px;
   margin-left: 36px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -517,6 +540,7 @@ o
   cursor: pointer;
   color: var(--icon);
   transition: 0.25s;
+  transform: rotate(30deg);
 }
 
 #settings_bg {
@@ -531,7 +555,6 @@ o
 
 #settings:hover {
   color: var(--icon_hover);
-  transform: rotate(35deg);
 }
 
 #preloader {
@@ -544,7 +567,69 @@ o
   z-index: 10;
 }
 
-h1 {font-family: 'Geologica', sans-serif;color:var(--text);}
-h2 {font-family: 'Geologica', sans-serif;color:var(--text);font-weight: 400;}
-span {font-family: 'Geologica', sans-serif;color:var(--text)}
-div {font-family: 'Geologica', sans-serif;color:var(--text)}
+
+#friends {
+  background-color: var(--item_background);
+  border-radius: 8px;
+  margin-left: 10px;
+  width:fit-content;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  height: 235px;
+  display: flex;
+}
+
+#friends_inner {
+  background-color: var(--item_background);
+  border-radius: 8px;
+  margin-left: 10px;
+  width:fit-content;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  height: 235px;
+  display: flex;
+}
+
+#friends_container {
+  height: 215px;
+  margin-right: 10px;
+  margin-top: 10px;
+  display: inline-block;
+  border-radius: 8px;
+}
+
+#friends_avatar {
+  height: 135px;
+  width: 135px;
+  border-radius: 8px;
+}
+
+#friends_avatar_bg {
+  padding: 10px;
+  position: relative;
+  z-index: 1;
+  border-radius: 8px;
+  background-color: var(--modal_background);
+}
+
+.friends_background {
+  width: 225px;
+  height: 115.5px;
+  margin-top: -115.5px;
+  z-index: 0;
+  position: absolute;
+}
+
+#friends_name {
+  margin-top: 10px;
+  max-width: 135px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 8px;
+  position: relative;
+  padding: 10px;
+  background-color: var(--modal_background);
+  font-size: 20px;
+  text-align: center;
+}

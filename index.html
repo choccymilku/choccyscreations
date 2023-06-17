@@ -6,16 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
     <link rel="icon" type="image/x-icon" href="./icon.png">
     <link rel="stylesheet" href="./styles/style.css">
-<link rel="stylesheet" href="./styles/animation.css">
-<link rel="stylesheet" href="./styles/reactive.css">
+    <link rel="stylesheet" href="./styles/animation.css">
+    <link rel="stylesheet" href="./styles/reactive.css">
+    <link rel="stylesheet" href="./fonts/stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
     <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Flow+Circular&family=Geologica:wght@400;700&display=swap" rel="stylesheet">
 <style>
     .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -38,22 +36,10 @@
 /* width */
 ::-webkit-scrollbar {
   width: 0px;
+  height: 0px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: var(--modal_background); 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: var(--icon); 
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: var(--wing3); 
-}
+.clickable {cursor: pointer;display: inline-block;}
 </style>
 </head>
 <body id="body" class="light">
@@ -63,9 +49,8 @@
         document.documentElement.dataset.appliedMode = theme;
       </script>
       <script>
-        // preloader fade in thing
       $(window).on('load', function() {
-        $("#preloader").delay(800).fadeOut(300);
+        $("#preloader").delay(0).fadeOut(300);
       });
       </script>
       <div id="yeaah"></div>
@@ -92,6 +77,7 @@
           </div>
       </a>
     </div>
+    <div id="left_side_scrollable">
     <div id="bottom_left">
       <div class="listening-to-spotify" id="listening-to-spotify">
         <div class="listening-to-spotify-content" id="listening-to-spotify-content">
@@ -107,19 +93,30 @@
             <div id="listening-to-spotify-elapsed-time-wrapper"></div> 
           </div> 
       </div>
+      <div id="friends">
+        <div id="friends_inner"></div>
+      </div>
     </div> 
+    </div>
   </div>
 
   <div id="center_side">
-      <div id='accounts'></div> 
+    <div id="account_wrapper">
+      <div id='accounts'></div>
+    </div> 
   </div>
   
   <div id="right_side">
     <div id="top_right">
       <div id="text"></div>
       <div id="menu">
-        <span id="theme-toggle"></span>
-        <span id="toggleButton"></span>
+<!--         <span class="clickable">theme: <span id="theme-toggle"></span></span> -->
+        <span class="clickable">clock format: <span id="toggleButton"></span></span>
+        <span class="clickable">font: <select id="font-selector">
+  <option value="Geologica Roman">Geologica Roman</option>
+  <option value="Noto Sans Mono">Noto Sans Mono</option>
+<!--   <option value="OpenDyslexic3">OpenDyslexic3</option> -->
+</select></span>
       </div>
     </div>
 
@@ -140,24 +137,110 @@
   </div>
   </div>
 </div>
-
-    <!-- <div class="noselect" id="menu">
-        <div>
-        <span style="font-size: 70px;margin-right: -295px;margin-left: 15px;">THEME: </span>
-        <span class="toggle" id="theme-toggle"></span></div>
-
-        <div>
-        <span style="font-size: 70px;margin-right: -295px;margin-left: 15px;">INTRO: </span>
-        <span class="toggle" id="intro-toggle"></span></div>
-        
-        <div>
-        <span style="font-size: 70px;margin-right: -295px;margin-left: 15px;">CLOCK: </span>
-        <span class="toggle" id="toggleButton"></span></div>
-
-    </div> -->
-<!-- 
     <h1 style="position: absolute;bottom: 0;left: 50%;transform: translateX(-50%);">WIP</h1>
-    <h1 style="position: absolute;bottom: 0;left: 50%;transform: translateX(-50%);font-size: 10px;">( not optimized for mobile, expect bugs )</h1> -->
+    <h1 style="position: absolute;bottom: 0;left: 50%;transform: translateX(-50%);font-size: 10px;">( not optimized for mobile, expect bugs )</h1>
+    <script>
+var canClick = true;
+
+document.getElementById("settings").addEventListener("click", function() {
+  if (!canClick) {
+    return; // Ignore the click if cooldown is active
+  }
+
+  var menu = document.getElementById("menu");
+  var text = document.getElementById("text");
+  var settings = document.getElementById("settings");
+
+  if (menu.style.display === "block") {
+    menu.style.display = "none";
+    text.style.display = "block";
+    settings.style.transform = "rotate(30deg)";
+  } else {
+    menu.style.display = "block";
+    text.style.display = "none";
+    settings.style.transform = "rotate(120deg)";
+  }
+
+  canClick = false; // Disable further clicks temporarily
+
+  setTimeout(function() {
+    canClick = true; // Re-enable clicks after 1 second
+  }, 1000);
+});
+</script>
+<script>
+  var container = document.querySelector('#left_side_scrollable');
+  var scrollAmount = 0;
+  var isScrolling = false;
+  
+  container.addEventListener('wheel', function(event) {
+    event.preventDefault();
+    scrollAmount += event.deltaY;
+    
+    if (!isScrolling) {
+      requestAnimationFrame(scrollContainer);
+      isScrolling = true;
+    }
+  });
+  
+  function scrollContainer() {
+    container.scrollLeft += scrollAmount * 0.1; // Adjust the scroll speed as desired
+    
+    scrollAmount *= 0.9; // Adjust the damping factor as desired
+    
+    if (Math.abs(scrollAmount) < 0.1) {
+      isScrolling = false;
+      return;
+    }
+    
+    requestAnimationFrame(scrollContainer);
+  }
+</script>
+<script>
+  $(document).ready(function($) {
+    if (Modernizr.localstorage) {
+      // Check if a font style is already set in localStorage
+      var currentFontStyle = localStorage.getItem('fontStyle');
+      if (currentFontStyle) {
+        applyFontStyle(currentFontStyle);
+      }
+  
+      // Handle font style selection from the dropdown menu
+      $('#font-selector').change(function() {
+        var selectedFont = $(this).val();
+        applyFontStyle(selectedFont);
+        localStorage.setItem('fontStyle', selectedFont);
+      });
+    }
+  });
+  
+  function applyFontStyle(fontStyle) {
+    $('h1').css('font-family', fontStyle);
+    $('h2').css('font-family', fontStyle);
+    $('h6').css('font-family', fontStyle);
+    $('span').css('font-family', fontStyle);
+    $('div').css('font-family', fontStyle);
+    $('#listening-to-spotify-elapsed-time-wrapper').css('font-family', fontStyle);
+    
+    if (fontStyle === 'Geologica Roman') {
+      $('#username').css('padding-top', '10px');
+      $('#username').css('padding-bottom', '10px');
+      $('#discord-status').css('font-size', '22px');
+      $('#status_border').css('top', '-54px');
+    } else if (fontStyle === 'Noto Sans Mono') {
+      $('#username').css('padding-top', '7px');
+      $('#username').css('padding-bottom', '13px');
+      $('#discord-status').css('font-size', '20px');
+      $('#status_border').css('top', '-55px');
+    } else if (fontStyle === 'OpenDyslexic3') {
+      $('#status_border').css('top', '-60px');
+    } else {
+      $('#text').css('color', '');
+    }
+  }
+  </script>
+
+  
 
 <script src="./code/config.js"></script>
 <script src="./code/theme.js"></script>
@@ -165,6 +248,7 @@
 <script src="./code/apis/accounts.js"></script>
 <script src="./code/apis/discord.js"></script>
 <script src="./code/apis/pronounspage.js"></script>
+<script src="./code/apis/friends.js"></script>
 <script src="./code/apis/roblox.js"></script>
 <script src="./code/apis/mastodon.js"></script>
 <script src="./code/time.js"></script>

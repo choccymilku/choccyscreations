@@ -138,6 +138,7 @@ const activities = data.activities;
     emojiDiv.innerHTML = emojiHtml;
   } else {
     emojiDiv.innerHTML = "";
+    activityDiv.style.marginLeft = '10px';
   }
 
 const listeningToSpotify = activities ? activities.some(activity => activity.type === 2 && activity.name === 'Spotify') : false;

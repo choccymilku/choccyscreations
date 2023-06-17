@@ -13,7 +13,7 @@ const accountUrls = {
   facebook: "https://www.facebook.com/",
 };
 
-/* function addRobloxConnection() {
+function addRobloxConnection() {
   const connectionsContainer = document.getElementById("accounts");
 
   const robloxDiv = document.createElement("div");
@@ -21,23 +21,22 @@ const accountUrls = {
   robloxDiv.classList.add("connection-roblox");
 
   const robloxIcon = document.createElement("span");
-  robloxIcon.classList.add("fa-stack", "icon-style-custom", "connection-icons-custom");
+  robloxIcon.classList.add("connection-icons-custom");
 
-  const robloxSquare1 = document.createElement("i");
-  robloxSquare1.classList.add("fa-solid", "fa-square-full", "fa-stack-1x");
-  robloxSquare1.style.transform = "rotate(15deg)";
-  robloxSquare1.style.fontSize = "55px";
-  robloxSquare1.style.marginTop = "-2px";
-  robloxIcon.appendChild(robloxSquare1);
+  const robloxSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  robloxSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  robloxSvg.setAttribute("x", "0px");
+  robloxSvg.setAttribute("y", "0px");
+  robloxSvg.setAttribute("width", "78");
+  robloxSvg.setAttribute("height", "78");
+  robloxSvg.setAttribute("viewBox", "0 0 50 50");
+  robloxSvg.classList.add("custom-icon");
 
-  const robloxSquare2 = document.createElement("i");
-  robloxSquare2.classList.add("fa-solid", "fa-square-full", "fa-stack-1x", "fa-inverse");
-  robloxSquare2.style.transform = "rotate(15deg)";
-  robloxSquare2.style.color = "var(--wing1)";
-  robloxSquare2.style.fontSize = "15px";
-  robloxSquare2.style.marginTop = "-2px";
-  robloxIcon.appendChild(robloxSquare2);
+  const robloxPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  robloxPath.setAttribute("d", "M 12.125 1.9980469 A 1.0001 1.0001 0 0 0 11.199219 2.7441406 L 2.0332031 37.576172 A 1.0001 1.0001 0 0 0 2.7460938 38.798828 L 37.580078 47.966797 A 1.0001 1.0001 0 0 0 38.802734 47.253906 L 47.96875 12.419922 A 1.0001 1.0001 0 0 0 47.255859 11.197266 L 12.421875 2.03125 A 1.0001 1.0001 0 0 0 12.125 1.9980469 z M 21.5 19 L 31 21.5 L 28.5 31 L 19 28.5 L 21.5 19 z");
 
+  robloxSvg.appendChild(robloxPath);
+  robloxIcon.appendChild(robloxSvg);
   robloxDiv.appendChild(robloxIcon);
 
   const robloxContainer = document.createElement("div");
@@ -54,7 +53,8 @@ const accountUrls = {
   robloxDiv.classList.add("noselect");
 
   connectionsContainer.insertBefore(robloxDiv, connectionsContainer.firstChild);
-} */
+}
+
 
 function addMastodonConnection() {
   const connectionsContainer = document.getElementById("accounts");
