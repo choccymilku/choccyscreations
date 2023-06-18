@@ -39,6 +39,21 @@
   height: 0px;
 }
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: red;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: green; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: yellow; 
+}
+
 .clickable {cursor: pointer;display: inline-block;}
 </style>
 </head>
@@ -69,77 +84,79 @@
 
 <div id="main">
   <div id="left_side">
-    <div id="top_left">
-      <a id="pfp_link">
+    <div id="left_side_wrapper">
+      <div id="top_left">
+        <a id="pfp_link">
           <img id="pfp" src="./blank.png"/>
           <div id="status_border">
               <div id="status"></div>
           </div>
-      </a>
+        </a>
+          <div id="discord_status">
+            <div class="noselect" id="discord_status_inner">
+              <span id="status-emoji"></span>
+              <span id="discord-status"></span>
+            </div>
+          </div>
+      </div>
+    <div class="listening-to-spotify noselect" id="listening-to-spotify">
+      <div class="listening-to-spotify-content" id="listening-to-spotify-content">
+        <img class="listening-to-spotify-cover" id="listening-to-spotify-cover" style="background-color: var(--modal_background);" src="./blank.png"></img>
+          <a target="_blank" class="play-on-spotify-link" id="play-on-spotify-link">
+            <i id="play-on-spotify-button" class="fa-brands fa-spotify"></i>
+          </a>
+      </div>     
+        <div class="listening-to-spotify-info" id="listening-to-spotify-info">
+          <h6 class="listening-to-spotify-song" id="listening-to-spotify-song"></h6>
+          <h6 class="listening-to-spotify-artist" id="listening-to-spotify-artist"></h6>
+          <div id="listening-to-spotify-elapsed-time-wrapper"></div> 
+        </div> 
     </div>
     <div id="left_side_scrollable">
     <div id="bottom_left">
-      <div class="listening-to-spotify" id="listening-to-spotify">
-        <div class="listening-to-spotify-content" id="listening-to-spotify-content">
-          <img class="listening-to-spotify-cover" id="listening-to-spotify-cover" style="background-color: var(--modal_background);" src="./blank.png"></img>
-  
-            <a target="_blank" class="play-on-spotify-link" id="play-on-spotify-link">
-              <i id="play-on-spotify-button" class="fa-brands fa-spotify"></i>
-            </a>
-        </div>     
-          <div class="listening-to-spotify-info" id="listening-to-spotify-info">
-            <h6 class="listening-to-spotify-song" id="listening-to-spotify-song"></h6>
-            <h6 class="listening-to-spotify-artist" id="listening-to-spotify-artist"></h6>
-            <div id="listening-to-spotify-elapsed-time-wrapper"></div> 
-          </div> 
-      </div>
       <div id="friends">
-        <div id="friends_inner"></div>
+        <div class="noselect" id="friends_inner"></div>
       </div>
     </div> 
+    </div>
+<!-- <span id="username"></span>-->        
     </div>
   </div>
 
   <div id="center_side">
     <div id="account_wrapper">
       <div id='accounts'></div>
-    </div> 
+    </div>
+    <div id="settings_bg_wrapper">
+      <div id="settings_bg">
+        <i id="settings" class="fa-solid fa-gear"></i>
+      </div> 
+    </div>
   </div>
   
   <div id="right_side">
-    <div id="top_right">
+    <div class="noselect" id="top_right">
       <div id="text"></div>
-      <div id="menu">
-<!--         <span class="clickable">theme: <span id="theme-toggle"></span></span> -->
-        <span class="clickable">clock format: <span id="toggleButton"></span></span>
-        <span class="clickable">font: <select id="font-selector">
-  <option value="Geologica Roman">Geologica Roman</option>
-  <option value="Noto Sans Mono">Noto Sans Mono</option>
-<!--   <option value="OpenDyslexic3">OpenDyslexic3</option> -->
-</select></span>
-      </div>
-    </div>
+        <div id="menu">
+          <span class="clickable">theme: <span id="theme-toggle"></span></span>
+          <span class="clickable">clock format: <span id="toggleButton"></span></span>
 
-    <div id="bottom_right">
-      <div id="user_info_inner">
-        <span id="username"></span>
-          <div id="discord_status">
-           <span id="status-emoji"></span>
-           <span id="discord-status"></span>
-          </div>
-      </div>
+          <span class="clickable">font: 
+            <select id="font-selector">
+              <option value="Geologica Roman">Geologica Roman</option>
+              <option value="Noto Sans Mono">Noto Sans Mono</option>
+              <option value="OpenDyslexic3">OpenDyslexic3</option>
+            </select>
+          </span>
+        </div>
     </div>
-  </div>
-  
-  <div id="bottom_right_settings">
-    <div id="settings_bg">
-    <i id="settings" class="fa-solid fa-gear"></i>
-  </div>
   </div>
 </div>
+
     <h1 style="position: absolute;bottom: 0;left: 50%;transform: translateX(-50%);">WIP</h1>
     <h1 style="position: absolute;bottom: 0;left: 50%;transform: translateX(-50%);font-size: 10px;">( not optimized for mobile, expect bugs )</h1>
-    <script>
+    
+<script>
 var canClick = true;
 
 document.getElementById("settings").addEventListener("click", function() {
@@ -201,9 +218,17 @@ document.getElementById("settings").addEventListener("click", function() {
     if (Modernizr.localstorage) {
       // Check if a font style is already set in localStorage
       var currentFontStyle = localStorage.getItem('fontStyle');
-      if (currentFontStyle) {
-        applyFontStyle(currentFontStyle);
+      if (!currentFontStyle) {
+        // Set default value if it doesn't exist in localStorage
+        currentFontStyle = 'Geologica Roman';
+        localStorage.setItem('fontStyle', currentFontStyle);
       }
+  
+      // Set the selected option in the font selector dropdown
+      $('#font-selector').val(currentFontStyle);
+  
+      // Apply the font style
+      applyFontStyle(currentFontStyle);
   
       // Handle font style selection from the dropdown menu
       $('#font-selector').change(function() {
@@ -231,14 +256,15 @@ document.getElementById("settings").addEventListener("click", function() {
       $('#username').css('padding-top', '7px');
       $('#username').css('padding-bottom', '13px');
       $('#discord-status').css('font-size', '20px');
-      $('#status_border').css('top', '-55px');
+      $('#status_border').css('top', '-54px');
     } else if (fontStyle === 'OpenDyslexic3') {
       $('#status_border').css('top', '-60px');
     } else {
       $('#text').css('color', '');
     }
   }
-  </script>
+</script>
+
 
   
 
@@ -251,6 +277,7 @@ document.getElementById("settings").addEventListener("click", function() {
 <script src="./code/apis/friends.js"></script>
 <script src="./code/apis/roblox.js"></script>
 <script src="./code/apis/mastodon.js"></script>
+<script src="./code/apis/github.js"></script>
 <script src="./code/time.js"></script>
 <!-- <script src="./code/winganim.js"></script>
 <script src="./code/introanim.js"></script> -->

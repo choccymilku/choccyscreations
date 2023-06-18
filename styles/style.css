@@ -1,46 +1,65 @@
 
 :root[data-applied-mode="dark"] {
   color-scheme: dark;
-  --text: #fefefe;
-  --background: #52546b /* alternitavely use 404254*/;
+  --background: #52546b;
   --modal_background: #404254;
-  --item: #2b2e3b;
   --item_background: #52546b;
-  --wingback: #db5f6e;
   --icon: #9e9eff;
   --icon_hover: #6e6eb2;
+  --warn: #db5f6e;
 }
 
 :root[data-applied-mode="light"] {
     color-scheme: light;
-    --text: #1E1E1E;
-    --background: #fefefe;
-    --wing1: #E5E5E5;
-    --wing2: #CCCCCC;
-    --wing3: #BFBFBF;
-    --wingback: #db5f6e;
-    --iconcolor: #1E1E1E;
+    --background: #E5E5E5;
+    --item_background: #E5E5E5;
+    --modal_background: #CCCCCC;
+    --icon: #1E1E1E;
+    --icon_hover: #5b5b5b;
 }
 
 /* Additional themes */
 :root[data-applied-mode="spotify"] {
-    --text: white;
-    --background: #4500f2;
-    --wing1: #BF4b92;
-    --wing2: #e04b94;
-    --wing3: #ee4f9d;
-    --wingback: #6a2d68;
-    --iconcolor: white;
+  color-scheme: dark;
+  --background: #0e0e10;
+  --item_background: #0e0e10;
+  --modal_background: #1f1f23;
+  --icon: #1db954;
+  --icon_hover: #27ff73;
 }
 
 :root[data-applied-mode="twitch"] {
-    --text: white;
-    --background: #ffcc5c;
-    --wing1: #96ceb4;
-    --wing2: #ff6f69;
-    --wing3: #ced07d;
-    --wingback: #0e9aa7;
-    --iconcolor: #005f73;
+  color-scheme: dark;
+  --background: #0e0e10;
+  --item_background: #0e0e10;
+  --modal_background: #1f1f23;
+  --icon: #9146ff;
+  --icon_hover: #c089ff;
+}
+
+:root[data-applied-mode="neapolitan"] {
+  color-scheme: light;
+  --background: #feb6c1;
+  --item_background: #feb6c1;
+  --modal_background: #fffbcc;
+  --icon: #714214;
+  --icon_hover: #bf5f1a;
+}
+:root[data-applied-mode="rustic"] {
+  color-scheme: dark;
+  --background: #8a4513;
+  --item_background: #8a4513;
+  --modal_background: #714214;
+  --icon: #b6a643;
+  --icon_hover: #f1c30f;
+}
+:root[data-applied-mode="electric"] {
+  color-scheme: light;
+   --background: #ff68b5;
+   --item_background: #ff68b5;
+   --modal_background: #dfff01;
+   --icon: #7e3359;
+   --icon_hover: #a44274;
 }
 
 
@@ -48,68 +67,6 @@ body {
     background-color: var(--background);
     overflow: hidden;
     transition: 0.25s;
-}
-
-#topbar {
-    height: 100px;
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#topbar2 {
-    height: 100px;
-    width: fit-content;
-    position: fixed;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.back_wing {
-        width: 300px;
-        height: 150px;
-        background-color: var(--wingback);
-        transform: rotate(-5deg);
-        transition: 0.2s;
-        cursor: pointer;
-        position: relative;
-        z-index: 10;
-        top:-140px;
-        margin-left: -5px;
-}
-.back_wing:hover {
-    height: 170px;
-}
-.animate-wing {
-    animation: animate-wing 0.65s forwards;
-}
-
-.wing:hover {
-    height: 170px;
-}
-
-.wing {
-    width: 330px;
-    height: 150px;
-    background-color: blue;
-    transform: rotate(-5deg);
-    transition: 0.2s;
-    cursor: pointer;
-    position: relative;
-    z-index: 10;
-    top:-140px;
-}
-
-#menu_wing {
-    background-color: var(--wing1);
 }
   
 .toggle {
@@ -133,8 +90,8 @@ body {
   background-color: var(--modal_background);
   width: calc(100% - 40px);
   height: calc(100% - 40px);
-  max-width: 900px;
   max-height: 500px;
+  max-width: 900px;
   position: fixed;
   display: flex;
   top: 50%;
@@ -147,6 +104,14 @@ body {
   margin: 10px;
   position: relative;
   width: 235px;
+  border-radius: 8px;
+  overflow-y: scroll;
+  
+}
+
+#left_side_wrapper {
+  width: 235px;
+  border-radius: 8px;
 }
 
 #left_side_scrollable {
@@ -169,15 +134,15 @@ body {
 }
 
 #bottom_left {
-  width: fit-content;
   height: 235px;
   margin-left: 0px;
   position: relative;
   display: flex;
+  border-radius: 8px;
 }
 
 #right_side {
-  width: calc(100% - 392px);
+  width: calc(100% - 398px);
   height: calc(100% - 20px);
   margin-top: 10px;
   position: relative;
@@ -186,7 +151,7 @@ body {
 
 #top_right {
   width: 100%;
-  height: 342.5px;
+  height: 100%;
   position: relative;
   border-radius: 8px;
   background-color: var(--item_background);
@@ -207,7 +172,7 @@ body {
 #menu {
   margin: 10px;
   height: calc(100% - 40px);
-  background-color: var(--item);
+  background-color: var(--modal_background);
   padding: 10px;
   border-radius: 8px;
   font-size: 30px;
@@ -216,14 +181,33 @@ body {
 }
 
 #bottom_right {
-  height: 127.5px;
-  width: calc(100% - 137.5px);
+  height: 60px;
+  width: 100%;
   border-radius: 8px;
   margin-top: 10px;
   position: relative;
   background-color: var(--item_background);
   overflow: hidden;
 }
+/* 
+
+#tester {
+  background-color: green;
+  height: calc(100% - 20px);
+  width: calc(100% - 20px);
+  margin: 10px;
+  position: relative;
+  z-index: 1;
+  border-radius: 8px;
+}
+
+#bar_inner {
+  margin: 10px;
+  position: absolute;
+  height: calc(100% - 20px);
+  width: calc(100% - 20px);
+  background-color: red;
+} */
 
 #bottom_right_settings {
   height: 127.5px;
@@ -239,8 +223,8 @@ body {
 }
 
 #center_side {
-  height: calc(100% - 30px);
-  width: 96px;
+  height: calc(100% - 160.5px);
+  width: 102.5px;
   border-radius: 8px;
   margin-right: 10px;
   padding-left: 10px;
@@ -249,7 +233,6 @@ body {
   margin-top: 10px;
   position: relative;
   background-color: var(--item_background);
-  overflow-y: scroll;
   scrollbar-width: none;
 } 
   #pfp_img {
@@ -266,7 +249,7 @@ body {
     position: relative;
   }
   
-  #username {
+/*   #username {
     text-align: left;
     overflow: hidden;
     white-space: nowrap;
@@ -277,12 +260,7 @@ body {
     border-radius: 8px;
     padding: 10px;
     height: 48px;
-  }
-
-  #user_info_inner {
-    margin:10px;
-    height: calc(100% - 20px);
-  }
+  } */
   
   #status {
     z-index: 1;
@@ -318,7 +296,8 @@ body {
     background-color: var(--item_background);
     width: 215px;
     padding: 10px;
-    transition: 0.5s;
+    margin-right: 10px;
+    margin-top: 10px;
     }
   .listening-to-spotify-content {
     display: flex;
@@ -445,11 +424,11 @@ body {
 	white-space: nowrap;
 	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 	z-index:1;
-	color:var(--icon);
+	color:var(--icon) !important;
   transition: 0.25s;
   }
   .connection-icons:hover {
-    color: var(--icon_hover);
+    color: var(--icon_hover) !important;
   }
 
   .connection-icons-custom {
@@ -481,10 +460,9 @@ body {
     color:var(--iconcolor);
     margin-left: -10px;
     margin: 9.5px;
-    font-size: 78px;
-    background-color: var(--modal_background);
-    width: 78px;
-    height: 78px;
+    font-size: 84.5px;
+    width: 84.5px;
+    height: 84.5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -492,65 +470,84 @@ body {
   }
   
 
-.connection-div {height: 96.5px;width:96.5px;
+.connection-div {
+  height: 102.5px;
+  width:102.5px;
   margin-top: 10px;
   background-color: var(--modal_background);border-radius: 8px;}
 
 .flag-name {text-decoration: none;transition: 0.15s;color:var(--icon)}
 .flag-name:hover {color: var(--text);text-decoration: none;}
-.pronoun-values {background-color:var(--modal_background);padding-left:5px;padding-right:5px;border-radius:2px;}
+.pronoun-values {background-color:var(--item_background);padding-left:5px;padding-right:5px;border-radius:8px;display: inline-block;}
 #clock {background-color:var(--item_background);padding-left:5px;padding-right:5px;border-radius:8px;font-size: 26px;width: calc(100% - 10px);display: inline-block;}
 .divider {width: 100%;height: 3px;background-color:  var(--item_background);margin-top: 9px;margin-bottom: 9px;}
 #roblox {width: 300px;height: 100px;background-color: var(--wing1);margin-top: 20px;margin-bottom: 20px;}
 
+.emoji {
+  height: 28px;
+}
 .emoji-status {
   height: 26px;
   border-radius: 8px;
-  margin-left: 3px;
-  margin-top: 2px;
-}
-.emoji {
-  height: 28px;
+  float: left;
 }
 #status-emoji {
   position: absolute;
   z-index: 1;
-  display: inline-block;
-}
-
-#discord-status {
-  display: inline-block;
-  font-size: 22px;
-  margin-left: 36px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: calc(100% - 36px);
+  height: 26px;
+  border-radius: 8px;
+  float: left;
 }
 
 #discord_status {
-  background-color: var(--modal_background);
-  height: 30px;
-  margin-top: 10px;
+  background-color: var(--item_background);
+  opacity: 0;
   border-radius: 8px;
+  margin-top: -34px;
+  width: 100%;
+  margin-left: -10px;
+  padding: 10px;
+  z-index: 1;
+  position: relative;
+  transition: 0.25s;
+}
+
+#top_left:hover #discord_status {
+  opacity: 1;
+}
+
+#discord_status_inner {
+  padding: 10px;
+  position: relative;
+  border-radius: 8px;
+  background-color: var(--modal_background);
+  word-break: break-all;
 }
 
 #settings {
-  font-size: 86px;
+  font-size: 78px;
   cursor: pointer;
   color: var(--icon);
   transition: 0.25s;
+  padding: 10px;
   transform: rotate(30deg);
 }
 
 #settings_bg {
   background-color: var(--modal_background);
-  width: 100%;
-  width: 100%;
-  margin: 10px;
-  padding-top: 10px;
+  height: 100px;
+  width: 102.5px;
   text-align: center;
   border-radius: 8px;
+}
+
+#settings_bg_wrapper {
+  background-color: var(--item_background);
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+  margin-left: -10px;
 }
 
 #settings:hover {
@@ -569,24 +566,22 @@ body {
 
 
 #friends {
-  background-color: var(--item_background);
   border-radius: 8px;
-  margin-left: 10px;
   width:fit-content;
   overflow-y: scroll;
   scrollbar-width: none;
   height: 235px;
   display: flex;
+  background-color: var(--item_background);
 }
 
 #friends_inner {
   background-color: var(--item_background);
   border-radius: 8px;
   margin-left: 10px;
-  width:fit-content;
+  width: 100%;
   overflow-y: scroll;
   scrollbar-width: none;
-  height: 235px;
   display: flex;
 }
 
@@ -633,3 +628,6 @@ body {
   font-size: 20px;
   text-align: center;
 }
+
+a {color:var(--icon) !important}
+a:hover {color:var(--icon_hover) !important}

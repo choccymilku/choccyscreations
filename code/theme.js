@@ -20,6 +20,15 @@ function getAppliedMode(userPreference) {
   if (userPreference === "twitch") {
     return "twitch";
   }
+  if (userPreference === "neapolitan") {
+    return "neapolitan";
+  }
+  if (userPreference === "rustic") {
+    return "rustic";
+  }
+  if (userPreference === "electric") {
+    return "electric";
+  }
   // system
   if (matchMedia("(prefers-color-scheme: light)").matches) {
     return "light";
@@ -46,6 +55,15 @@ function rotatePreferences(userPreference) {
     return "twitch";
   }
   if (userPreference === "twitch") {
+    return "neapolitan";
+  }
+  if (userPreference === "neapolitan") {
+    return "rustic";
+  }
+  if (userPreference === "rustic") {
+    return "electric";
+  }
+  if (userPreference === "electric") {
     return "system";
   }
   // for invalid values, just in case

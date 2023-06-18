@@ -1,17 +1,3 @@
-/* 
-@media only screen and (max-width: 620px) {
-    #discord {height: 334px;align-items:normal;}
-    #discord-activity-section {display:none}
-    #discord-activity-section2 {display:block}
-    #tag {display: block;}
-    #username {font-size: 50px;}
-    #user_info {height: 300px !important;width: 300px;}
-    #status_text {
-        margin-left: 60px;
-        margin-top: -10px !important;
-        background-color: red;
-        border-radius: 8px;
-        opacity: 1;
-    }
-    
-} */
+@media only screen and (max-width: 688px) {
+    #right_side {width: 250px;}
+  }

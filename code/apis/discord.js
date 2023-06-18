@@ -96,18 +96,17 @@ const activities = data.activities;
       statusCaseDiv.style.backgroundColor = '#23a459';
   }
 
- const activityDiv = document.getElementById('discord-status');
+  const activityDiv = document.getElementById('discord-status');
+  const activityDiv2 = document.getElementById('discord_status');
   const emojidiv = document.getElementById('status-emoji');
-  activityDiv.setAttribute('title', activityState);	
-
+  activityDiv.setAttribute('title', activityState);
+  
   if (activityState) {
-    activityDiv.innerText = activityState;
-    //activityDiv.style.fontSize = '2.5rem'; // Apply CSS styling to the text
+    const trimmedState = activityState.substring(0, 100); // Limit the status to 100 characters
+    activityDiv.innerText = trimmedState;
   } else {
     activityDiv.innerText = '';
   }
-  
-
   
   const emoji = activities ? activities.find(activity => activity.type === 4) : null;
   const emojiData = emoji ? emoji.emoji : null;
@@ -118,6 +117,8 @@ const activities = data.activities;
     // If the response includes only emoji, show the emoji character
     const emojiChar = emojiData.name;
     emojiDiv.innerHTML = twemoji.parse(emojiChar);
+  
+    activityDiv.style.marginLeft = '36px'; // Set discord-status marginLeft to 36px
   } else if (emojiData && emojiData.id) {
     // If the response includes both the ID and the name, generate the URL for the image
     const emojiId = emojiData.id;
@@ -133,13 +134,29 @@ const activities = data.activities;
       // Otherwise, construct the URL using the emoji ID and other properties
       emojiUrl = `https://cdn.discordapp.com/emojis/${emojiId}.${emojiData.animated ? 'gif' : 'webp'}?size=48&name=${emojiName}&quality=lossless`; // Check for `animated` property
     }
-    // Check if the result is an emoji and use twemoji.parse() to display the emoji
-    const emojiHtml = twemoji.test(emojiUrl) ? twemoji.parse(emojiUrl) : `<img class="emoji-status" src="${emojiUrl}" />`;
-    emojiDiv.innerHTML = emojiHtml;
+  
+    // Create a new image element
+    const emojiImg = document.createElement('img');
+    emojiImg.className = 'emoji-status';
+    emojiImg.src = emojiUrl;
+  
+    // Replace the content of the emojiDiv with the new image element
+    emojiDiv.innerHTML = '';
+    emojiDiv.appendChild(emojiImg);
+  
+    activityDiv.style.marginLeft = '36px'; // Set discord-status marginLeft to 36px
   } else {
-    emojiDiv.innerHTML = "";
-    activityDiv.style.marginLeft = '10px';
+    emojiDiv.innerHTML = '';
+    activityDiv2.style.display = 'none'; // Set activityDiv2 display to none
   }
+  
+  if (!emojiData && !activityState) {
+    activityDiv2.style.display = 'none'; // Set activityDiv2 display to none
+  } else {
+    activityDiv2.style.display = 'block'; // Set activityDiv2 display to block
+  }
+  
+  
 
 const listeningToSpotify = activities ? activities.some(activity => activity.type === 2 && activity.name === 'Spotify') : false;
 
@@ -161,7 +178,7 @@ if (listeningToSpotify) {
 
   const albumCoverElement = document.getElementById('listening-to-spotify-cover');
   albumCoverElement.src = albumCover;
-  albumCoverElement.setAttribute('title', songName + '\n' + artist);
+  albumCoverElement.setAttribute('title', songName + '\n' + 'by ' + artist);
 
   const spotifyLinkElement = document.getElementById('play-on-spotify-link');
   spotifyLinkElement.href = `https://open.spotify.com/track/${trackId}`;
@@ -268,24 +285,17 @@ setInterval(updateProgressBar, 1000);
 updateElapsedTime();
 setInterval(updateElapsedTime, 1000);
 
+
+
  
 } else {
-  const spotifyCoverElement = document.getElementById('listening-to-spotify-cover');
-  const spotifyProgressBarWrapper = document.getElementById('listening-to-spotify-progress-bar-wrapper');
-  const spotifyProgressBar = document.getElementById('listening-to-spotify-elapsed-time-wrapper');
-  spotifyCoverElement.src = './blank.png';
-
-  if (spotifyProgressBarWrapper) {
-    spotifyProgressBarWrapper.remove();
-    spotifyProgressBar.remove();
-  }
 }
 
   const discordUser = data.discord_user;
   if (discordUser) {
     const avatarHash = discordUser.avatar;
-    const discordusername = `${discordUser.username}`;
-    const discordtag = `${discordUser.discriminator}`;
+/*     const discordusername = `${discordUser.username}`;
+    const discordtag = `${discordUser.discriminator}`; */
 
 const avatarUrl = `https://cdn.discordapp.com/avatars/${discordUser.id}/${avatarHash}.png?size=256`;
 
@@ -295,13 +305,12 @@ avatarLinkElement.target = '_blank';
 
 const avatarImgElement = document.getElementById('pfp');
 avatarImgElement.src = avatarUrl;
-
+/* 
 const usernameElement = document.getElementById('username');
 usernameElement.innerText = discordusername;
 const usernameTagElement = document.createElement('span'); // Create the <span> element
 usernameTagElement.id = 'tag'; // Set its ID to 'discord-username-tag'
 usernameTagElement.innerText = '#' + discordtag;
 usernameTagElement.style.color = 'var(--text)';
-usernameElement.appendChild(usernameTagElement); // Append the <span> element to the <h6> element
-
+usernameElement.appendChild(usernameTagElement); // Append the <span> element to the <h6> element */
 }}
