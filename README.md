@@ -15,4 +15,6 @@ welcome, this is the open source version of https://choccyscreations.pages.dev
 
 4. host the website, this comes to your personal preference, to start off, you can use cloudflare for hosting your website: https://dash.cloudflare.com and select "workers and pages", then click on "pages" and follow the instructions, you can either connect your repository, or upload files directly from your computer.
 
+# notes
+
 note this is currently work in progress, more info on how to host this will be made soon
