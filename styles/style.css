@@ -88,9 +88,9 @@ body {
 
 #main {
   background-color: var(--modal_background);
-  width: calc(100% - 40px);
-  height: calc(100% - 40px);
-  max-height: 500px;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  max-height: 520px;
   max-width: 900px;
   position: fixed;
   display: flex;
@@ -98,6 +98,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 8px;
+  scrollbar-width: none;
 }
 
 #left_side {
@@ -106,12 +107,25 @@ body {
   width: 235px;
   border-radius: 8px;
   overflow-y: scroll;
-  
+  padding: 10px;
+  background-color: var(--item_background);
+  overflow-x: hidden;
+  scrollbar-width: none;
 }
 
 #left_side_wrapper {
+  height: 100%;
+  border-radius: 8px;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+#preloader_tester {
+  height: 235px;
   width: 235px;
   border-radius: 8px;
+  margin-top: 10px;
+  background-color: var(--modal_background);
 }
 
 #left_side_scrollable {
@@ -127,22 +141,22 @@ body {
 #top_left {
   width: 215px;
   height: 215px;
-  padding: 10px;
   position: relative;
   border-radius: 8px;
-  background-color: var(--item_background);
+  padding: 10px;
+  background-color: var(--modal_background);
 }
 
 #bottom_left {
-  height: 235px;
+  height: calc(100% - 235px);
   margin-left: 0px;
   position: relative;
   display: flex;
-  border-radius: 8px;
+  border-radius: 0px;
 }
 
 #right_side {
-  width: calc(100% - 398px);
+  width: calc(100% - 424px);
   height: calc(100% - 20px);
   margin-top: 10px;
   position: relative;
@@ -171,13 +185,16 @@ body {
 
 #menu {
   margin: 10px;
-  height: calc(100% - 40px);
+  height: 215px;
+  width: 215px;
+  margin-left: 0px;
   background-color: var(--modal_background);
   padding: 10px;
   border-radius: 8px;
   font-size: 30px;
   overflow-y: scroll;
   scrollbar-width: none;
+  display: none;
 }
 
 #bottom_right {
@@ -223,8 +240,8 @@ body {
 }
 
 #center_side {
-  height: calc(100% - 160.5px);
-  width: 102.5px;
+  height: calc(100% - 162.5px);
+  width: 107.5px;
   border-radius: 8px;
   margin-right: 10px;
   padding-left: 10px;
@@ -239,6 +256,11 @@ body {
     border-radius: 8px;
     z-index: 1;
     position: relative;
+  }
+
+  #pfp_link {
+    height: 100%;
+    display: block;
   }
   
   #pfp {
@@ -278,7 +300,7 @@ body {
     z-index: 2;
     position: relative;
     display: block;
-    background-color: var(--item_background);
+    background-color: var(--modal_background);
     width: 51px;
     height: 50px;
     left: 165px;
@@ -293,11 +315,12 @@ body {
     display: flex;
     flex-direction:column;
     border-radius: 8px;
-    background-color: var(--item_background);
+    background-color: var(--modal_background);
     width: 215px;
-    padding: 10px;
     margin-right: 10px;
     margin-top: 10px;
+    padding: 10px;
+    display: none;
     }
   .listening-to-spotify-content {
     display: flex;
@@ -310,7 +333,7 @@ body {
     display: block;
     width: 102.5px;
     height: 102.5px;
-    background-color: var(--modal_background);
+    background-color: var(--item_background);
     border-radius: 8px;
     position: relative;
     margin-left: 10px;
@@ -345,7 +368,7 @@ body {
     width: 195px;
     padding: 10px;
     height: 82px;
-    background-color:var(--modal_background);
+    background-color:var(--item_background);
     border-radius: 8px;
     }
     
@@ -444,25 +467,17 @@ body {
 
   .custom-icon {
     fill: var(--icon);
-    margin: 10px;
     transition: 0.25s;
+    margin: 10px;
   }
   .custom-icon:hover {
     fill: var(--icon_hover);
   }
-  
-
-  .connection-div:hover .connection-title {
-    opacity: 1;
-  }
-
   .icon-style {
     color:var(--iconcolor);
     margin-left: -10px;
     margin: 9.5px;
-    font-size: 84.5px;
-    width: 84.5px;
-    height: 84.5px;
+    font-size: 88px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -471,8 +486,6 @@ body {
   
 
 .connection-div {
-  height: 102.5px;
-  width:102.5px;
   margin-top: 10px;
   background-color: var(--modal_background);border-radius: 8px;}
 
@@ -500,43 +513,41 @@ body {
 }
 
 #discord_status {
-  background-color: var(--item_background);
-  opacity: 0;
+  background-color: var(--modal_background);
   border-radius: 8px;
-  margin-top: -34px;
-  width: 100%;
-  margin-left: -10px;
   padding: 10px;
+  margin-top: 10px;
+  max-height: 215px;
   z-index: 1;
   position: relative;
   transition: 0.25s;
-}
-
-#top_left:hover #discord_status {
-  opacity: 1;
+  overflow: hidden;
+  display: none;
 }
 
 #discord_status_inner {
   padding: 10px;
   position: relative;
   border-radius: 8px;
-  background-color: var(--modal_background);
+  background-color: var(--item_background);
   word-break: break-all;
+  max-height: 195px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
 #settings {
-  font-size: 78px;
+  font-size: 82px;
   cursor: pointer;
   color: var(--icon);
   transition: 0.25s;
-  padding: 10px;
+  margin: 10px;
   transform: rotate(30deg);
 }
 
 #settings_bg {
   background-color: var(--modal_background);
-  height: 100px;
-  width: 102.5px;
+  height: 102.5px;
+  width: 107.5px;
   text-align: center;
   border-radius: 8px;
 }
@@ -546,7 +557,8 @@ body {
   border-radius: 8px;
   padding: 10px;
   margin-top: 20px;
-  width: 100%;
+  height: 102.5px;
+  width: 107.5px;
   margin-left: -10px;
 }
 
@@ -572,25 +584,24 @@ body {
   scrollbar-width: none;
   height: 235px;
   display: flex;
-  background-color: var(--item_background);
+  background-color: var(--modal_background);
 }
 
 #friends_inner {
-  background-color: var(--item_background);
+  margin-top: 10px;
   border-radius: 8px;
-  margin-left: 10px;
-  width: 100%;
+  height: 235px;
   overflow-y: scroll;
   scrollbar-width: none;
   display: flex;
+  margin-right: 10px;
 }
 
 #friends_container {
   height: 215px;
-  margin-right: 10px;
-  margin-top: 10px;
   display: inline-block;
   border-radius: 8px;
+  margin-left: 10px;
 }
 
 #friends_avatar {
@@ -604,7 +615,7 @@ body {
   position: relative;
   z-index: 1;
   border-radius: 8px;
-  background-color: var(--modal_background);
+  background-color: var(--item_background);
 }
 
 .friends_background {
@@ -624,7 +635,7 @@ body {
   border-radius: 8px;
   position: relative;
   padding: 10px;
-  background-color: var(--modal_background);
+  background-color: var(--item_background);
   font-size: 20px;
   text-align: center;
 }
@@ -632,3 +643,5 @@ body {
 .flag-name {color:var(--icon) !important}
 .flag-name:hover {color:var(--icon_hover) !important}
 .flag-name-null {color:var(--icon) !important}
+a {color:var(--icon) !important;}
+a:hover {color:var(--icon_hover) !important}

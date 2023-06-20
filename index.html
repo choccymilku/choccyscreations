@@ -69,8 +69,8 @@
       });
       </script>
       <div id="yeaah"></div>
-      <div id="preloader"></div>
-<!--     <div id="topbar">
+<!--       <div id="preloader"></div>
+ --><!--     <div id="topbar">
         <div id="menu_wing" class="wing">
             <h1 id="menu_wing_text" class="noselect wing_text" style="font-size: 70px;">settings</h1>
         </div>
@@ -85,6 +85,7 @@
 <div id="main">
   <div id="left_side">
     <div id="left_side_wrapper">
+
       <div id="top_left">
         <a id="pfp_link">
           <img id="pfp" src="./blank.png"/>
@@ -92,65 +93,76 @@
               <div id="status"></div>
           </div>
         </a>
-          <div id="discord_status">
-            <div class="noselect" id="discord_status_inner">
-              <span id="status-emoji"></span>
-              <span id="discord-status"></span>
-            </div>
+      </div>
+
+      <div id="preloader_tester"></div>
+
+      <div id="menu">
+        <span class="clickable">theme: <span id="theme-toggle"></span></span>
+        <span class="clickable">clock format: <span id="toggleButton"></span></span>
+
+        <span class="clickable">font: 
+          <select id="font-selector">
+            <option value="Geologica Roman">Geologica Roman</option>
+            <option value="Noto Sans Mono">Noto Sans Mono</option>
+<!--               <option value="OpenDyslexic3">OpenDyslexic3</option>
+-->       </select>
+        </span>
+      </div>
+
+      <div id="discord_status">
+        <div class="noselect" id="discord_status_inner">
+          <span id="status-emoji"></span>
+          <span id="discord-status"></span>
+        </div>
+      </div>
+
+      <div class="listening-to-spotify noselect" id="listening-to-spotify">
+        <div class="listening-to-spotify-content" id="listening-to-spotify-content">
+          <img class="listening-to-spotify-cover" id="listening-to-spotify-cover" style="background-color: var(--item_background);" src="./blank.png"></img>
+            <a target="_blank" class="play-on-spotify-link" id="play-on-spotify-link">
+              <i id="play-on-spotify-button" class="fa-brands fa-spotify"></i>
+            </a>
+        </div>     
+          <div class="listening-to-spotify-info" id="listening-to-spotify-info">
+            <h6 class="listening-to-spotify-song" id="listening-to-spotify-song"></h6>
+            <h6 class="listening-to-spotify-artist" id="listening-to-spotify-artist"></h6>
+            <div id="listening-to-spotify-elapsed-time-wrapper"></div> 
+          </div> 
+      </div>
+
+      <div id="left_side_scrollable">
+        <div id="bottom_left">
+          <div id="friends">
+            <div class="noselect" id="friends_inner"></div>
           </div>
-      </div>
-    <div class="listening-to-spotify noselect" id="listening-to-spotify">
-      <div class="listening-to-spotify-content" id="listening-to-spotify-content">
-        <img class="listening-to-spotify-cover" id="listening-to-spotify-cover" style="background-color: var(--modal_background);" src="./blank.png"></img>
-          <a target="_blank" class="play-on-spotify-link" id="play-on-spotify-link">
-            <i id="play-on-spotify-button" class="fa-brands fa-spotify"></i>
-          </a>
-      </div>     
-        <div class="listening-to-spotify-info" id="listening-to-spotify-info">
-          <h6 class="listening-to-spotify-song" id="listening-to-spotify-song"></h6>
-          <h6 class="listening-to-spotify-artist" id="listening-to-spotify-artist"></h6>
-          <div id="listening-to-spotify-elapsed-time-wrapper"></div> 
         </div> 
-    </div>
-    <div id="left_side_scrollable">
-    <div id="bottom_left">
-      <div id="friends">
-        <div class="noselect" id="friends_inner"></div>
       </div>
-    </div> 
-    </div>
+
 <!-- <span id="username"></span>-->        
     </div>
   </div>
 
   <div id="center_side">
+
     <div id="account_wrapper">
       <div id='accounts'></div>
     </div>
+
     <div id="settings_bg_wrapper">
       <div id="settings_bg">
         <i id="settings" class="fa-solid fa-gear"></i>
       </div> 
     </div>
+
   </div>
   
   <div id="right_side">
     <div class="noselect" id="top_right">
       <div id="text"></div>
-        <div id="menu">
-          <span class="clickable">theme: <span id="theme-toggle"></span></span>
-          <span class="clickable">clock format: <span id="toggleButton"></span></span>
-
-          <span class="clickable">font: 
-            <select id="font-selector">
-              <option value="Geologica Roman">Geologica Roman</option>
-              <option value="Noto Sans Mono">Noto Sans Mono</option>
-<!--               <option value="OpenDyslexic3">OpenDyslexic3</option>
- -->            </select>
-          </span>
-        </div>
     </div>
   </div>
+
 </div>
 
     <h1 style="position: absolute;bottom: 0;left: 50%;transform: translateX(-50%);">WIP</h1>
@@ -165,16 +177,16 @@ document.getElementById("settings").addEventListener("click", function() {
   }
 
   var menu = document.getElementById("menu");
-  var text = document.getElementById("text");
+  var scroll = document.getElementById("left_side_wrapper");
   var settings = document.getElementById("settings");
 
   if (menu.style.display === "block") {
     menu.style.display = "none";
-    text.style.display = "block";
+    scroll.style.overflowY = "scroll";
     settings.style.transform = "rotate(30deg)";
   } else {
     menu.style.display = "block";
-    text.style.display = "none";
+    scroll.style.overflowY = "hidden";
     settings.style.transform = "rotate(120deg)";
   }
 
@@ -189,6 +201,7 @@ document.getElementById("settings").addEventListener("click", function() {
   var container = document.querySelector('#left_side_scrollable');
   var scrollAmount = 0;
   var isScrolling = false;
+  var snapThreshold = 50; // Adjust this value to control the snapping sensitivity
   
   container.addEventListener('wheel', function(event) {
     event.preventDefault();
@@ -206,6 +219,23 @@ document.getElementById("settings").addEventListener("click", function() {
     scrollAmount *= 0.9; // Adjust the damping factor as desired
     
     if (Math.abs(scrollAmount) < 0.1) {
+      // Determine the nearest snap point based on the scroll position
+      var snapPoints = Array.from(container.children).map(function(element) {
+        return element.offsetLeft - container.offsetLeft;
+      });
+      var targetIndex = snapPoints.findIndex(function(snapPoint) {
+        return Math.abs(snapPoint - container.scrollLeft) < snapThreshold;
+      });
+      var targetSnapPoint = snapPoints[targetIndex];
+      
+      // Snap the container to the nearest snap point
+      if (targetSnapPoint !== undefined) {
+        container.scrollTo({
+          left: targetSnapPoint,
+          behavior: 'smooth'
+        });
+      }
+      
       isScrolling = false;
       return;
     }
@@ -213,6 +243,7 @@ document.getElementById("settings").addEventListener("click", function() {
     requestAnimationFrame(scrollContainer);
   }
 </script>
+
 <script>
   $(document).ready(function($) {
     if (Modernizr.localstorage) {

@@ -14,6 +14,12 @@ function connect() {
       }
     }));
     connected = true;
+
+        // Hide the preloader_tester div
+        setTimeout(() => {
+        const preloaderDiv = document.getElementById('preloader_tester');
+        preloaderDiv.style.display = 'none';
+        }, 150);
   });
 
   ws.addEventListener('error', event => {
@@ -24,7 +30,7 @@ function connect() {
     console.log('📰 lanyard WebSocket disconnected!');
     connected = false;
     // Reconnect after a timeout (e.g., 5 seconds)
-    reconnectTimeout = setTimeout(() => connect(), 5000);
+    reconnectTimeout = setTimeout(() => connect(), 0);
   });
 
   ws.addEventListener('message', event => {
@@ -97,64 +103,68 @@ const activities = data.activities;
   }
 
   const activityDiv = document.getElementById('discord-status');
-  const activityDiv2 = document.getElementById('discord_status');
-  const emojidiv = document.getElementById('status-emoji');
-  activityDiv.setAttribute('title', activityState);
-  
-  if (activityState) {
-    const trimmedState = activityState.substring(0, 100); // Limit the status to 100 characters
-    activityDiv.innerText = trimmedState;
+const activityDiv2 = document.getElementById('discord_status');
+const emojidiv = document.getElementById('status-emoji');
+activityDiv.setAttribute('title', activityState);
+
+if (activityState) {
+  activityDiv.innerText = activityState;
+} else {
+  activityDiv.innerText = '';
+}
+
+const emoji = activities ? activities.find(activity => activity.type === 4) : null;
+const emojiData = emoji ? emoji.emoji : null;
+
+const emojiDiv = document.getElementById('status-emoji');
+
+if (emojiData && emojiData.name && !emojiData.id) {
+  // If the response includes only emoji, show the emoji character
+  const emojiChar = emojiData.name;
+  emojiDiv.innerHTML = twemoji.parse(emojiChar);
+
+  activityDiv.style.marginLeft = '36px'; // Set discord-status marginLeft to 36px
+} else if (emojiData && emojiData.id) {
+  // If the response includes both the ID and the name, generate the URL for the image
+  const emojiId = emojiData.id;
+  const emojiName = encodeURIComponent(emojiData.name);
+  let emojiUrl;
+  if (emojiData.name.match(/[\u{1F300}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}]/gu)) {
+    // If the emoji is a Unicode emoji, use twemoji to resolve the URL
+    emojiUrl = twemoji.parse(emojiData.name, {
+      folder: 'svg',
+      ext: '.svg',
+    });
   } else {
-    activityDiv.innerText = '';
+    // Otherwise, construct the URL using the emoji ID and other properties
+    emojiUrl = `https://cdn.discordapp.com/emojis/${emojiId}.${emojiData.animated ? 'gif' : 'webp'}?size=48&name=${emojiName}&quality=lossless`; // Check for `animated` property
   }
-  
-  const emoji = activities ? activities.find(activity => activity.type === 4) : null;
-  const emojiData = emoji ? emoji.emoji : null;
-  
-  const emojiDiv = document.getElementById('status-emoji');
-  
-  if (emojiData && emojiData.name && !emojiData.id) {
-    // If the response includes only emoji, show the emoji character
-    const emojiChar = emojiData.name;
-    emojiDiv.innerHTML = twemoji.parse(emojiChar);
-  
-    activityDiv.style.marginLeft = '36px'; // Set discord-status marginLeft to 36px
-  } else if (emojiData && emojiData.id) {
-    // If the response includes both the ID and the name, generate the URL for the image
-    const emojiId = emojiData.id;
-    const emojiName = encodeURIComponent(emojiData.name);
-    let emojiUrl;
-    if (emojiData.name.match(/[\u{1F300}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}]/gu)) {
-      // If the emoji is a Unicode emoji, use twemoji to resolve the URL
-      emojiUrl = twemoji.parse(emojiData.name, {
-        folder: 'svg',
-        ext: '.svg',
-      });
-    } else {
-      // Otherwise, construct the URL using the emoji ID and other properties
-      emojiUrl = `https://cdn.discordapp.com/emojis/${emojiId}.${emojiData.animated ? 'gif' : 'webp'}?size=48&name=${emojiName}&quality=lossless`; // Check for `animated` property
-    }
-  
-    // Create a new image element
-    const emojiImg = document.createElement('img');
-    emojiImg.className = 'emoji-status';
-    emojiImg.src = emojiUrl;
-  
-    // Replace the content of the emojiDiv with the new image element
-    emojiDiv.innerHTML = '';
-    emojiDiv.appendChild(emojiImg);
-  
-    activityDiv.style.marginLeft = '36px'; // Set discord-status marginLeft to 36px
-  } else {
-    emojiDiv.innerHTML = '';
-    activityDiv2.style.display = 'none'; // Set activityDiv2 display to none
-  }
-  
-  if (!emojiData && !activityState) {
-    activityDiv2.style.display = 'none'; // Set activityDiv2 display to none
-  } else {
+
+  // Create a new image element
+  const emojiImg = document.createElement('img');
+  emojiImg.className = 'emoji-status';
+  emojiImg.src = emojiUrl;
+
+  // Replace the content of the emojiDiv with the new image element
+  emojiDiv.innerHTML = '';
+  emojiDiv.appendChild(emojiImg);
+
+  activityDiv.style.marginLeft = '32px'; // Set discord-status marginLeft to 32px
+} else {
+  emojiDiv.innerHTML = '';
+  activityDiv2.style.display = 'none'; // Set activityDiv2 display to none
+}
+
+// Add this code block
+setTimeout(() => {
+  if (emojiData || activityState) {
     activityDiv2.style.display = 'block'; // Set activityDiv2 display to block
+  } else {
+    activityDiv2.style.display = 'none'; // Set activityDiv2 display to none
   }
+}, 1000); // Timeout of 1000ms for hiding and showing discord-status
+
+  
   
   
 
@@ -163,7 +173,10 @@ const listeningToSpotify = activities ? activities.some(activity => activity.typ
 if (listeningToSpotify) {
   const spotifyActivity = activities.find(activity => activity.type === 2 && activity.name === 'Spotify');
 
+  setTimeout(() => {
   const spotifyActivityDiv = document.getElementById('listening-to-spotify');
+  spotifyActivityDiv.style.display = 'block';
+  }, 900);
   const trackId = spotifyActivity.sync_id;
   const songName = spotifyActivity.details;
   const artist = spotifyActivity.state;
@@ -255,7 +268,7 @@ const spotifyProgressBarWrapperNew = document.createElement('div');
 spotifyProgressBarWrapperNew.id = 'listening-to-spotify-progress-bar-wrapper';
 spotifyProgressBarWrapperNew.style.width = '100%';
 spotifyProgressBarWrapperNew.style.height = '4px';
-spotifyProgressBarWrapperNew.style.backgroundColor = 'var(--item_background)';
+spotifyProgressBarWrapperNew.style.backgroundColor = 'var(--modal_background)';
 spotifyProgressBarWrapperNew.style.borderRadius = '4px';
 
 const spotifyProgressBar = document.createElement('div');
@@ -289,6 +302,11 @@ setInterval(updateElapsedTime, 1000);
 
  
 } else {
+  // If the user is not listening to Spotify, display the default message
+  setTimeout(() => {
+  const listeningToSpotifyElement = document.getElementById('listening-to-spotify');
+  listeningToSpotifyElement.style.display = 'none';
+  }, 1000);
 }
 
   const discordUser = data.discord_user;
@@ -305,6 +323,8 @@ avatarLinkElement.target = '_blank';
 
 const avatarImgElement = document.getElementById('pfp');
 avatarImgElement.src = avatarUrl;
+
+
 /* 
 const usernameElement = document.getElementById('username');
 usernameElement.innerText = discordusername;

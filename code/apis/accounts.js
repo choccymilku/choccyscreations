@@ -27,8 +27,8 @@ function addRobloxConnection() {
   robloxSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
   robloxSvg.setAttribute("x", "0px");
   robloxSvg.setAttribute("y", "0px");
-  robloxSvg.setAttribute("width", "84.5");
-  robloxSvg.setAttribute("height", "84.5");
+  robloxSvg.setAttribute("width", "88");
+  robloxSvg.setAttribute("height", "88");
   robloxSvg.setAttribute("viewBox", "0 0 50 50");
   robloxSvg.classList.add("custom-icon");
 
