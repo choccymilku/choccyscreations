@@ -28,7 +28,7 @@
   --icon_hover: #27ff73;
 }
 
-:root[data-applied-mode="twitch"] {
+:root[data-applied-mode="pitch black"] {
   color-scheme: dark;
   --background: #0e0e10;
   --item_background: #0e0e10;
@@ -44,22 +44,6 @@
   --modal_background: #fffbcc;
   --icon: #714214;
   --icon_hover: #bf5f1a;
-}
-:root[data-applied-mode="rustic"] {
-  color-scheme: dark;
-  --background: #8a4513;
-  --item_background: #8a4513;
-  --modal_background: #714214;
-  --icon: #b6a643;
-  --icon_hover: #f1c30f;
-}
-:root[data-applied-mode="electric"] {
-  color-scheme: light;
-   --background: #ff68b5;
-   --item_background: #ff68b5;
-   --modal_background: #dfff01;
-   --icon: #7e3359;
-   --icon_hover: #a44274;
 }
 
 
@@ -99,6 +83,10 @@ body {
   transform: translate(-50%, -50%);
   border-radius: 8px;
   scrollbar-width: none;
+}
+
+#main_wrapper {
+  display: flex;
 }
 
 #left_side {
@@ -166,6 +154,7 @@ body {
 #top_right {
   width: 100%;
   height: 100%;
+  min-width: 235px;
   position: relative;
   border-radius: 8px;
   background-color: var(--item_background);
@@ -302,9 +291,9 @@ body {
     display: block;
     background-color: var(--modal_background);
     width: 51px;
+    margin-top: -54px;
     height: 50px;
-    left: 165px;
-    top:-54px;
+    float: right;
     border-top-left-radius: 8px;
     border-bottom-right-radius: 8px;
   }
@@ -320,7 +309,6 @@ body {
     margin-right: 10px;
     margin-top: 10px;
     padding: 10px;
-    display: none;
     }
   .listening-to-spotify-content {
     display: flex;
@@ -491,7 +479,7 @@ body {
 
 .flag-name {text-decoration: none;transition: 0.15s;color:var(--icon)}
 .flag-name:hover {color: var(--text);text-decoration: none;}
-.pronoun-values {background-color:var(--item_background);padding-left:5px;padding-right:5px;border-radius:8px;display: inline-block;word-break: break-all;}
+.pronoun-values {background-color:var(--item_background);padding-left:5px;padding-right:5px;border-radius:8px;display: inline-block;word-break: break-word;}
 #clock {background-color:var(--item_background);padding-left:5px;padding-right:5px;border-radius:8px;font-size: 26px;width: calc(100% - 10px);display: inline-block;}
 .divider {width: 100%;height: 3px;background-color:  var(--item_background);margin-top: 9px;margin-bottom: 9px;}
 #roblox {width: 300px;height: 100px;background-color: var(--wing1);margin-top: 20px;margin-bottom: 20px;}
@@ -501,6 +489,7 @@ body {
 }
 .emoji-status {
   height: 26px;
+  width: 26px;
   border-radius: 8px;
   float: left;
 }
@@ -512,29 +501,6 @@ body {
   float: left;
 }
 
-#discord_status {
-  background-color: var(--modal_background);
-  border-radius: 8px;
-  padding: 10px;
-  margin-top: 10px;
-  max-height: 215px;
-  z-index: 1;
-  position: relative;
-  transition: 0.25s;
-  overflow: hidden;
-  display: none;
-}
-
-#discord_status_inner {
-  padding: 10px;
-  position: relative;
-  border-radius: 8px;
-  background-color: var(--item_background);
-  word-break: break-all;
-  max-height: 195px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 #settings {
   font-size: 82px;
   cursor: pointer;
@@ -638,6 +604,22 @@ body {
   background-color: var(--item_background);
   font-size: 20px;
   text-align: center;
+}
+
+#not_implemented {
+  background-color: var(--icon);
+  border-radius: 8px;
+  position: relative;
+  z-index: 10;
+  padding: 10px;
+  display: none;
+}
+
+#not_implemented_inner {
+  background-color: var(--icon_hover);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 20px;
 }
 
 .flag-name {color:var(--icon) !important}

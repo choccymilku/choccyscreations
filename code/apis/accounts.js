@@ -39,17 +39,12 @@ function addRobloxConnection() {
   robloxIcon.appendChild(robloxSvg);
   robloxDiv.appendChild(robloxIcon);
 
-  const robloxContainer = document.createElement("div");
-  robloxContainer.classList.add("connection-container");
-
   const robloxLink = document.createElement("a");
   robloxLink.href = accountUrls.roblox;
   robloxLink.target = "_blank";
   robloxLink.appendChild(robloxIcon);
 
-  robloxContainer.appendChild(robloxLink);
-
-  robloxDiv.appendChild(robloxContainer);
+  robloxDiv.appendChild(robloxLink);
   robloxDiv.classList.add("noselect");
 
   connectionsContainer.insertBefore(robloxDiv, connectionsContainer.firstChild);
@@ -67,17 +62,12 @@ function addMastodonConnection() {
   mastodonIcon.classList.add("fa-brands", "fa-mastodon", "icon-style", "connection-icons");
   mastodonDiv.appendChild(mastodonIcon);
 
-  const mastodonContainer = document.createElement("div");
-  mastodonContainer.classList.add("connection-container");
-
   const mastodonLink = document.createElement("a");
   mastodonLink.href = accountUrls.mastodon;
   mastodonLink.target = "_blank";
   mastodonLink.appendChild(mastodonIcon);
 
-  mastodonContainer.appendChild(mastodonLink);
-
-  mastodonDiv.appendChild(mastodonContainer);
+  mastodonDiv.appendChild(mastodonLink);
   mastodonDiv.classList.add("noselect");
 
   connectionsContainer.insertBefore(mastodonDiv, connectionsContainer.firstChild);
@@ -150,9 +140,6 @@ function createConnectionDiv(connection) {
     url = accountUrls[connection.type] + connection.name;
   }
 
-  const container = document.createElement("div");
-  container.classList.add("connection-container");
-
   const link = document.createElement("a");
 
   if (
@@ -165,9 +152,7 @@ function createConnectionDiv(connection) {
     link.target = "_blank";
   }
 
-  container.appendChild(link);
-
-  connDiv.appendChild(container);
+  connDiv.appendChild(link);
   connDiv.classList.add("noselect");
 
   return connDiv;

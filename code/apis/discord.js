@@ -102,7 +102,7 @@ const activities = data.activities;
       statusCaseDiv.style.backgroundColor = '#23a459';
   }
 
-  const activityDiv = document.getElementById('discord-status');
+  /* const activityDiv = document.getElementById('discord-status');
 const activityDiv2 = document.getElementById('discord_status');
 const emojidiv = document.getElementById('status-emoji');
 activityDiv.setAttribute('title', activityState);
@@ -162,7 +162,7 @@ setTimeout(() => {
   } else {
     activityDiv2.style.display = 'none'; // Set activityDiv2 display to none
   }
-}, 1000); // Timeout of 1000ms for hiding and showing discord-status
+}, 900); // Timeout of 1000ms for hiding and showing discord-status */
 
   
   
@@ -173,10 +173,7 @@ const listeningToSpotify = activities ? activities.some(activity => activity.typ
 if (listeningToSpotify) {
   const spotifyActivity = activities.find(activity => activity.type === 2 && activity.name === 'Spotify');
 
-  setTimeout(() => {
   const spotifyActivityDiv = document.getElementById('listening-to-spotify');
-  spotifyActivityDiv.style.display = 'block';
-  }, 900);
   const trackId = spotifyActivity.sync_id;
   const songName = spotifyActivity.details;
   const artist = spotifyActivity.state;
@@ -299,14 +296,13 @@ updateElapsedTime();
 setInterval(updateElapsedTime, 1000);
 
 
-
+const spotify = document.getElementById('listening-to-spotify');
+spotify.style.display = 'block';
  
 } else {
-  // If the user is not listening to Spotify, display the default message
-  setTimeout(() => {
-  const listeningToSpotifyElement = document.getElementById('listening-to-spotify');
-  listeningToSpotifyElement.style.display = 'none';
-  }, 1000);
+  // remove cover image
+  const spotify = document.getElementById('listening-to-spotify');
+  spotify.style.display = 'none';
 }
 
   const discordUser = data.discord_user;
@@ -315,7 +311,7 @@ setInterval(updateElapsedTime, 1000);
 /*     const discordusername = `${discordUser.username}`;
     const discordtag = `${discordUser.discriminator}`; */
 
-const avatarUrl = `https://cdn.discordapp.com/avatars/${discordUser.id}/${avatarHash}.png?size=256`;
+const avatarUrl = `https://cdn.discordapp.com/avatars/${discordUser.id}/${avatarHash}.png?size=512`;
 
 const avatarLinkElement = document.getElementById('pfp_link');
 avatarLinkElement.href = `https://discordapp.com/users/${discordUser.id}`;

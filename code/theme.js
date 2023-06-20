@@ -17,17 +17,11 @@ function getAppliedMode(userPreference) {
   if (userPreference === "spotify") {
     return "spotify";
   }
-  if (userPreference === "twitch") {
-    return "twitch";
+  if (userPreference === "pitch black") {
+    return "pitch black";
   }
   if (userPreference === "neapolitan") {
     return "neapolitan";
-  }
-  if (userPreference === "rustic") {
-    return "rustic";
-  }
-  if (userPreference === "electric") {
-    return "electric";
   }
   // system
   if (matchMedia("(prefers-color-scheme: light)").matches) {
@@ -52,18 +46,12 @@ function rotatePreferences(userPreference) {
   }
   // Add new themes here
   if (userPreference === "spotify") {
-    return "twitch";
+    return "pitch black";
   }
-  if (userPreference === "twitch") {
+  if (userPreference === "pitch black") {
     return "neapolitan";
   }
   if (userPreference === "neapolitan") {
-    return "rustic";
-  }
-  if (userPreference === "rustic") {
-    return "electric";
-  }
-  if (userPreference === "electric") {
     return "system";
   }
   // for invalid values, just in case
