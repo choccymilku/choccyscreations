@@ -648,6 +648,9 @@ body {
   position: relative;
   z-index: 10;
   padding: 10px;
+  max-width: 960px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 #not_implemented_inner {
