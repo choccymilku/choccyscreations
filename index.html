@@ -54,7 +54,7 @@
   background: yellow; 
 }
 
-.clickable {cursor: pointer;display: inline-block;}
+.clickable {display: block;}
 </style>
 </head>
 <body id="body" class="light">
@@ -106,16 +106,32 @@
       <div id="preloader_tester"></div>
 
       <div id="menu">
-        <span class="clickable">theme: <span id="theme-toggle"></span></span>
-        <span class="clickable">feel: <span id="feel-toggle"></span></span>
-        <span class="clickable">clock format: <span id="toggleButton"></span></span>
+        <span class="clickable">
+          <i class="fa-solid fa-paintbrush" style="color:var(--icon)"></i>
+            <span style="border-bottom: 3px solid var(--icon);">theme:</span>
+            <span id="theme-toggle" style="display: block;margin-top: 5px;cursor: pointer;"></span>
+        </span>
 
-        <span class="clickable">font: 
+        <span class="clickable">
+          <i class="fa-solid fa-socks" style="color:var(--icon)"></i>
+          <span style="border-bottom: 3px solid var(--icon);">feel:</span>
+          <span id="feel-toggle" style="display: block;margin-top: 5px;cursor: pointer;"></span>
+        </span>
+
+        <span class="clickable">
+          <i class="fa-solid fa-clock-rotate-left" style="color:var(--icon)"></i>
+          <span style="border-bottom: 3px solid var(--icon);">clock:</span>
+          <span id="toggleButton" style="display: block;margin-top: 5px;cursor: pointer;"></span>
+        </span>
+
+        <span class="clickable">
+          <i class="fa-solid fa-text-height" style="color:var(--icon)"></i>
+          <span style="border-bottom: 3px solid var(--icon);">font:</span> 
           <select id="font-selector">
-            <option value="Geologica Roman">Geologica Roman</option>
-            <option value="Noto Sans Mono">Noto Sans Mono</option>
-<!--               <option value="OpenDyslexic3">OpenDyslexic3</option>
--->       </select>
+            <option value="Geologica Roman">geologica</option>
+            <option value="Noto Sans Mono">noto sans</option>
+            <option value="OpenDyslexic3">dyslexic</option>
+          </select>
         </span>
       </div>
 
@@ -151,6 +167,10 @@
       <div id='accounts'></div>
     </div>
 
+    <div id="account_wrapper2">
+      <div id='accounts2'></div>
+    </div>
+
     <div id="settings_bg_wrapper">
       <div id="settings_bg">
         <i id="settings" class="fa-solid fa-gear"></i>
@@ -163,6 +183,15 @@
     <div class="noselect" id="top_right">
       <div id="text"></div>
     </div>
+
+    <div id="left_side_scrollable2">
+      <div id="bottom_left">
+        <div id="friends2">
+          <div class="noselect" id="friends_inner2"></div>
+        </div>
+      </div> 
+    </div>
+
   </div>
 </div>
 </div>
@@ -180,15 +209,18 @@
       
         var menu = document.getElementById("menu");
         var scroll = document.getElementById("left_side_wrapper");
+        var pfp = document.getElementById("top_left");
         var settings = document.getElementById("settings");
       
         if (menu.style.display === "block") {
           menu.style.display = "none";
           scroll.style.overflowY = "scroll";
+          pfp.style.display = "block";
           settings.style.transform = "rotate(30deg)";
         } else {
           menu.style.display = "block";
           scroll.style.overflowY = "hidden";
+          pfp.style.display = "none";
           settings.style.transform = "rotate(120deg)";
           scroll.scrollTo(0, 0); // Scroll to the top of the div
         }
@@ -201,127 +233,44 @@
       });
       </script>
       
-<script>
-  var container = document.querySelector('#left_side_scrollable');
-  var scrollAmount = 0;
-  var isScrolling = false;
-  var snapThreshold = 50; // Adjust this value to control the snapping sensitivity
-  
-  container.addEventListener('wheel', function(event) {
-    event.preventDefault();
-    scrollAmount += event.deltaY;
-    
-    if (!isScrolling) {
-      requestAnimationFrame(scrollContainer);
-      isScrolling = true;
-    }
-  });
-  
-  function scrollContainer() {
-    container.scrollLeft += scrollAmount * 0.1; // Adjust the scroll speed as desired
-    
-    scrollAmount *= 0.9; // Adjust the damping factor as desired
-    
-    if (Math.abs(scrollAmount) < 0.1) {
-      // Determine the nearest snap point based on the scroll position
-      var snapPoints = Array.from(container.children).map(function(element) {
-        return element.offsetLeft - container.offsetLeft;
-      });
-      var targetIndex = snapPoints.findIndex(function(snapPoint) {
-        return Math.abs(snapPoint - container.scrollLeft) < snapThreshold;
-      });
-      var targetSnapPoint = snapPoints[targetIndex];
-      
-      // Snap the container to the nearest snap point
-      if (targetSnapPoint !== undefined) {
-        container.scrollTo({
-          left: targetSnapPoint,
-          behavior: 'smooth'
+      <script>
+        var containers = document.querySelectorAll('#left_side_scrollable, #left_side_scrollable2');
+        var scrollAmounts = {};
+        var isScrolling = false;
+        
+        containers.forEach(function(container) {
+          scrollAmounts[container.id] = 0;
+          
+          container.addEventListener('wheel', function(event) {
+            event.preventDefault();
+            scrollAmounts[container.id] += event.deltaY;
+            
+            if (!isScrolling) {
+              requestAnimationFrame(function() {
+                scrollContainer(container);
+              });
+              isScrolling = true;
+            }
+          });
         });
-      }
+        
+        function scrollContainer(container) {
+          container.scrollLeft += scrollAmounts[container.id] * 0.1; // Adjust the scroll speed as desired
+          
+          scrollAmounts[container.id] *= 0.9; // Adjust the damping factor as desired
+          
+          if (Math.abs(scrollAmounts[container.id]) < 0.1) {
+            isScrolling = false;
+            return;
+          }
+          
+          requestAnimationFrame(function() {
+            scrollContainer(container);
+          });
+        }
+      </script>
       
-      isScrolling = false;
-      return;
-    }
-    
-    requestAnimationFrame(scrollContainer);
-  }
-</script>
-
-<script>
-  var container = null;
-  var scrollAmount = 0;
-  var isScrolling = false;
-  var snapThreshold = 50; // Adjust this value to control the snapping sensitivity
-
-  function enableScript() {
-    container = document.querySelector('#accounts');
-    container.addEventListener('wheel', handleWheel);
-  }
-
-  function disableScript() {
-    if (container) {
-      container.removeEventListener('wheel', handleWheel);
-      container = null;
-    }
-  }
-
-  function handleWheel(event) {
-    event.preventDefault();
-    scrollAmount += event.deltaY;
-
-    if (!isScrolling) {
-      requestAnimationFrame(scrollContainer);
-      isScrolling = true;
-    }
-  }
-
-  function scrollContainer() {
-    container.scrollLeft += scrollAmount * 0.1; // Adjust the scroll speed as desired
-
-    scrollAmount *= 0.9; // Adjust the damping factor as desired
-
-    if (Math.abs(scrollAmount) < 0.1) {
-      // Determine the nearest snap point based on the scroll position
-      var snapPoints = Array.from(container.children).map(function(element) {
-        return element.offsetLeft - container.offsetLeft;
-      });
-      var targetIndex = snapPoints.findIndex(function(snapPoint) {
-        return Math.abs(snapPoint - container.scrollLeft) < snapThreshold;
-      });
-      var targetSnapPoint = snapPoints[targetIndex];
-
-      // Snap the container to the nearest snap point
-      if (targetSnapPoint !== undefined) {
-        container.scrollTo({
-          left: targetSnapPoint,
-          behavior: 'smooth'
-        });
-      }
-
-      isScrolling = false;
-      return;
-    }
-
-    requestAnimationFrame(scrollContainer);
-  }
-
-  function handleWindowResize() {
-    if (window.innerWidth < 690) {
-      if (!container) {
-        enableScript();
-      }
-    } else {
-      disableScript();
-    }
-  }
-
-  // Initial check
-  handleWindowResize();
-
-  // Add event listener for window resize
-  window.addEventListener('resize', handleWindowResize);
-</script>
+      
 
 
 
@@ -363,11 +312,15 @@
       $('#username').css('padding-top', '10px');
       $('#username').css('padding-bottom', '10px');
       $('#discord-status').css('font-size', '22px');
+      $('#font-selector').css('font-family', 'Geologica Roman');
     } else if (fontStyle === 'Noto Sans Mono') {
       $('#username').css('padding-top', '7px');
       $('#username').css('padding-bottom', '13px');
       $('#discord-status').css('font-size', '20px');
+      $('#font-selector').css('font-family', 'Noto Sans Mono');
     } else if (fontStyle === 'OpenDyslexic3') {
+      $('#font-selector').css('font-family', 'OpenDyslexic3');
+      $('#menu').css('font-size', '20px');
     } else {
       $('#text').css('color', '');
     }
@@ -399,9 +352,10 @@ document.getElementById('understood').addEventListener('click', function() {
 <script src="./code/theme.js"></script>
 <script src="./code/text.js"></script>
 <script src="./code/apis/accounts.js"></script>
+<script src="./code/apis/accounts2.js"></script>
+<script src="./code/apis/friends.js"></script>
 <script src="./code/apis/discord.js"></script>
 <script src="./code/apis/pronounspage.js"></script>
-<script src="./code/apis/friends.js"></script>
 <script src="./code/apis/roblox.js"></script>
 <script src="./code/apis/mastodon.js"></script>
 <script src="./code/apis/github.js"></script>

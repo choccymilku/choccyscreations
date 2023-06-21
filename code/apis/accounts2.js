@@ -1,4 +1,4 @@
-const accountUrls = {
+const accountUrls2 = {
   roblox: `https://www.roblox.com/users/${roblox_id}/profile`,
   mastodon: `https://mastodon.social/@${mastodon_username}`,
   twitter: "https://twitter.com/",
@@ -14,8 +14,7 @@ const accountUrls = {
 };
 
 function addRobloxConnection() {
-  const connectionsContainer = document.getElementById("accounts");
-  const connectionsContainer2 = document.getElementById("accounts2");
+  const connectionsContainer = document.getElementById("accounts2");
 
   const robloxDiv = document.createElement("div");
   robloxDiv.classList.add("connection-div");
@@ -41,7 +40,7 @@ function addRobloxConnection() {
   robloxDiv.appendChild(robloxIcon);
 
   const robloxLink = document.createElement("a");
-  robloxLink.href = accountUrls.roblox;
+  robloxLink.href = accountUrls2.roblox;
   robloxLink.target = "_blank";
   robloxLink.appendChild(robloxIcon);
 
@@ -53,7 +52,7 @@ function addRobloxConnection() {
 
 
 function addMastodonConnection() {
-  const connectionsContainer = document.getElementById("accounts");
+  const connectionsContainer = document.getElementById("accounts2");
 
   const mastodonDiv = document.createElement("div");
   mastodonDiv.classList.add("connection-div");
@@ -64,7 +63,7 @@ function addMastodonConnection() {
   mastodonDiv.appendChild(mastodonIcon);
 
   const mastodonLink = document.createElement("a");
-  mastodonLink.href = accountUrls.mastodon;
+  mastodonLink.href = accountUrls2.mastodon;
   mastodonLink.target = "_blank";
   mastodonLink.appendChild(mastodonIcon);
 
@@ -79,7 +78,7 @@ function fetchAndUpdateIcons() {
     .then(response => response.json())
     .then(data => {
       const connections = data.connected_accounts;
-      const connectionsContainer = document.getElementById("accounts");
+      const connectionsContainer = document.getElementById("accounts2");
 
       // Clear the existing icons
       connectionsContainer.innerHTML = "";
@@ -127,7 +126,7 @@ function createConnectionDiv(connection) {
   );
   connDiv.appendChild(icon);
 
-  let url = accountUrls[connection.type] + connection.id;
+  let url = accountUrls2[connection.type] + connection.id;
 
   if (
     connection.type === "tiktok" ||
@@ -138,7 +137,7 @@ function createConnectionDiv(connection) {
     connection.type === "github" ||
     connection.type === "roblox"
   ) {
-    url = accountUrls[connection.type] + connection.name;
+    url = accountUrls2[connection.type] + connection.name;
   }
 
   const link = document.createElement("a");

@@ -126,6 +126,16 @@ body {
   margin-top: 10px;
 }
 
+#left_side_scrollable2 {
+  position: relative;
+  border-radius: 8px;
+  display: flex;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  margin-left: -10px;
+  margin-top: 10px;
+}
+
 #top_left {
   width: 215px;
   height: 215px;
@@ -174,9 +184,10 @@ body {
 
 #menu {
   margin: 10px;
-  height: 215px;
+  height: 100%;
   width: 215px;
   margin-left: 0px;
+  margin-top: 0px;
   background-color: var(--modal_background);
   padding: 10px;
   border-radius: 8px;
@@ -430,6 +441,14 @@ body {
   overflow-x: hidden;
   scrollbar-width: none;
 }
+#accounts2 {border-radius: 8px;margin-top: -10px;}
+#account_wrapper2 {
+  height: calc(100% - 10px);
+  border-radius: 8px;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  display: none;
+}
 .connection-icons {
 	border-radius: 8px;
 	white-space: nowrap;
@@ -553,6 +572,14 @@ body {
   background-color: var(--modal_background);
 }
 
+#friends2 {
+  border-radius: 8px;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  height: 215px;
+  display: none;
+}
+
 #friends_inner {
   margin-top: 10px;
   border-radius: 8px;
@@ -561,6 +588,15 @@ body {
   scrollbar-width: none;
   display: flex;
   margin-right: 10px;
+}
+
+#friends_inner2 {
+  border-radius: 8px;
+  width: 100%;
+  height: 215px;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  display: flex;
 }
 
 #friends_container {
@@ -627,3 +663,14 @@ body {
 .flag-name-null {color:var(--icon) !important}
 a {color:var(--icon) !important;}
 a:hover {color:var(--icon_hover) !important}
+
+#font-selector {
+  background-color: var(--modal_background);
+  font-size: 30px;
+  word-break: break-all;
+  width: 100%;
+  border: none;
+  margin-left: -5px;
+  font-family: noto sans mono;
+  margin-top: 5px;
+}
