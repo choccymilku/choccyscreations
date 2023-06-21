@@ -84,7 +84,12 @@
 
 <div id="not_implemented">
   <div id="not_implemented_inner">
-    <span style="font-size: 30px;">settings for mobile are not yet implemented, please use a desktop browser or switch to desktop mode</span><br>
+    <span style="font-size: 30px;">
+      <b>message:</b><br><br>
+      spotify is not yet implemented for mobile,<br>
+      "feel" setting is not yet configured, but working,<br>
+      dyslexic font is <i>broken</i>,<br>
+      all of this will be fixed soon</span><br>
     <span id="understood" style="background-color: var(--icon);padding: 10px;border-radius: 8px;position: absolute;cursor: pointer;">understood</span>
   </div>  
 </div>
@@ -107,31 +112,33 @@
 
       <div id="menu">
         <span class="clickable">
-          <i class="fa-solid fa-paintbrush" style="color:var(--icon)"></i>
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" style="margin-bottom:-4px;" fill="var(--icon)" class="icon-modern" viewBox="0 0 576 512"><path d="M339.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L568.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S517.7-4.4 499.1 9.6L262.4 187.2c-24 18-38.2 46.1-38.4 76.1L339.3 367.1zm-19.6 25.4l-116-104.4C143.9 290.3 96 339.6 96 400c0 3.9 .2 7.8 .6 11.6C98.4 429.1 86.4 448 68.8 448H64c-17.7 0-32 14.3-32 32s14.3 32 32 32H208c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" style="margin-bottom:-4px;margin-right:-10px;" fill="var(--icon)" class="icon-retro" viewBox="0 0 576 512"><path d="M295.7 376c-10.6 0-20.9-1.7-30.5-4.9l0-.1c-1.6-.5-3.1-1.1-4.6-1.7l-53.8-53.8c-.6-1.5-1.2-3.1-1.7-4.6l-.1 0c-3.2-9.6-5-19.8-5-30.5c0-30.6 14.6-59.4 39.4-77.4L483.7 25.2c19.1-13.9 45.5-11.8 62.2 4.9s18.8 43.1 4.9 62.2L373.1 336.6c-18 24.8-46.8 39.4-77.4 39.4zm-43 8c2.2 7.6 3.3 15.7 3.3 24c0 46.3-35.7 84.2-81.1 87.7c-.7 .1-1.3 .1-1.9 .3h-5H32c-8.8 0-16-7.2-16-16s7.2-16 16-16h4c14.6 0 26.2-7.7 33.6-17.4c7.3-9.6 11.2-22 10.6-34.3c-.1-1.4-.1-2.8-.1-4.3c0-48.6 39.4-88 88-88c8.3 0 16.4 1.2 24 3.3L252.7 384zm17.6 5.1c8.2 1.9 16.7 2.9 25.4 2.9c35.7 0 69.3-17.1 90.4-46L563.7 101.6c18.5-25.5 15.8-60.6-6.5-82.9s-57.4-25-82.9-6.5L230 190c-28.9 21-46 54.6-46 90.3c0 8.7 1 17.3 2.9 25.4c-6.1-1.1-12.4-1.7-18.9-1.7c-57.4 0-104 46.6-104 104c0 1.7 0 3.4 .1 5c.8 17.1-11 35-28.2 35H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H168h7.8c.1 0 .2-.1 .2-.2s.1-.2 .1-.2c53.6-4.2 95.9-49 95.9-103.7c0-6.5-.6-12.8-1.7-18.9z"/></svg>              
             <span style="border-bottom: 3px solid var(--icon);">theme:</span>
-            <span id="theme-toggle" style="display: block;margin-top: 5px;cursor: pointer;"></span>
+              <span id="theme-toggle" style="display: block;margin-top: 5px;margin-bottom:20px;cursor: pointer;"></span>
         </span>
 
         <span class="clickable">
-          <i class="fa-solid fa-socks" style="color:var(--icon)"></i>
-          <span style="border-bottom: 3px solid var(--icon);">feel:</span>
-          <span id="feel-toggle" style="display: block;margin-top: 5px;cursor: pointer;"></span>
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" style="margin-bottom:-4px;" fill="var(--icon)" class="icon-modern" viewBox="0 0 512 512"><path d="M175.2 476.6c-9.7-18-15.2-38.7-15.2-60.6c0-40.3 19-78.2 51.2-102.4l64-48c8.1-6 12.8-15.5 12.8-25.6V96H128V240c0 20.1-9.5 39.1-25.6 51.2l-64 48C14.2 357.3 0 385.8 0 416c0 53 43 96 96 96c20.8 0 41-6.7 57.6-19.2l21.6-16.2zM128 64H288V48c0-14.5 3.9-28.2 10.7-39.9C291 3 281.9 0 272 0H176c-26.5 0-48 21.5-48 48V64zM320 96V240c0 20.1-9.5 39.1-25.6 51.2l-64 48C206.2 357.3 192 385.8 192 416c0 53 43 96 96 96c20.8 0 41-6.7 57.6-19.2l115.2-86.4C493 382.2 512 344.3 512 304V96H320zM512 64V48c0-26.5-21.5-48-48-48H368c-26.5 0-48 21.5-48 48V64H512z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" style="margin-bottom:-4px;margin-right:-10px;" fill="var(--icon)" class="icon-retro" viewBox="0 0 512 512"><path d="M168.4 461.7c2 5.1 4.2 10.1 6.8 14.9l-21.6 16.2C137 505.3 116.8 512 96 512c-53 0-96-43-96-96c0-30.2 14.2-58.7 38.4-76.8l64-48C118.5 279.1 128 260.1 128 240V112v-8V96 48c0-26.5 21.5-48 48-48h96c9.9 0 19 3 26.7 8.1c-2.7 4.7-5 9.7-6.7 14.9c-5.5-4.4-12.4-7-20-7H176c-17.7 0-32 14.3-32 32V96H288v16H144V240c0 25.2-11.9 48.9-32 64L48 352c-20.1 15.1-32 38.8-32 64c0 44.2 35.8 80 80 80c17.3 0 34.2-5.6 48-16l24.4-18.3zM336 112V240c0 25.2-11.9 48.9-32 64l-64 48c-20.1 15.1-32 38.8-32 64c0 44.2 35.8 80 80 80c17.3 0 34.2-5.6 48-16l115.2-86.4C479.4 372.4 496 339.3 496 304V112H336zm0-16H496V48c0-17.7-14.3-32-32-32H368c-17.7 0-32 14.3-32 32V96zM512 48V96v8 8V304c0 40.3-19 78.2-51.2 102.4L345.6 492.8C329 505.3 308.8 512 288 512c-53 0-96-43-96-96c0-30.2 14.2-58.7 38.4-76.8l64-48C310.5 279.1 320 260.1 320 240V112v-8V96 48c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48z"/></svg>
+            <span style="border-bottom: 3px solid var(--icon);">feel:</span>
+              <span class="feel-modern" style="display: block;margin-top: 5px;margin-bottom:20px;cursor: pointer;">modern</span>
+              <span class="feel-retro" style="display: block;margin-top: 5px;margin-bottom:20px;cursor: pointer;">retro</span>
         </span>
 
         <span class="clickable">
-          <i class="fa-solid fa-clock-rotate-left" style="color:var(--icon)"></i>
-          <span style="border-bottom: 3px solid var(--icon);">clock:</span>
-          <span id="toggleButton" style="display: block;margin-top: 5px;cursor: pointer;"></span>
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" style="margin-bottom:-4px;" fill="var(--icon)" class="icon-modern" viewBox="0 0 512 512"><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" style="margin-bottom:-4px;margin-right:-10px;" fill="var(--icon)" class="icon-retro" viewBox="0 0 512 512"><path d="M16 166.7V56c0-4.4-3.6-8-8-8s-8 3.6-8 8V184c0 4.4 3.6 8 8 8H136c4.4 0 8-3.6 8-8s-3.6-8-8-8H29.7C62.6 82.8 151.5 16 256 16c132.5 0 240 107.5 240 240s-107.5 240-240 240c-73.5 0-139.3-33.1-183.4-85.2c-2.9-3.4-7.9-3.8-11.3-.9s-3.8 7.9-.9 11.3C107.3 476.7 177.6 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C146 0 52.2 69.4 16 166.7zM256 128c-4.4 0-8 3.6-8 8V256c0 2.1 .8 4.2 2.3 5.7l88 88c3.1 3.1 8.2 3.1 11.3 0s3.1-8.2 0-11.3L264 252.7V136c0-4.4-3.6-8-8-8z"/></svg>
+            <span style="border-bottom: 3px solid var(--icon);">clock:</span>
+              <span id="toggleButton" style="display: block;margin-top: 5px;margin-bottom:20px;cursor: pointer;"></span>
         </span>
 
-        <span class="clickable">
-          <i class="fa-solid fa-text-height" style="color:var(--icon)"></i>
-          <span style="border-bottom: 3px solid var(--icon);">font:</span> 
-          <select id="font-selector">
-            <option value="Geologica Roman">geologica</option>
-            <option value="Noto Sans Mono">noto sans</option>
-            <option value="OpenDyslexic3">dyslexic</option>
-          </select>
+        <span class="clickable" id="font_settings">
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" style="margin-bottom:-4px;" fill="var(--icon)" class="icon-modern" viewBox="0 0 576 512"><path d="M64 128V96h64l0 320H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H224c17.7 0 32-14.3 32-32s-14.3-32-32-32H192l0-320h64v32c0 17.7 14.3 32 32 32s32-14.3 32-32V80c0-26.5-21.5-48-48-48H160 48C21.5 32 0 53.5 0 80v48c0 17.7 14.3 32 32 32s32-14.3 32-32zM502.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-64 64c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8h32V352H416c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l64 64c12.5 12.5 32.8 12.5 45.3 0l64-64c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8H512V160h32c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-64-64z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" style="margin-bottom:-4px;margin-right:-10px;" fill="var(--icon)" class="icon-retro" viewBox="0 0 576 512"><path d="M485.7 34.3c-3.1-3.1-8.2-3.1-11.3 0l-80 80c-3.1 3.1-3.1 8.2 0 11.3s8.2 3.1 11.3 0L472 59.3l0 393.4-66.3-66.3c-3.1-3.1-8.2-3.1-11.3 0s-3.1 8.2 0 11.3l80 80c3.1 3.1 8.2 3.1 11.3 0l80-80c3.1-3.1 3.1-8.2 0-11.3s-8.2-3.1-11.3 0L488 452.7l0-393.4 66.3 66.3c3.1 3.1 8.2 3.1 11.3 0s3.1-8.2 0-11.3l-80-80zM16 56c0-4.4 3.6-8 8-8H152l0 416H72c-4.4 0-8 3.6-8 8s3.6 8 8 8h88 88c4.4 0 8-3.6 8-8s-3.6-8-8-8H168l0-416H296c4.4 0 8 3.6 8 8v48c0 4.4 3.6 8 8 8s8-3.6 8-8V56c0-13.3-10.7-24-24-24H160 24C10.7 32 0 42.7 0 56v48c0 4.4 3.6 8 8 8s8-3.6 8-8V56z"/></svg>
+            <span style="border-bottom: 3px solid var(--icon);">font:</span> 
+              <span class="dyslexic-off" style="display: block;margin-top: 5px;cursor: pointer;">geologica</span>
+              <span class="dyslexic-on" style="display: block;margin-top: 5px;cursor: pointer;">dyslexic</span>
         </span>
       </div>
 
@@ -269,63 +276,6 @@
           });
         }
       </script>
-      
-      
-
-
-
-<script>
-  $(document).ready(function($) {
-    if (Modernizr.localstorage) {
-      // Check if a font style is already set in localStorage
-      var currentFontStyle = localStorage.getItem('fontStyle');
-      if (!currentFontStyle) {
-        // Set default value if it doesn't exist in localStorage
-        currentFontStyle = 'Geologica Roman';
-        localStorage.setItem('fontStyle', currentFontStyle);
-      }
-  
-      // Set the selected option in the font selector dropdown
-      $('#font-selector').val(currentFontStyle);
-  
-      // Apply the font style
-      applyFontStyle(currentFontStyle);
-  
-      // Handle font style selection from the dropdown menu
-      $('#font-selector').change(function() {
-        var selectedFont = $(this).val();
-        applyFontStyle(selectedFont);
-        localStorage.setItem('fontStyle', selectedFont);
-      });
-    }
-  });
-  
-  function applyFontStyle(fontStyle) {
-    $('h1').css('font-family', fontStyle);
-    $('h2').css('font-family', fontStyle);
-    $('h6').css('font-family', fontStyle);
-    $('span').css('font-family', fontStyle);
-    $('div').css('font-family', fontStyle);
-    $('#listening-to-spotify-elapsed-time-wrapper').css('font-family', fontStyle);
-    
-    if (fontStyle === 'Geologica Roman') {
-      $('#username').css('padding-top', '10px');
-      $('#username').css('padding-bottom', '10px');
-      $('#discord-status').css('font-size', '22px');
-      $('#font-selector').css('font-family', 'Geologica Roman');
-    } else if (fontStyle === 'Noto Sans Mono') {
-      $('#username').css('padding-top', '7px');
-      $('#username').css('padding-bottom', '13px');
-      $('#discord-status').css('font-size', '20px');
-      $('#font-selector').css('font-family', 'Noto Sans Mono');
-    } else if (fontStyle === 'OpenDyslexic3') {
-      $('#font-selector').css('font-family', 'OpenDyslexic3');
-      $('#menu').css('font-size', '20px');
-    } else {
-      $('#text').css('color', '');
-    }
-  }
-</script>
 
 <script>
   // Check if the feature has been understood previously
@@ -344,13 +294,10 @@ document.getElementById('understood').addEventListener('click', function() {
 });
 
 </script>
-
-
-  
-
 <script src="./code/config.js"></script>
 <script src="./code/theme.js"></script>
 <script src="./code/text.js"></script>
+<script src="./code/code.js"></script>
 <script src="./code/apis/accounts.js"></script>
 <script src="./code/apis/accounts2.js"></script>
 <script src="./code/apis/friends.js"></script>

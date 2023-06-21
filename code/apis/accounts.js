@@ -15,7 +15,6 @@ const accountUrls = {
 
 function addRobloxConnection() {
   const connectionsContainer = document.getElementById("accounts");
-  const connectionsContainer2 = document.getElementById("accounts2");
 
   const robloxDiv = document.createElement("div");
   robloxDiv.classList.add("connection-div");
@@ -93,6 +92,8 @@ function fetchAndUpdateIcons() {
           conn.type === "riotgames" ||
           conn.type === "crunchyroll" ||
           conn.type === "battlenet" ||
+          conn.type === "crunchyroll" ||
+          conn.type === "battlenet" ||
           conn.type === "roblox"
         ) {
           // Skip Epic Games, League of Legends, Riot Games, Crunchyroll, Battle.net, and Roblox connections
@@ -135,8 +136,7 @@ function createConnectionDiv(connection) {
     connection.type === "reddit" ||
     connection.type === "instagram" ||
     connection.type === "twitch" ||
-    connection.type === "github" ||
-    connection.type === "roblox"
+    connection.type === "github"
   ) {
     url = accountUrls[connection.type] + connection.name;
   }
@@ -144,9 +144,7 @@ function createConnectionDiv(connection) {
   const link = document.createElement("a");
 
   if (
-    connection.type !== "xbox" ||
-    connection.type !== "battle-net" ||
-    connection.type !== "crunchyroll"
+    connection.type !== "xbox"
   ) {
     link.appendChild(icon);
     link.href = url;
