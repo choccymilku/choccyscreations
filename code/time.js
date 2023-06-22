@@ -23,19 +23,10 @@ document.getElementById('toggleButton').addEventListener('click', function() {
   } else {
     updateClockFormat('12-hour');
   }
-  
-  // Refresh the website
-  location.reload();
 });
 
 // Initialize the clock format on page load
 initializeClockFormat();
-
-//click id="toggleButton" to show id="yeaah"
-  document.getElementById('toggleButton').addEventListener('click', function() {
-      document.getElementById('yeaah').style.display = "block";
-  });
-
 
 
 

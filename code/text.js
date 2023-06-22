@@ -24,37 +24,36 @@ function convertTimestamps(text) {
     const biggestImageRegex = /\[\!\!\!\[(.*?)\]\!\!\!\]/g;
     const dividerRegex = /\;\;divider\;\;/g;
     
-    const formattedText = text
-      .replace(timestampRegex, (_, timestamp, format) => {
-        const date = new Date(parseInt(timestamp) * 1000);
-        let formattedDate = '';
-        switch (format) {
-          case "d":
-            formattedDate = date.toLocaleDateString();
-            break;
-          case "D":
-            formattedDate = date.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" });
-            break;
-          case "t":
-            formattedDate = date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: localStorage.getItem('clockFormat') === '12-hour' }).replace(/(\d+:\d+)\s([ap]m)/i, '$1 $2').toUpperCase();
-            break;
-          case "T":
-            formattedDate = date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: localStorage.getItem('clockFormat') === '12-hour' }).replace(/(\d+:\d+)\s([ap]m)/i, '$1 $2').toUpperCase();
-            break;
-          case "f":
-            formattedDate = date.toLocaleDateString() + " " + date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-            break;
-          case "F":
-            formattedDate = date.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" }) + " " + date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
-            break;
-          case "R":
-            formattedDate = timeAgo(parseInt(timestamp));
-            break;
-          default:
-            formattedDate = "";
-        }
-        return `<span style="background-color:var(--item_background);padding-left:5px;padding-right:5px;border-radius:8px;font-size: 26px;white-space: nowrap;">${formattedDate}</span>`;
-      })
+    const formattedText = text.replace(timestampRegex, (_, timestamp, format) => {
+      const date = new Date(parseInt(timestamp) * 1000);
+      let formattedDate = '';
+      switch (format) {
+        case "d":
+          formattedDate = date.toLocaleDateString();
+          break;
+        case "D":
+          formattedDate = date.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" });
+          break;
+        case "t":
+          formattedDate = date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: localStorage.getItem('clockFormat') === '12-hour' }).replace(/(\d+:\d+)\s([ap]m)/i, '$1 $2').toUpperCase();
+          break;
+        case "T":
+          formattedDate = date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: localStorage.getItem('clockFormat') === '12-hour' }).replace(/(\d+:\d+)\s([ap]m)/i, '$1 $2').toUpperCase();
+          break;
+        case "f":
+          formattedDate = date.toLocaleDateString() + " " + date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+          break;
+        case "F":
+          formattedDate = date.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" }) + " " + date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+          break;
+        case "R":
+          formattedDate = timeAgo(parseInt(timestamp));
+          break;
+        default:
+          formattedDate = "";
+      }
+      return `<span style="background-color:var(--item_background);padding-left:5px;padding-right:5px;border-radius:8px;font-size: 26px;white-space: nowrap;">${formattedDate}</span>`;
+    })    
   
       .replace(flagRegex, (match, countryCode) => {
         const countryName = countryCode.toUpperCase();

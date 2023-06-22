@@ -4,7 +4,7 @@ const bday_year = '2007';
 const discord_user_id = '945717456163442708';
 const roblox_id = "2450458016";
 const mastodon_username = "";
-const username = "chocolateychoccy";
+const username = "frugzlewq";
 
 var custom_text = 
 "call me choccy or choco, up to you\n" +

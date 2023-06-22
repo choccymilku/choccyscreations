@@ -132,8 +132,8 @@ body {
   display: flex;
   overflow-x: scroll;
   scrollbar-width: none;
-  margin-left: -10px;
   margin-top: 10px;
+  margin-left: 0px;
 }
 
 #top_left {
@@ -146,11 +146,9 @@ body {
 }
 
 #bottom_left {
-  height: calc(100% - 235px);
   margin-left: 0px;
   position: relative;
   display: flex;
-  border-radius: 0px;
 }
 
 #right_side {
@@ -326,6 +324,11 @@ body {
   }
   .listening-to-spotify-info {
     margin-top: 10px;
+  }
+
+  #spotify-listen-to {
+    display: none;
+    transition: 0.25s;
   }
     
     .play-on-spotify-link {
@@ -570,6 +573,7 @@ body {
   height: 235px;
   display: flex;
   background-color: var(--modal_background);
+  margin-left: -10px;
 }
 
 #friends2 {
@@ -578,6 +582,7 @@ body {
   scrollbar-width: none;
   height: 215px;
   display: none;
+  margin-left: -10px;
 }
 
 #friends_inner {
@@ -663,6 +668,7 @@ body {
 .flag-name {color:var(--icon) !important}
 .flag-name:hover {color:var(--icon_hover) !important}
 .flag-name-null {color:var(--icon) !important}
+.flag-name-null:hover {color:var(--icon) !important}
 a {color:var(--icon) !important;}
 a:hover {color:var(--icon_hover) !important}
 

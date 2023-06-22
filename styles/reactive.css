@@ -8,14 +8,14 @@
     }
 
     #left_side {
-        width: 100%;
+        width: calc(100% - 20px);
         margin-left: 0px;
         margin-top: 0px;
     }
 
     #top_left {
         display: block;
-        width: calc(100% - 40px);
+        width: calc(100% - 20px);
         height: 100%;
     }
 
@@ -23,11 +23,11 @@
     #left_side_wrapper {
         overflow-y: hidden;
         overflow-x: scroll;
-        display: flex;
+        display: block;
     }
 
     #menu {
-        width: calc(100% - 40px);
+        width: calc(100% - 20px);
         height: 100%;
         margin-top: 0px;
         margin-bottom: 0px;
@@ -69,8 +69,43 @@
     }
 
     #listening-to-spotify {
-        display: none !important;
+        width: calc(100% - 20px);
     }
+    #listening-to-spotify-content {
+        display: block;
+    }
+    #listening-to-spotify-info {
+        width: calc(100% - 180px);
+        margin-top: -140px;
+        margin-left: 160px;
+        height: 130px;
+        justify-content: left;
+    }
+
+    #listening-to-spotify-cover {
+        height: 150px;
+        width: 150px
+    }
+
+    #play-on-spotify-link {
+        width: fit-content;
+        padding-right: 10px;
+        height: 40px;
+        background-color: var(--modal_background);
+        margin-left: 170px;
+        margin-top: -55px;
+        margin-right: 10px;
+    }
+
+    #play-on-spotify-button {
+        font-size: 20px;
+    }
+
+    #spotify-listen-to {
+        display: inline;
+        margin-left: -90px;
+        font-size: 20px;
+      }
     #account_wrapper {
         display: none;
     }
@@ -122,3 +157,32 @@
         margin-top: 0px;
     }
   }
+
+@media screen and (max-width: 460px){
+    #play-on-spotify-link {
+        width: calc(100% - 10px);
+        margin-top: 5px;
+        margin-left: 0px;
+        background-color: var(--item_background);
+    }
+
+    #listening-to-spotify-info {
+        margin-top: -200px;
+        justify-content: center;
+    }
+
+    #listening-to-spotify {
+        height: 200px;
+    }
+
+    #listening-to-spotify-song {
+        word-break:keep-all;
+        white-space: break-spaces;
+        max-height: 80px;
+        font-size: 22px;
+    }
+
+    #listening-to-spotify-artist {
+        margin-top: -46px;
+    }
+}

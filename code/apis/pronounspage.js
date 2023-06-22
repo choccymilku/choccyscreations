@@ -22,11 +22,6 @@ pronounSpan.className = "pronoun-values";
 // Append the <span> element and comma to the container
 pronounspagePronounsContainer.appendChild(pronounSpan);
 
-
-
-
-
-
 const generateFlagElement = (flag) => {
   const flagUrl = `https://en.pronouns.page/flags/${flag}.png`;
   const terminologyUrl = `https://en.pronouns.page/terminology#${flag}`;
@@ -116,21 +111,21 @@ const generateCustomFlagElement = (customFlag) => {
     }
 
     const timezone = data.profiles.en.timezone.tz;
-        
-    
-    
+
     function updateClock(timezone) {
       const now = new Date();
     
       // Display time in the specified timezone
       const timeOptions = {
         hour12: localStorage.getItem('clockFormat') === '12-hour',
-        hour: '2-digit',
+        hour: localStorage.getItem('clockFormat') === '12-hour' ? '2-digit' : '2-digit',
         minute: '2-digit',
         timeZone: timezone
       };
       const timeString = now.toLocaleTimeString([], timeOptions);
-      const formattedTime = timeString.replace(/(\d+:\d+)\s([ap]m)/i, '$1 $2').toUpperCase();
+    
+      // Replace 12 with 00 for 24-hour format if necessary
+      const formattedTime = localStorage.getItem('clockFormat') === '12-hour' ? timeString : timeString.replace(/^12/, '00');
     
       // Display the day of the week
       const dayOptions = {
@@ -140,10 +135,12 @@ const generateCustomFlagElement = (customFlag) => {
     
       const clockText = `${formattedTime} on a ${dayString}`;
     
-      // Display user's offset in UTC
+      // Calculate the UTC offset
       const userOffsetHours = Math.floor(now.getTimezoneOffset() / -60);
       const userOffsetMinutes = Math.abs(now.getTimezoneOffset() % 60);
-      const offsetText = `UTC ${userOffsetHours >= 0 ? '+' : '-'}${Math.abs(userOffsetHours)}:${userOffsetMinutes.toString().padStart(2, '0')}`;
+      const offsetHours = -(new Date().toLocaleString('en-US', { timeZone: timezone, timeZoneName: 'short' })).split(' GMT')[1];
+      const offsetMinutes = 0;
+      const offsetText = `UTC ${offsetHours >= 0 ? '+' : '-'}${Math.abs(offsetHours)}`;
     
       // Update the clock element with the formatted time, day, and offset
       clockElement.innerHTML = `${clockText} <span style="font-size:1rem">( ${offsetText} )</span>`;
@@ -170,6 +167,7 @@ const generateCustomFlagElement = (customFlag) => {
     } else {
       setInterval(() => updateClock(timezone), 0);
     }
+    
   })
 
   
