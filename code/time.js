@@ -3,6 +3,8 @@
 function updateClockFormat(format) {
   localStorage.setItem('clockFormat', format);
   document.getElementById('toggleButton').textContent = format;
+
+location.reload();
 }
 
 // Function to initialize the clock format on page load
@@ -24,7 +26,7 @@ document.getElementById('toggleButton').addEventListener('click', function() {
     updateClockFormat('12-hour');
   }
 });
-location.reload();
+
 // Initialize the clock format on page load
 initializeClockFormat();
 
