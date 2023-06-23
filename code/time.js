@@ -24,7 +24,7 @@ document.getElementById('toggleButton').addEventListener('click', function() {
     updateClockFormat('12-hour');
   }
 });
-
+location.reload();
 // Initialize the clock format on page load
 initializeClockFormat();
 
