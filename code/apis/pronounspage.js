@@ -140,7 +140,7 @@ const generateCustomFlagElement = (customFlag) => {
       const userOffsetMinutes = Math.abs(now.getTimezoneOffset() % 60);
       const offsetHours = -(new Date().toLocaleString('en-US', { timeZone: timezone, timeZoneName: 'short' })).split(' GMT')[1];
       const offsetMinutes = 0;
-      const offsetText = `UTC ${offsetHours >= 0 ? '+' : '-'}${Math.abs(offsetHours)}`;
+      const offsetText = `UTC ${offsetHours <= 0 ? '+' : '-'}${Math.abs(offsetHours)}`;
     
       // Update the clock element with the formatted time, day, and offset
       clockElement.innerHTML = `${clockText} <span style="font-size:1rem">( ${offsetText} )</span>`;
