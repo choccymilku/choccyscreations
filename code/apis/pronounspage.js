@@ -116,16 +116,20 @@ const generateCustomFlagElement = (customFlag) => {
       const now = new Date();
     
       // Display time in the specified timezone
+      const clockFormat = localStorage.getItem('clockFormat');
       const timeOptions = {
-        hour12: localStorage.getItem('clockFormat') === '12-hour',
-        hour: localStorage.getItem('clockFormat') === '12-hour' ? '2-digit' : '2-digit',
+        hour12: clockFormat === '12-hour', // Use 12-hour format if clockFormat is '12-hour'
+        hour: '2-digit',
         minute: '2-digit',
         timeZone: timezone
       };
       const timeString = now.toLocaleTimeString([], timeOptions);
     
-      // Replace 12 with 00 for 24-hour format if necessary
-      const formattedTime = localStorage.getItem('clockFormat') === '12-hour' ? timeString : timeString.replace(/^12/, '00');
+      // Replace "00" with "12" in the formatted time
+      let formattedTime = timeString.replace(/^00/, '12');
+    
+      // Capitalize "am" and "pm"
+      formattedTime = formattedTime.replace(/am|pm/gi, match => match.toUpperCase());
     
       // Display the day of the week
       const dayOptions = {
@@ -138,35 +142,24 @@ const generateCustomFlagElement = (customFlag) => {
       // Calculate the UTC offset
       const userOffsetHours = Math.floor(now.getTimezoneOffset() / -60);
       const userOffsetMinutes = Math.abs(now.getTimezoneOffset() % 60);
-      const offsetHours = -(new Date().toLocaleString('en-US', { timeZone: timezone, timeZoneName: 'short' })).split(' GMT')[1];
+      const offsetHours = -(new Date().toLocaleString('en-US', {
+        timeZone: timezone,
+        timeZoneName: 'short'
+      })).split(' GMT')[1];
       const offsetMinutes = 0;
-      const offsetText = `UTC ${offsetHours <= 0 ? '+' : '-'}${Math.abs(offsetHours)}`;
+      const offsetText = `UTC ${offsetHours <= 0 ? '+' : '-'}${Math.abs(Number(offsetHours))}`;
     
       // Update the clock element with the formatted time, day, and offset
       clockElement.innerHTML = `${clockText} <span style="font-size:1rem">( ${offsetText} )</span>`;
     }
     
+    // Rest of the code remains the same
+    
     let clockElement = document.getElementById('clock');
-    if (!clockElement) {
-      const observer = new MutationObserver(mutations => {
-        mutations.forEach(mutation => {
-          if (mutation.addedNodes) {
-            for (let i = 0; i < mutation.addedNodes.length; i++) {
-              const node = mutation.addedNodes[i];
-              if (node.id === 'clock') {
-                clockElement = node;
-                setInterval(() => updateClock(timezone), 0);
-                observer.disconnect();
-                break;
-              }
-            }
-          }
-        });
-      });
-      observer.observe(document.documentElement, { childList: true, subtree: true });
-    } else {
-      setInterval(() => updateClock(timezone), 0);
-    }
+    setInterval(() => updateClock(timezone), 0);
+    
+    
+
     
   })
 

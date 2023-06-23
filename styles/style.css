@@ -593,6 +593,7 @@ body {
   scrollbar-width: none;
   display: flex;
   margin-right: 10px;
+  margin-left: 10px;
 }
 
 #friends_inner2 {
