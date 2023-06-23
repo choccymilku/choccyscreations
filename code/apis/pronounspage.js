@@ -112,51 +112,56 @@ const generateCustomFlagElement = (customFlag) => {
 
     const timezone = data.profiles.en.timezone.tz;
 
-    function updateClock(timezone) {
-      const now = new Date();
-    
-      // Display time in the specified timezone
-      const clockFormat = localStorage.getItem('clockFormat');
-      const timeOptions = {
-        hour12: clockFormat === '12-hour', // Use 12-hour format if clockFormat is '12-hour'
-        hour: '2-digit',
-        minute: '2-digit',
-        timeZone: timezone
-      };
-      const timeString = now.toLocaleTimeString([], timeOptions);
-    
-      // Replace "00" with "12" in the formatted time
-      let formattedTime = timeString.replace(/^00/, '12');
-    
-      // Capitalize "am" and "pm"
-      formattedTime = formattedTime.replace(/am|pm/gi, match => match.toUpperCase());
-    
-      // Display the day of the week
-      const dayOptions = {
-        weekday: 'long'
-      };
-      const dayString = now.toLocaleDateString([], dayOptions);
-    
-      const clockText = `${formattedTime} on a ${dayString}`;
-    
-      // Calculate the UTC offset
-      const userOffsetHours = Math.floor(now.getTimezoneOffset() / -60);
-      const userOffsetMinutes = Math.abs(now.getTimezoneOffset() % 60);
-      const offsetHours = -(new Date().toLocaleString('en-US', {
-        timeZone: timezone,
-        timeZoneName: 'short'
-      })).split(' GMT')[1];
-      const offsetMinutes = 0;
-      const offsetText = `UTC ${offsetHours <= 0 ? '+' : '-'}${Math.abs(Number(offsetHours))}`;
-    
-      // Update the clock element with the formatted time, day, and offset
-      clockElement.innerHTML = `${clockText} <span style="font-size:1rem">( ${offsetText} )</span>`;
-    }
-    
-    // Rest of the code remains the same
-    
-    let clockElement = document.getElementById('clock');
-    setInterval(() => updateClock(timezone), 0);
+function updateClock(timezone) {
+  const now = new Date();
+
+  // Display time in the specified timezone
+  const clockFormat = localStorage.getItem('clockFormat');
+  const timeOptions = {
+    hour12: clockFormat === '12-hour', // Use 12-hour format if clockFormat is '12-hour'
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: timezone
+  };
+  const timeString = now.toLocaleTimeString([], timeOptions);
+
+  // Replace "00" with "12" in the formatted time
+  let formattedTime = timeString;
+
+  if (clockFormat === '12-hour') {
+    formattedTime = formattedTime.replace(/^00/, '12');
+  }
+
+  // Capitalize "am" and "pm"
+  formattedTime = formattedTime.replace(/am|pm/gi, match => match.toUpperCase());
+
+  // Display the day of the week
+  const dayOptions = {
+    weekday: 'long'
+  };
+  const dayString = now.toLocaleDateString([], dayOptions);
+
+  const clockText = `${formattedTime} on a ${dayString}`;
+
+  // Calculate the UTC offset
+  const userOffsetHours = Math.floor(now.getTimezoneOffset() / -60);
+  const userOffsetMinutes = Math.abs(now.getTimezoneOffset() % 60);
+  const offsetHours = -(new Date().toLocaleString('en-US', {
+    timeZone: timezone,
+    timeZoneName: 'short'
+  })).split(' GMT')[1];
+  const offsetMinutes = 0;
+  const offsetText = `UTC ${offsetHours <= 0 ? '+' : '-'}${Math.abs(Number(offsetHours))}`;
+
+  // Update the clock element with the formatted time, day, and offset
+  clockElement.innerHTML = `${clockText} <span style="font-size:1rem">( ${offsetText} )</span>`;
+}
+
+// Rest of the code remains the same
+
+let clockElement = document.getElementById('clock');
+setInterval(() => updateClock(timezone), 0);
+
     
     
 
