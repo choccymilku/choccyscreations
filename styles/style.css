@@ -46,29 +46,10 @@
   --icon_hover: #bf5f1a;
 }
 
-
 body {
     background-color: var(--background);
     overflow: hidden;
-    transition: 0.25s;
 }
-  
-.toggle {
-    width: 255px;
-    height: fit-content;
-    font-size: 70px;
-    margin-left: 20px;
-    cursor: pointer;
-    padding-left: 300px;
-}
-
-.fa-solid {display: inline;}
-
-.flag-emojis {height: 24px;margin-bottom: -3px;}
-
-#link:hover {color: var(--text);text-decoration: none;}
-#link {transition: 0.15s;}
-#yeaah {width: 100%;height: 100%;background-color: var(--wing1);position: absolute;margin: -10px;display: none;z-index: 10;}
 
 #main {
   background-color: var(--modal_background);
@@ -106,14 +87,6 @@ body {
   border-radius: 8px;
   overflow-x: hidden;
   scrollbar-width: none;
-}
-
-#preloader_tester {
-  height: 235px;
-  width: 235px;
-  border-radius: 8px;
-  margin-top: 10px;
-  background-color: var(--modal_background);
 }
 
 #left_side_scrollable {
@@ -204,25 +177,6 @@ body {
   background-color: var(--item_background);
   overflow: hidden;
 }
-/* 
-
-#tester {
-  background-color: green;
-  height: calc(100% - 20px);
-  width: calc(100% - 20px);
-  margin: 10px;
-  position: relative;
-  z-index: 1;
-  border-radius: 8px;
-}
-
-#bar_inner {
-  margin: 10px;
-  position: absolute;
-  height: calc(100% - 20px);
-  width: calc(100% - 20px);
-  background-color: red;
-} */
 
 #bottom_right_settings {
   height: 127.5px;
@@ -268,19 +222,6 @@ body {
     z-index: 1;
     position: relative;
   }
-  
-/*   #username {
-    text-align: left;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-size: 38px;
-    display: block;
-    background-color: var(--modal_background);
-    border-radius: 8px;
-    padding: 10px;
-    height: 48px;
-  } */
   
   #status {
     z-index: 1;
@@ -429,14 +370,6 @@ body {
           margin-top: -36px;
   }
 
-
-
-
-.discord_emoji {
-    display: inline-block;
-    height: 36px;
-    margin-bottom: -8px;
-}
 #accounts {border-radius: 8px;margin-top: -10px;}
 #account_wrapper {
   height: calc(100% - 10px);
@@ -494,34 +427,9 @@ body {
     text-align: center;
   }
   
-
 .connection-div {
   margin-top: 10px;
   background-color: var(--modal_background);border-radius: 8px;}
-
-.flag-name {text-decoration: none;transition: 0.15s;color:var(--icon)}
-.flag-name:hover {color: var(--text);text-decoration: none;}
-.pronoun-values {background-color:var(--item_background);padding-left:5px;padding-right:5px;border-radius:8px;display: inline-block;word-break: break-word;}
-#clock {background-color:var(--item_background);padding-left:5px;padding-right:5px;border-radius:8px;font-size: 26px;width: calc(100% - 10px);display: inline-block;}
-.divider {width: 100%;height: 3px;background-color:  var(--item_background);margin-top: 9px;margin-bottom: 9px;}
-#roblox {width: 300px;height: 100px;background-color: var(--wing1);margin-top: 20px;margin-bottom: 20px;}
-
-.emoji {
-  height: 28px;
-}
-.emoji-status {
-  height: 26px;
-  width: 26px;
-  border-radius: 8px;
-  float: left;
-}
-#status-emoji {
-  position: absolute;
-  z-index: 1;
-  height: 26px;
-  border-radius: 8px;
-  float: left;
-}
 
 #settings {
   font-size: 82px;
@@ -563,7 +471,6 @@ body {
   position: fixed;
   z-index: 10;
 }
-
 
 #friends {
   border-radius: 8px;
@@ -648,38 +555,46 @@ body {
   text-align: center;
 }
 
-#not_implemented {
-  background-color: var(--icon);
-  border-radius: 8px;
-  position: relative;
-  z-index: 10;
-  padding: 10px;
-  max-width: 960px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-#not_implemented_inner {
-  background-color: var(--icon_hover);
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 20px;
-}
-
-.flag-name {color:var(--icon) !important}
+.flag-name {text-decoration: none;transition: 0.15s;color:var(--icon)}
 .flag-name:hover {color:var(--icon_hover) !important}
 .flag-name-null {color:var(--icon) !important}
 .flag-name-null:hover {color:var(--icon) !important}
 a {color:var(--icon) !important;}
 a:hover {color:var(--icon_hover) !important}
-
-#font-selector {
-  background-color: var(--modal_background);
-  font-size: 30px;
-  word-break: break-all;
+.flag-emojis {height: 24px;margin-bottom: -3px;}
+#link:hover {color: var(--text);text-decoration: none;}
+#link {transition: 0.15s;}
+.emoji {
+  height: 28px;
+}
+.emoji-status {
+  height: 26px;
+  width: 26px;
+  border-radius: 8px;
+  float: left;
+}
+#status-emoji {
+  position: absolute;
+  z-index: 1;
+  height: 26px;
+  border-radius: 8px;
+  float: left;
+}
+.discord_emoji {
+  display: inline-block;
+  height: 36px;
+  margin-bottom: -8px;
+}
+.pronoun-values {background-color:var(--item_background);padding-left:5px;padding-right:5px;border-radius:8px;display: inline-block;word-break: break-word;}
+.divider {width: 100%;height: 3px;background-color:  var(--item_background);margin-top: 9px;margin-bottom: 9px;}
+#clock {background-color:var(--item_background);padding-left:5px;padding-right:5px;border-radius:8px;font-size: 26px;width: calc(100% - 10px);display: inline-block;}
+#roblox {width: 300px;height: 100px;background-color: var(--wing1);margin-top: 20px;margin-bottom: 20px;}
+#preloader {
   width: 100%;
-  border: none;
-  margin-left: -5px;
-  font-family: noto sans mono;
-  margin-top: 5px;
+  height: 100%;
+  margin-left: -10px;
+  margin-top: -10px;
+  background-color: var(--background);
+  position: fixed;
+  z-index: 10;
 }

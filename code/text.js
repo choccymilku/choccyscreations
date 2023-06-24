@@ -9,6 +9,7 @@ document.getElementById("text").innerHTML = convertedText;
 function convertTimestamps(text) {
     const timestampRegex = /<t:(\d+):([dtTFr])>/gi;
     const boldRegex = /\*\*(.*?)\*\*/gi;
+    const smallRegex = /\^\^(.*?)\^\^/gi;
     const italicRegex = /\*(.*?)\*/gi;
     const underlineRegex = /__(.*?)__/gi;
     const strikeRegex = /~~(.*?)~~/gi;
@@ -65,6 +66,7 @@ function convertTimestamps(text) {
         return `<img src="${twemojiUrl}" alt="${emoji}" class="emojis"/>`;
       })
 .replace(boldRegex, '<span style="font-weight: bold;">$1</span>')
+.replace(smallRegex, '<span style="font-size: 1rem;">$1</span>')
 .replace(italicRegex, '<span style="font-style: italic;">$1</span>')
 .replace(underlineRegex, '<span style="text-decoration: underline;">$1</span>')
 .replace(strikeRegex, '<span style="text-decoration: line-through;">$1</span>')
@@ -72,7 +74,7 @@ function convertTimestamps(text) {
 .replace(codeRegex, '<code>$1</code>')
 .replace(linkRegex, '<a href="$2" id="link" target="_blank" style="text-decoration:none;">$1</a>')
 .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
-.replace(/\n/g, "<br>")
+.replace(/\n/g, "<span style='display:block;height:0.65rem;'></span>")
 .replace(superscriptRegex, '<span style="font-size: 0.7rem;">$1</span>')
 .replace(imageRegex, "<img class='emojis' src='$1'/>")
 .replace(bigImageRegex, "<img class='emojis-big' src='$1'/>")

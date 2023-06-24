@@ -34,7 +34,7 @@
     }
 
     #left_side_scrollable {
-        display: none;
+        display: none !important;
     }
 
     #center_side {
@@ -93,7 +93,7 @@
         height: 40px;
         background-color: var(--modal_background);
         margin-left: 170px;
-        margin-top: -55px;
+        margin-top: -54px;
         margin-right: 10px;
     }
 
@@ -172,17 +172,63 @@
     }
 
     #listening-to-spotify {
-        height: 200px;
+        height: 200px !important;
     }
 
     #listening-to-spotify-song {
         word-break:keep-all;
         white-space: break-spaces;
-        max-height: 80px;
+        max-height: 66px;
         font-size: 22px;
     }
 
     #listening-to-spotify-artist {
         margin-top: -46px;
+    }
+}
+
+@media screen and (max-width: 410px){
+    #play-on-spotify-link {
+        width: calc(100% - 10px);
+        margin-top: 5px;
+        margin-left: 0px;
+        background-color: var(--item_background);
+    }
+
+    #listening-to-spotify-info {
+        margin-top: -150px;
+        justify-content: center;
+        margin-left: 110px;
+        width: calc(100% - 130px);
+        height: 80px;
+    }
+    
+    #listening-to-spotify-cover {
+        height: 100px;
+        width: 100px;
+    }
+    #listening-to-spotify {
+        height: 150px !important;
+    }
+
+    #listening-to-spotify-song {
+        white-space:nowrap;
+        font-size: 22px;
+    }
+
+    #listening-to-spotify-artist {
+        margin-top: -46px;
+    }
+}
+
+@media screen and (max-width: 308px){
+    #listening-to-spotify {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 290px){
+    #listening-to-spotify {
+        display: none !important;
     }
 }
