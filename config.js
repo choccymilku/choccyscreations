@@ -23,7 +23,7 @@ const bday_year = '2007';
 var custom_text = 
 "call me choccy or choco, up to you\n\n" +
 "i do stuff on the internet, occasionally code ^^*(just like this website)*^^\n\n" +
-"the code is available [here!](https://github.com/choccymilku/choccyscreations)" +
+"the code is available [here!](https://github.com/choccymilku/choccys_creations_public)" +
 "<div class='divider'></div>" +
 "available from <t:1662465600:t> to <t:1682874000:t>\n\n" +
 "currently it's <span id='clock'>fetching...</span>\n" +
