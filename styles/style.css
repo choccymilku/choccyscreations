@@ -16,6 +16,7 @@
     --modal_background: #CCCCCC;
     --icon: #1E1E1E;
     --icon_hover: #5b5b5b;
+    --warn: #db5f6e;
 }
 
 /* Additional themes */
@@ -26,6 +27,7 @@
   --modal_background: #1f1f23;
   --icon: #1db954;
   --icon_hover: #27ff73;
+  --warn: #db5f6e;
 }
 
 :root[data-applied-mode="pitch black"] {
@@ -35,6 +37,7 @@
   --modal_background: #141414;
   --icon: #3a3a3a;
   --icon_hover: #606060;
+  --warn: #db5f6e;
 }
 
 :root[data-applied-mode="neapolitan"] {
@@ -44,6 +47,7 @@
   --modal_background: #fffbcc;
   --icon: #714214;
   --icon_hover: #bf5f1a;
+  --warn: #db5f6e;
 }
 
 body {
@@ -155,7 +159,7 @@ body {
 
 #menu {
   margin: 10px;
-  height: 100%;
+  height: calc(100% - 20px);
   width: 215px;
   margin-left: 0px;
   margin-top: 0px;
