@@ -172,6 +172,7 @@ const type0Activities = activities ? activities.filter(activity => activity.type
 
 if (type0Activities.length > 0) {
   const activitySection = document.getElementById('discord-activity-section');
+  activitySection.style.display = 'block';
 
   type0Activities.forEach(activity => {
     const existingActivityContainer = activitySection.querySelector(`[data-activity-type="${activity.type}"]`);
@@ -289,6 +290,8 @@ if (type0Activities.length > 0) {
     activitySection.appendChild(activityContainer);
   });
 } else {
+  const activitySection = document.getElementById('discord-activity-section');
+  activitySection.style.display = 'none';
 } 
 
 const listeningToSpotify = activities ? activities.some(activity => activity.type === 2 && activity.name === 'Spotify') : false;
