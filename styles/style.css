@@ -250,6 +250,13 @@ body {
 
   #status_border:hover #status_text {opacity: 1;}
 
+  #discord-activity-section{
+    border-radius: 8px;
+    background-color: var(--modal_background);
+    margin-top: 10px;
+    padding: 10px;
+  }
+
   .listening-to-spotify {
     display: flex;
     flex-direction:column;
@@ -369,6 +376,76 @@ body {
           margin-right: 0px;
           margin-top: -36px;
   }
+
+  .activity-image-container {
+    width: fit-content;
+    height: 102.5px;
+    display: flex;
+  }
+
+  .activity-name {
+    margin-left: 10px;
+    height: 82.5px;
+    border-radius: 8px;
+    background-color: var(--item_background);
+    padding: 10px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+  }
+
+  .activity-name2 {
+    display: none;
+  }
+
+  .activity-image {
+    width: 102.5px;
+    height: 102.5px;
+    border-radius: 8px;
+  }
+
+  .activity-info {
+    width: 215px;
+    height: 102.5px;
+    border-radius: 8px;
+    background-color:var(--item_background);
+    font-size: 30px;
+  }
+
+  #activity-info {
+    margin: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .activity-name  {
+    margin-top: 0px;
+  }
+
+  .activity-details  {
+    margin-top: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .state-container  {
+    margin-top: -45px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .activity-time  {
+    margin-top: -45px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 26px;
+    font-weight: bold;
+  }
+
+
 
 #accounts {border-radius: 8px;margin-top: -10px;}
 #account_wrapper {

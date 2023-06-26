@@ -156,6 +156,81 @@
         margin-left: 10px;
         margin-top: 0px;
     }
+
+
+    .activity-container {
+        display: flex;
+    }
+    
+  .activity-image-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+
+  .activity-name {
+    display: none;
+  }
+
+  .activity-name2 {
+    display: block;
+    margin-top: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .activity-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+  }
+
+  .activity-info {
+    width: calc(100% - 200px);
+    height: 150px;
+    border-radius: 8px;
+    background-color:var(--item_background);
+    font-size: 30px;
+    justify-content: left;
+    align-items: center;
+    display: flex;
+    margin-left: 160px;
+    position: absolute;
+  }
+
+  #activity-info {
+    margin: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .activity-name  {
+    margin-top: 0px;
+  }
+
+  .activity-details  {
+    margin-top: 10px;
+    margin-top: -45px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .state-container  {
+    margin-top: -45px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .activity-time  {
+    margin-top: -45px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 26px;
+    font-weight: bold;
+  }
   }
 
 @media screen and (max-width: 460px){
@@ -219,16 +294,42 @@
     #listening-to-spotify-artist {
         margin-top: -46px;
     }
+
+    .activity-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 8px;
+      }
+    .activity-info {
+        height: 100px;
+        margin-left: 110px;
+        width: calc(100% - 150px);
+        font-size: 26px;
+    }
+
+    .activity-details {
+        margin-top: -40px;
+    }
+
+    .activity-time {
+        margin-top: -40px;
+    }
+
+    .state-container {
+        margin-top: -40px;
+    }
+
+    .activity-time {
+        font-size: 22px;
+    }
 }
 
 @media screen and (max-width: 308px){
     #listening-to-spotify {
         display: none !important;
     }
-}
 
-@media screen and (max-width: 290px){
-    #listening-to-spotify {
+    #discord-activity-section {
         display: none !important;
     }
 }

@@ -166,7 +166,130 @@ setTimeout(() => {
 
   
   
-  
+let startTime;
+
+const type0Activities = activities ? activities.filter(activity => activity.type === 0) : [];
+
+if (type0Activities.length > 0) {
+  const activitySection = document.getElementById('discord-activity-section');
+
+  type0Activities.forEach(activity => {
+    const existingActivityContainer = activitySection.querySelector(`[data-activity-type="${activity.type}"]`);
+    if (existingActivityContainer) {
+      return; // container already exists, skip creating a new one
+    }
+
+    const activityContainer = document.createElement('div');
+    activityContainer.className = 'activity-container';
+    activityContainer.setAttribute('data-activity-type', activity.type);
+
+    const activityInfo = document.createElement('div');
+    activityInfo.className = 'activity-info';
+    activityInfo.setAttribute('data-activity-type', activity.type);
+
+    const stateContainer = document.createElement('h6');
+    stateContainer.className = 'state-container';
+    stateContainer.innerText = activity.state;
+
+    const activityInfoDiv = document.createElement('div');
+    activityInfoDiv.id = 'activity-info';
+
+    const nameDiv = document.createElement('h6');
+    nameDiv.className = 'activity-name';
+    nameDiv.innerText = activity.name;
+    nameDiv.setAttribute('title', activity.name);
+
+    const nameDiv2 = document.createElement('h6');
+    nameDiv2.className = 'activity-name2';
+    nameDiv2.innerText = activity.name;
+    nameDiv2.setAttribute('title', activity.name);
+
+    const detailsDiv = document.createElement('h6');
+    detailsDiv.className = 'activity-details';
+    detailsDiv.innerText = activity.details;
+    detailsDiv.setAttribute('title', activity.details);
+
+    const imageDiv = document.createElement('div');
+    imageDiv.className = 'activity-image-container';
+
+    let largeImage = activity.assets.large_image;
+
+    // check if "Premid" is present in the URL, and construct the image URLs accordingly
+    if (largeImage.includes('mp:external')) {
+      largeImage = `https://media.discordapp.net/external/${largeImage.split('/').slice(1).join('/')}?size=512`;
+    } else {
+      largeImage = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${largeImage}?size=512`;
+    }
+
+    const image = document.createElement('img');
+    image.className = 'activity-image';
+    image.src = largeImage;
+
+    imageDiv.appendChild(image);
+
+    const timeDiv = document.createElement('div');
+    timeDiv.className = 'activity-time';
+
+    if (activity.name === 'Quaver') {
+      timeDiv.style.display = 'block';
+      endTime = activity.timestamps.end;
+
+      const quaverTimeDiv = document.createElement('h6');
+      quaverTimeDiv.className = 'activity-quaver-time';
+
+      function updateRemainingTime() {
+        const currentTime = Date.now();
+        const remainingTime = new Date(endTime - currentTime);
+
+        const hours = Math.max(remainingTime.getUTCHours(), 0).toString().padStart(2, '0');
+        const minutes = Math.max(remainingTime.getUTCMinutes(), 0).toString().padStart(2, '0');
+        const seconds = Math.max(remainingTime.getUTCSeconds(), 0).toString().padStart(2, '0');
+
+        quaverTimeDiv.innerText = `${hours}:${minutes}:${seconds} left`;
+
+        if (remainingTime <= 0) {
+          clearInterval(intervalId);
+        }
+      }
+
+      updateRemainingTime();
+      const intervalId = setInterval(updateRemainingTime, 1000);
+
+      timeDiv.appendChild(quaverTimeDiv);
+    } else {
+      function updateElapsedTime() {
+        const startTime = activity.timestamps.start;
+        const endTime = Date.now();
+        const elapsedTime = new Date(endTime - startTime);
+
+        const hours = elapsedTime.getUTCHours();
+        const minutes = elapsedTime.getUTCMinutes().toString().padStart(2, '0');
+        const seconds = elapsedTime.getUTCSeconds().toString().padStart(2, '0');
+
+        const elapsed = hours > 0 ? `${hours}:${minutes}:${seconds}` : `${minutes}:${seconds}`;
+
+        timeDiv.innerText = `${elapsed} elapsed`;
+      }
+
+      updateElapsedTime();
+      setInterval(updateElapsedTime, 1000);
+    }
+
+    imageDiv.appendChild(nameDiv);
+    activityInfoDiv.appendChild(nameDiv2);
+    activityInfoDiv.appendChild(detailsDiv);
+    activityInfoDiv.appendChild(stateContainer);
+    activityInfoDiv.appendChild(timeDiv);
+
+    activityInfo.appendChild(activityInfoDiv);
+
+    activityContainer.appendChild(imageDiv);
+    activityContainer.appendChild(activityInfo);
+
+    activitySection.appendChild(activityContainer);
+  });
+} else {
+} 
 
 const listeningToSpotify = activities ? activities.some(activity => activity.type === 2 && activity.name === 'Spotify') : false;
 
