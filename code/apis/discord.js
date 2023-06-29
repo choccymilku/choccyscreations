@@ -166,7 +166,7 @@ setTimeout(() => {
 
   
   
-let startTime;
+/* let startTime;
 
 const type0Activities = activities ? activities.filter(activity => activity.type === 0) : [];
 
@@ -179,6 +179,8 @@ if (type0Activities.length > 0) {
     if (existingActivityContainer) {
       return; // container already exists, skip creating a new one
     }
+
+    const fallbackImageURL = 'https://example.com/fallback-image.jpg';
 
     const activityContainer = document.createElement('div');
     activityContainer.className = 'activity-container';
@@ -225,39 +227,44 @@ if (type0Activities.length > 0) {
     const image = document.createElement('img');
     image.className = 'activity-image';
     image.src = largeImage;
-
+    image.onerror = function() {
+      // If the image fails to load, set the fallback image
+      this.src = fallbackImageURL;
+    };
+    
     imageDiv.appendChild(image);
+    
 
     const timeDiv = document.createElement('div');
     timeDiv.className = 'activity-time';
-
     if (activity.name === 'Quaver') {
       timeDiv.style.display = 'block';
-      endTime = activity.timestamps.end;
-
+      const startTime = new Date(activity.created_at).getTime();
+      
       const quaverTimeDiv = document.createElement('h6');
       quaverTimeDiv.className = 'activity-quaver-time';
 
+      timeDiv.style.marginTop = '-96px';
+      timeDiv.style.fontSize = '32px';
+      
       function updateRemainingTime() {
-        const currentTime = Date.now();
-        const remainingTime = new Date(endTime - currentTime);
-
-        const hours = Math.max(remainingTime.getUTCHours(), 0).toString().padStart(2, '0');
-        const minutes = Math.max(remainingTime.getUTCMinutes(), 0).toString().padStart(2, '0');
-        const seconds = Math.max(remainingTime.getUTCSeconds(), 0).toString().padStart(2, '0');
-
-        quaverTimeDiv.innerText = `${hours}:${minutes}:${seconds} left`;
-
-        if (remainingTime <= 0) {
-          clearInterval(intervalId);
-        }
+        const currentTime = new Date().getTime();
+        const elapsedTime = currentTime - startTime;
+        
+        const hours = Math.max(Math.floor(elapsedTime / (1000 * 60 * 60)), 0).toString().padStart(2, '0');
+        const minutes = Math.max(Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60)), 0).toString().padStart(2, '0');
+        const seconds = Math.max(Math.floor((elapsedTime % (1000 * 60)) / 1000), 0).toString().padStart(2, '0');
+        
+        quaverTimeDiv.innerText = `${hours}:${minutes}:${seconds} elapsed`;
       }
-
+      
       updateRemainingTime();
       const intervalId = setInterval(updateRemainingTime, 1000);
-
+      
       timeDiv.appendChild(quaverTimeDiv);
-    } else {
+    }
+    
+     else {
       function updateElapsedTime() {
         const startTime = activity.timestamps.start;
         const endTime = Date.now();
@@ -292,7 +299,7 @@ if (type0Activities.length > 0) {
 } else {
   const activitySection = document.getElementById('discord-activity-section');
   activitySection.style.display = 'none';
-} 
+}  */
 
 const listeningToSpotify = activities ? activities.some(activity => activity.type === 2 && activity.name === 'Spotify') : false;
 
