@@ -1,5 +1,5 @@
 // your discord ID
-const discord_user_id = '669956621618642985';
+const discord_user_id = '945717456163442708';
 
 // your roblox ID
 const roblox_id = "2450458016";

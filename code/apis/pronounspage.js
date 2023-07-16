@@ -160,7 +160,7 @@ function updateClock(timezone) {
 // Rest of the code remains the same
 
 let clockElement = document.getElementById('clock');
-setInterval(() => updateClock(timezone), 1000);
+setInterval(() => updateClock(timezone), 0);
 
     
     
