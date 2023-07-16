@@ -5,7 +5,7 @@
   --modal_background: #404254;
   --item_background: #52546b;
   --icon: #9e9eff;
-  --icon_hover: red;
+  --icon_hover: #9e9eff;
   --warn: #db5f6e;
 }
 
@@ -17,7 +17,7 @@ body {
 
 #main {
   background-color: var(--modal_background);
-  width: calc(100% - 20px);
+  width: calc(100% + 70px);
   height: calc(100% + 80px);
   max-width: 920px;
   position: fixed;
