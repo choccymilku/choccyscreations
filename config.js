@@ -8,7 +8,7 @@ const roblox_id = "2450458016";
 const mastodon_username = "";
 
 // your pronouns.page username (or ID)
-const pronounspage_username = "chocolateychoccy";
+const pronounspage_username = "01GXT9SVRPDFYR3DJGMAEJ2FN4";
 
 // title for the page
 const title = "vulpy";
