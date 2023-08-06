@@ -24,8 +24,8 @@ if (data && Date.now() - data.timestamp < 30 * 60 * 1000) {
       const friendData = data[id];
       const formattedData = {
         id: id,
-        username: friendData.tag.substring(0, friendData.tag.indexOf('#')),
-        avatar: `https://cdn.discordapp.com/avatars/${id}/${friendData.avatar.id}`
+        username: username,
+        avatar: avatar,
       };
 
       const container = document.createElement('div');
@@ -60,8 +60,8 @@ if (data && Date.now() - data.timestamp < 30 * 60 * 1000) {
           const id = friendData.id;
           const formattedData = {
             id: id,
-            username: friendData.tag.substring(0, friendData.tag.indexOf('#')),
-            avatar: `https://cdn.discordapp.com/avatars/${id}/${friendData.avatar.id}`
+            username: username,
+            avatar: avatar,
           };
 
           const container = document.createElement('div');
