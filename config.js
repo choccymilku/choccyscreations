@@ -11,7 +11,7 @@ const mastodon_username = "";
 const pronounspage_username = "01GXT9SVRPDFYR3DJGMAEJ2FN4";
 
 // title for the page
-const title = "vulpy";
+const title = "choccy's thing";
 
 // your birthday
 const bday_day = '6';
