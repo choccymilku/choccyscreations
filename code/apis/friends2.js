@@ -70,7 +70,7 @@ if (data && Date.now() - data.timestamp < 360 * 60 * 1000) {
   
 } else {
   friendsContainers.forEach(friendsContainer => {
-    Promise.all(discordUserIds.map(id => fetch(`https://discordlookup.mesavirep.xyz/v1/user/${id}`)))
+    Promise.all(discordUserIds.map(id => fetch(`https://discordlookup.noodlee.repl.co/api?id=${id}`)))
       .then(responses => Promise.all(responses.map(response => response.json())))
       .then(data => {
         // generate friend elements
