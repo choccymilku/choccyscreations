@@ -31,17 +31,14 @@ if (data && Date.now() - data.timestamp < 30 * 60 * 1000) {
       const container = document.createElement('div');
       container.setAttribute('id', 'friends_container');
 
-      const avatarBG = document.createElement('div');
-      avatarBG.setAttribute('id', 'friends_avatar_bg');
-
       const avatar = document.createElement('img');
-      avatar.setAttribute('src', formattedData.avatar);
+      avatar.setAttribute('src', avatar);
       avatar.setAttribute('id', 'friends_avatar');
 
       const name = document.createElement('h6');
-      name.textContent = formattedData.username;
+      name.textContent = username;
       name.setAttribute('id', 'friends_name');
-      name.title = formattedData.username;
+      name.title = username;
 
       container.appendChild(avatarBG);
       avatarBG.appendChild(avatar);
@@ -67,17 +64,14 @@ if (data && Date.now() - data.timestamp < 30 * 60 * 1000) {
           const container = document.createElement('div');
           container.setAttribute('id', 'friends_container');
 
-          const avatarBG = document.createElement('div');
-          avatarBG.setAttribute('id', 'friends_avatar_bg');
-
           const avatar = document.createElement('img');
-          avatar.setAttribute('src', formattedData.avatar);
+          avatar.setAttribute('src', avatar);
           avatar.setAttribute('id', 'friends_avatar');
 
           const name = document.createElement('h6');
-          name.textContent = formattedData.username;
+          name.textContent = username;
           name.setAttribute('id', 'friends_name');
-          name.title = formattedData.username;
+          name.title = username;
 
           container.appendChild(avatarBG);
           avatarBG.appendChild(avatar);
