@@ -13,41 +13,8 @@ const discordUserIds = [
 ];
 
 // get the friends-section-container element
-const friendsContainers = document.querySelectorAll('#friends_inner, #friends_inner2');
+const friendsContainers = document.querySelectorAll('#friends_inner');
 
-// check if data exists in local storage and is not older than 30 minutes
-const data = JSON.parse(localStorage.getItem('discordFriends'));
-if (data && Date.now() - data.timestamp < 30 * 60 * 1000) {
-  // generate friend elements using the saved data
-  friendsContainers.forEach(friendsContainer => {
-    discordUserIds.forEach(id => {
-      const friendData = data[id];
-      const formattedData = {
-        id: id,
-        username: username,
-        avatar: avatar,
-      };
-
-      const container = document.createElement('div');
-      container.setAttribute('id', 'friends_container');
-
-      const avatar = document.createElement('img');
-      avatar.setAttribute('src', avatar);
-      avatar.setAttribute('id', 'friends_avatar');
-
-      const name = document.createElement('h6');
-      name.textContent = username;
-      name.setAttribute('id', 'friends_name');
-      name.title = username;
-
-      container.appendChild(avatarBG);
-      avatarBG.appendChild(avatar);
-      container.appendChild(name);
-
-      friendsContainer.appendChild(container);
-    });
-  });
-} else {
   friendsContainers.forEach(friendsContainer => {
     Promise.all(discordUserIds.map(id => fetch(`https://discordlookup.mesavirep.xyz/v1/user/${id}`)))
       .then(responses => Promise.all(responses.map(response => response.json())))
@@ -55,30 +22,41 @@ if (data && Date.now() - data.timestamp < 30 * 60 * 1000) {
         // generate friend elements
         data.forEach(friendData => {
           const id = friendData.id;
-          const formattedData = {
-            id: id,
-            username: username,
-            avatar: avatar,
-          };
-
           const container = document.createElement('div');
           container.setAttribute('id', 'friends_container');
+          container.style.backgroundColor = friendData.banner.color;
 
           const avatar = document.createElement('img');
-          avatar.setAttribute('src', avatar);
+          avatar.setAttribute('src', `https://cdn.discordapp.com/avatars/${id}/${friendData.avatar.id}?size=2048`);
           avatar.setAttribute('id', 'friends_avatar');
-
+  
           const name = document.createElement('h6');
-          name.textContent = username;
+          name.textContent = friendData.tag.substring(0, friendData.tag.indexOf('#'));
           name.setAttribute('id', 'friends_name');
-          name.title = username;
-
-          container.appendChild(avatarBG);
-          avatarBG.appendChild(avatar);
+          name.title = friendData.tag.substring(0, friendData.tag.indexOf('#'));
+  
+          container.appendChild(avatar);
           container.appendChild(name);
-
+  
+          if (id === '1035262868586766376') {
+            const link = document.createElement('a');
+            link.href = 'https://benreyland.crd.co';
+            link.textContent = friendData.tag.substring(0, friendData.tag.indexOf('#'));
+            link.target = '_blank';
+            name.textContent = '';
+            name.appendChild(link);
+          }
+          if (id === '981935028751695943') {
+            const link = document.createElement('a');
+            link.href = 'https://rentry.org/binarystarz';
+            link.textContent = friendData.tag.substring(0, friendData.tag.indexOf('#'));
+            link.target = '_blank';
+            name.textContent = '';
+            name.appendChild(link);
+          }
+  
           friendsContainer.appendChild(container);
-
+  
           const savedData = JSON.parse(localStorage.getItem('discordFriends')) || {};
           savedData[id] = friendData;
           savedData.timestamp = Date.now();
@@ -86,9 +64,8 @@ if (data && Date.now() - data.timestamp < 30 * 60 * 1000) {
         });
       })
       .catch(error => console.error(error));
-
+  
     // Add console log for the next fetch
     const timeUntilNextFetch = (Date.now() - data.timestamp) / 1000;
     console.log(`Next fetch in ${timeUntilNextFetch} seconds.`);
   });
-}
